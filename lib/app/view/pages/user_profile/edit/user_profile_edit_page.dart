@@ -11,7 +11,8 @@ class UserProfileEditPage extends StatefulWidget {
   final _userProfileController = Get.find<UserProfileEditController>();
 
   @override
-  _UserProfileEditPageState createState() => _UserProfileEditPageState();
+  // _UserProfileEditPageState createState() => _UserProfileEditPageState();
+  State<UserProfileEditPage> createState() => _UserProfileEditPageState();
 }
 
 class _UserProfileEditPageState extends State<UserProfileEditPage> {
@@ -25,7 +26,6 @@ class _UserProfileEditPageState extends State<UserProfileEditPage> {
   final _registerTec = TextEditingController();
   @override
   void initState() {
-    print('+++ initState +++');
     super.initState();
     _nicknameTec.text =
         widget._userProfileController.userProfile?.nickname ?? "";

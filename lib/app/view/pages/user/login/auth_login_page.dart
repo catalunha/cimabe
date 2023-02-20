@@ -23,7 +23,6 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 

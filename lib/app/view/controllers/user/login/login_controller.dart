@@ -65,7 +65,7 @@ class LoginController extends GetxController with LoaderMixin, MessageMixin {
 
   Future<void> forgotPassword(String email) async {
     try {
-      final user = await _userRepository.forgotPassword(email);
+      // final user = await _userRepository.forgotPassword(email);
       _message.value = MessageModel(
         title: 'Veja seu email',
         message: 'Enviamos instruções de recuperação de senha nele.',

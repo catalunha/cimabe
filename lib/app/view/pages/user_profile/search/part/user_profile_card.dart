@@ -1,14 +1,10 @@
 import 'package:cimabe/app/core/models/user_profile_model.dart';
-import 'package:cimabe/app/view/controllers/user_profile/search/user_profile_search_controller.dart';
 import 'package:cimabe/app/view/pages/utils/app_text_title_value.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class UserProfileCard extends StatelessWidget {
-  final _clientSearchController = Get.find<UserProfileSearchController>();
-
   final UserProfileModel profile;
-  UserProfileCard({Key? key, required this.profile}) : super(key: key);
+  const UserProfileCard({Key? key, required this.profile}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
