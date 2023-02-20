@@ -65,7 +65,7 @@ class _SearchPageState extends State<UserProfileSearchPage> {
                             ),
                             Expanded(
                               child: AppTextFormField(
-                                label: 'Nome que contém',
+                                label: 'que contém',
                                 controller: _nicknameContainsTEC,
                               ),
                             ),
@@ -90,7 +90,7 @@ class _SearchPageState extends State<UserProfileSearchPage> {
                             ),
                             Expanded(
                               child: AppTextFormField(
-                                label: 'Nome que contém',
+                                label: 'que contém',
                                 controller: _nameContainsTEC,
                               ),
                             ),
@@ -115,7 +115,7 @@ class _SearchPageState extends State<UserProfileSearchPage> {
                             ),
                             Expanded(
                               child: AppTextFormField(
-                                label: 'CPF igual a',
+                                label: 'igual a',
                                 controller: _cpfEqualToTEC,
                               ),
                             ),
@@ -140,7 +140,7 @@ class _SearchPageState extends State<UserProfileSearchPage> {
                             ),
                             Expanded(
                               child: AppTextFormField(
-                                label: 'Registro igual a',
+                                label: 'igual a',
                                 controller: _registerEqualToTEC,
                               ),
                             ),
@@ -165,7 +165,7 @@ class _SearchPageState extends State<UserProfileSearchPage> {
                             ),
                             Expanded(
                               child: AppTextFormField(
-                                label: 'Telefone igual a',
+                                label: 'igual a',
                                 controller: _phoneEqualToTEC,
                               ),
                             ),

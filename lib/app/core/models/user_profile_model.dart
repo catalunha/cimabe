@@ -13,7 +13,7 @@ class UserProfileModel {
   final String? phone;
   final String? photo;
   final List<String>? routes; //admin, reserva, operador, relatorio
-  final List<String>? restrictions; // constar ItemModel.infos ou serie ou lote,
+  final List<String>? restrictions; // constar ItemModel.groups
   final bool? isActive;
 
   UserProfileModel({

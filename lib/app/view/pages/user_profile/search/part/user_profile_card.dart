@@ -1,6 +1,8 @@
 import 'package:cimabe/app/core/models/user_profile_model.dart';
+import 'package:cimabe/app/routes.dart';
 import 'package:cimabe/app/view/pages/utils/app_text_title_value.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class UserProfileCard extends StatelessWidget {
   final UserProfileModel profile;
@@ -39,47 +41,46 @@ class UserProfileCard extends StatelessWidget {
                       title: 'Email: ',
                       value: profile.email,
                     ),
-                    AppTextTitleValue(
-                      title: 'Nome: ',
-                      value: '${profile.name}',
-                    ),
-                    AppTextTitleValue(
-                      title: 'Nickname: ',
-                      value: '${profile.name}',
-                    ),
-                    AppTextTitleValue(
-                      title: 'Telefone: ',
-                      value: '${profile.phone}',
-                    ),
-                    AppTextTitleValue(
-                      title: 'Registro: ',
-                      value: '${profile.register}',
-                    ),
-                    // Wrap(
-                    //   children: [
-                    //     IconButton(
-                    //       onPressed: () {
-                    //         Get.toNamed(Routes.clientProfileEdit,
-                    //             arguments: profile.id);
-                    //       },
-                    //       icon: const Icon(
-                    //         Icons.edit,
-                    //       ),
-                    //     ),
-                    //     IconButton(
-                    //       onPressed: () {
-                    //         Get.toNamed(Routes.clientProfileView, arguments: {
-                    //           'clientId': profile.id,
-                    //           'includeColumns':
-                    //               _clientSearchController.includeColumns
-                    //         });
-                    //       },
-                    //       icon: const Icon(
-                    //         Icons.assignment_ind_outlined,
-                    //       ),
-                    //     ),
-                    //   ],
+                    // AppTextTitleValue(
+                    //   title: 'Nome: ',
+                    //   value: '${profile.name}',
                     // ),
+                    AppTextTitleValue(
+                      title: 'Nome em tropa: ',
+                      value: '${profile.nickname}',
+                    ),
+                    // AppTextTitleValue(
+                    //   title: 'Telefone: ',
+                    //   value: '${profile.phone}',
+                    // ),
+                    // AppTextTitleValue(
+                    //   title: 'Registro: ',
+                    //   value: '${profile.register}',
+                    // ),
+                    Wrap(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Get.toNamed(Routes.userProfileAccess,
+                                arguments: profile.id);
+                          },
+                          icon: const Icon(
+                            Icons.edit,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            Get.toNamed(
+                              Routes.userProfileView,
+                              arguments: profile.id,
+                            );
+                          },
+                          icon: const Icon(
+                            Icons.assignment_ind_outlined,
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),

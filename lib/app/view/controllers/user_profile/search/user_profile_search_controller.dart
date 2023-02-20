@@ -67,7 +67,7 @@ class UserProfileSearchController extends GetxController
       query.whereContains('name', nameContainsString);
     }
     if (nicknameContainsBool) {
-      query.whereContains('nickname', nameContainsString);
+      query.whereContains('nickname', nicknameContainsString);
     }
     if (cpfEqualToBool) {
       query.whereEqualTo('cpf', cpfEqualToString);
@@ -79,7 +79,7 @@ class UserProfileSearchController extends GetxController
       query.whereEqualTo('phone', phoneEqualToString);
     }
 
-    // userProfileList.clear();
+    userProfileList.clear();
     // if (lastPage) {
     _lastPage(false);
     _pagination.update((val) {
