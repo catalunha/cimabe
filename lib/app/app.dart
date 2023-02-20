@@ -1,3 +1,5 @@
+import 'package:cimabe/app/routes.dart';
+import 'package:cimabe/app/view/controllers/splash/splash_dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -19,9 +21,9 @@ class App extends StatelessWidget {
       supportedLocales: const [
         Locale('pt', 'BR'),
       ],
-      // initialBinding: SplashDependencies(),
-      // getPages: Routes.pageList,
-      // initialRoute: Routes.splash,
+      initialBinding: SplashDependencies(),
+      getPages: Routes.pageList,
+      initialRoute: Routes.splash,
     );
   }
 }

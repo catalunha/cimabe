@@ -1,13 +1,27 @@
+import 'package:cimabe/app/view/controllers/home/home_dependencies.dart';
+import 'package:cimabe/app/view/controllers/splash/splash_dependencies.dart';
+import 'package:cimabe/app/view/controllers/user/login/login_dependencies.dart';
+import 'package:cimabe/app/view/controllers/user/register/email/user_register_email_dependencies.dart';
+import 'package:cimabe/app/view/controllers/user_profile/edit/user_profile_edit_dependencies.dart';
+import 'package:cimabe/app/view/controllers/user_profile/search/user_profile_search_dependencies.dart';
+import 'package:cimabe/app/view/pages/home/home_page.dart';
+import 'package:cimabe/app/view/pages/splash/splash_page.dart';
+import 'package:cimabe/app/view/pages/user/login/auth_login_page.dart';
+import 'package:cimabe/app/view/pages/user/register/email/user_register_email.page.dart';
+import 'package:cimabe/app/view/pages/user_profile/edit/user_profile_edit_page.dart';
+import 'package:cimabe/app/view/pages/user_profile/search/user_profile_search_list_page.dart';
+import 'package:cimabe/app/view/pages/user_profile/search/user_profile_search_page.dart';
 import 'package:get/get.dart';
 
 class Routes {
   static const splash = '/';
-
   static const userLogin = '/user/login';
-
   static const userRegisterEmail = '/user/register/email';
-
   static const home = '/home';
+
+  static const userProfileEdit = '/user/profile/edit';
+  static const userProfileSearch = '/user/profile/search';
+  static const userProfileSearchList = '/user/profile/search/list';
 
   static final pageList = [
     GetPage(
@@ -30,6 +44,20 @@ class Routes {
       binding: HomeDependencies(),
       page: () => HomePage(),
       children: const [],
+    ),
+    GetPage(
+      name: Routes.userProfileEdit,
+      binding: UserProfileEditDependencies(),
+      page: () => UserProfileEditPage(),
+    ),
+    GetPage(
+      name: Routes.userProfileSearch,
+      binding: UserProfileSearchDependencies(),
+      page: () => UserProfileSearchPage(),
+    ),
+    GetPage(
+      name: Routes.userProfileSearchList,
+      page: () => UserProfileSearchListPage(),
     ),
   ];
 }

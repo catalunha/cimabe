@@ -6,12 +6,12 @@ import 'package:cimabe/app/core/models/user_profile_model.dart';
 
 class ItemModel {
   final String? id;
+  final String? description;
   final String? serie;
   final List<String>? infos;
-  final String? description;
-  final String? obsCaution;
   final String? lote;
   final DateTime? validate;
+  final String? obsCaution;
   final bool? isBlockedOperator;
   final bool? isBlockedDoc;
   final String? doc;

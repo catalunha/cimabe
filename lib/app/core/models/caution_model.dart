@@ -12,19 +12,27 @@ class CautionModel {
   ItemModel? itemModel;
 
   UserProfileModel? userProfileReceiver;
+
   // (item.isBlockedOperator=true)
-  final bool?
-      receiverAnalyzingItem; // Null: analisando item. False: item recusado. True: item aceito.
+
+  // Null: analisando item.
+  // False: item recusado.
+  // True: item aceito.
+  final bool? receiverAnalyzingItem;
   final DateTime? receiverAnalyzedItemDt;
 
-  final bool?
-      receiverStartGiveback; // Null: ainda nao analisado. False: operador de posse do item recebido e aceito. True: iniciar devolução.
+  // Null: ainda nao analisado.
+  // False: operador de posse do item recebido e aceito.
+  // True: iniciar devolução.
+  final bool? receiverStartGiveback;
   final DateTime? receiverGivebackItemDt;
   final String? receiverGivebackDescription;
 
   UserProfileModel? userProfileGiveback;
-  final bool?
-      givebackAnalyzingItem; // Null: analisando item. False: item deve atualizar doc (item.isBlockedOperator=false,item.isBlockedDoc=true). T: item aceito (item.isBlockedOperator=false)
+  // Null: analisando item.
+  // False: item deve atualizar doc (item.isBlockedOperator=false,item.isBlockedDoc=true).
+  // T: item aceito (item.isBlockedOperator=false)
+  final bool? givebackAnalyzingItem;
   final DateTime? givebackAnalyzedItemDt;
   final String? givebackAnalysisDescription;
 
