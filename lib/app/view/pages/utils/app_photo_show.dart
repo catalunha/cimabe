@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class AppPhotoShow extends StatelessWidget {
   final String? photoUrl;
-  final double height;
-  final double width;
+  final double? height;
+  final double? width;
   const AppPhotoShow({
     Key? key,
     required this.photoUrl,
-    this.height = 58,
-    this.width = 58,
+    this.height,
+    this.width,
   }) : super(key: key);
 
   @override
@@ -23,10 +23,10 @@ class AppPhotoShow extends StatelessWidget {
                 width: width,
               ),
             )
-          : SizedBox(
-              height: height,
-              width: width,
-              child: const Icon(Icons.person_outline),
+          : const SizedBox(
+              // height: height,
+              // width: width,
+              child: Icon(Icons.person_outline),
             ),
     );
   }

@@ -156,7 +156,7 @@ class _ItemAddEditPageState extends State<ItemAddEditPage> {
                         height: 100,
                         child: CupertinoDatePicker(
                           initialDateTime:
-                              DateTime.now().add(const Duration(days: 365)),
+                              widget._itemAddEditController.validate,
                           mode: CupertinoDatePickerMode.date,
                           onDateTimeChanged: (DateTime newDate) {
                             widget._itemAddEditController.validate = newDate;

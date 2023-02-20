@@ -22,8 +22,6 @@ class ItemAddEditController extends GetxController
   ItemModel? get item => _item.value;
   set item(ItemModel? itemNew) => _item(itemNew);
 
-  String? itemId;
-
 // //+++ forms
 //   final descriptionTec = TextEditingController();
 //   final serieTec = TextEditingController();
@@ -53,6 +51,7 @@ class ItemAddEditController extends GetxController
 
   @override
   void onInit() async {
+    validate = DateTime.now().add(const Duration(days: 365));
     loaderListener(_loading);
     messageListener(_message);
     item = Get.arguments;

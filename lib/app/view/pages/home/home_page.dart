@@ -103,6 +103,12 @@ class Items extends StatelessWidget {
                       },
                       icon: const Icon(Icons.add),
                     ),
+                    IconButton(
+                      onPressed: () {
+                        Get.toNamed(Routes.itemSearch);
+                      },
+                      icon: const Icon(Icons.search),
+                    ),
                   ],
                 ),
               ],
