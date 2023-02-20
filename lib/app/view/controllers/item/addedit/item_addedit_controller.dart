@@ -71,6 +71,7 @@ class ItemAddEditController extends GetxController
     bool? isBlockedOperator,
     bool? isBlockedDoc,
     String? groups,
+    int? quantity = 1,
   }) async {
     try {
       _loading(true);
@@ -107,14 +108,19 @@ class ItemAddEditController extends GetxController
           groups: groups?.split('\n'),
         );
       }
-      String itemId = await _itemRepository.update(item!);
-      if (_xfile != null) {
-        String? photoUrl = await XFileToParseFile.xFileToParseFile(
-          xfile: _xfile!,
-          className: ItemEntity.className,
-          objectId: itemId,
-          objectAttribute: 'photo',
-        );
+      if (quantity != null) {
+        for (var i = 0; i < quantity; i++) {
+          String itemId = await _itemRepository.update(item!);
+
+          if (_xfile != null) {
+            String? photoUrl = await XFileToParseFile.xFileToParseFile(
+              xfile: _xfile!,
+              className: ItemEntity.className,
+              objectId: itemId,
+              objectAttribute: 'photo',
+            );
+          }
+        }
       }
     } on ItemRepositoryException {
       _message.value = MessageModel(

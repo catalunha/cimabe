@@ -4,6 +4,7 @@ import 'package:cimabe/app/view/pages/utils/app_textformfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:validatorless/validatorless.dart';
 
 class ItemAddEditPage extends StatefulWidget {
   ItemAddEditPage({Key? key}) : super(key: key);
@@ -27,6 +28,7 @@ class _ItemAddEditPageState extends State<ItemAddEditPage> {
   bool isBlockedOperator = false;
   bool isBlockedDoc = false;
   final groupsTEC = TextEditingController();
+  final quantityTEC = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -44,6 +46,7 @@ class _ItemAddEditPageState extends State<ItemAddEditPage> {
     isBlockedDoc = widget._itemAddEditController.item?.isBlockedDoc ?? false;
     groupsTEC.text =
         widget._itemAddEditController.item?.groups?.join('\n') ?? "";
+    quantityTEC.text = '1';
   }
 
   @override
@@ -81,6 +84,8 @@ class _ItemAddEditPageState extends State<ItemAddEditPage> {
                       AppTextFormField(
                         label: 'Descrição',
                         controller: descriptionTEC,
+                        validator:
+                            Validatorless.required('Descrição é obrigatório'),
                       ),
                       AppTextFormField(
                         label: 'Série',
@@ -163,6 +168,19 @@ class _ItemAddEditPageState extends State<ItemAddEditPage> {
                           },
                         ),
                       ),
+                      if (widget._itemAddEditController.item == null)
+                        AppTextFormField(
+                          label: 'Quantidade a ser inserida:',
+                          controller: quantityTEC,
+                          validator: Validatorless.multiple([
+                            Validatorless.number('Apenas números.'),
+                            Validatorless.required('Nome é obrigatório'),
+                            Validatorless.min(
+                                1, 'Valor mínimo é 1 (uma) unidade'),
+                            Validatorless.max(
+                                100, 'Valor máximo é 100 (cem) unidades'),
+                          ]),
+                        ),
                       const SizedBox(height: 70),
                     ],
                   ),
@@ -191,6 +209,7 @@ class _ItemAddEditPageState extends State<ItemAddEditPage> {
         isBlockedOperator: isBlockedOperator,
         isBlockedDoc: isBlockedDoc,
         groups: groupsTEC.text,
+        quantity: int.tryParse(quantityTEC.text),
       );
       return true;
     }
