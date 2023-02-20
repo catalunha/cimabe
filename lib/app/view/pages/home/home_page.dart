@@ -23,7 +23,8 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: const [
-            HomeOperators(),
+            AccessOperators(),
+            Items(),
           ],
         ),
       ),
@@ -31,8 +32,8 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class HomeOperators extends StatelessWidget {
-  const HomeOperators({
+class AccessOperators extends StatelessWidget {
+  const AccessOperators({
     Key? key,
   }) : super(key: key);
 
@@ -59,6 +60,48 @@ class HomeOperators extends StatelessWidget {
                         Get.toNamed(Routes.userProfileSearch);
                       },
                       icon: const Icon(Icons.search),
+                    ),
+                  ],
+                ),
+              ],
+            )
+          ],
+        ),
+      );
+    } else {
+      return const SizedBox.shrink();
+    }
+  }
+}
+
+class Items extends StatelessWidget {
+  const Items({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (AllowedAccess.consultFor(['admin'])) {
+      return Card(
+        child: Row(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Icon(
+                Icons.add_moderator,
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Gerenciar itens'),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.toNamed(Routes.itemAddEdit);
+                      },
+                      icon: const Icon(Icons.add),
                     ),
                   ],
                 ),

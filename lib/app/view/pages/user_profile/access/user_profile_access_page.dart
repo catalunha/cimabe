@@ -1,5 +1,5 @@
 import 'package:cimabe/app/view/controllers/user_profile/access/user_profile_access_controller.dart';
-import 'package:cimabe/app/view/pages/utils/app_container_photo.dart';
+import 'package:cimabe/app/view/pages/utils/app_photo_show.dart';
 import 'package:cimabe/app/view/pages/utils/app_text_title_value.dart';
 import 'package:cimabe/app/view/pages/utils/app_textformfield.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +59,7 @@ class _UserProfileAccessPageState extends State<UserProfileAccessPage> {
                       // ),
                       const SizedBox(height: 5),
 
-                      AppContainerPhoto(
+                      AppPhotoShow(
                         photoUrl: widget
                             ._userProfileAccessController.userProfile?.photo,
                       ),

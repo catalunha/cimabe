@@ -1,4 +1,5 @@
 import 'package:cimabe/app/view/controllers/home/home_dependencies.dart';
+import 'package:cimabe/app/view/controllers/item/addedit/item_addedit_dependencies.dart';
 import 'package:cimabe/app/view/controllers/splash/splash_dependencies.dart';
 import 'package:cimabe/app/view/controllers/user/login/login_dependencies.dart';
 import 'package:cimabe/app/view/controllers/user/register/email/user_register_email_dependencies.dart';
@@ -7,6 +8,7 @@ import 'package:cimabe/app/view/controllers/user_profile/edit/user_profile_edit_
 import 'package:cimabe/app/view/controllers/user_profile/search/user_profile_search_dependencies.dart';
 import 'package:cimabe/app/view/controllers/user_profile/view/user_profile_view_dependencies.dart';
 import 'package:cimabe/app/view/pages/home/home_page.dart';
+import 'package:cimabe/app/view/pages/item/addedit/item_addedit_page.dart';
 import 'package:cimabe/app/view/pages/splash/splash_page.dart';
 import 'package:cimabe/app/view/pages/user/login/auth_login_page.dart';
 import 'package:cimabe/app/view/pages/user/register/email/user_register_email.page.dart';
@@ -28,6 +30,8 @@ class Routes {
   static const userProfileSearchList = '/user/profile/search/list';
   static const userProfileAccess = '/user/profile/access';
   static const userProfileView = '/user/profile/view';
+
+  static const itemAddEdit = '/item/addedit';
 
   static final pageList = [
     GetPage(
@@ -74,6 +78,11 @@ class Routes {
       name: Routes.userProfileView,
       binding: UserProfileViewDependencies(),
       page: () => UserProfileViewPage(),
+    ),
+    GetPage(
+      name: Routes.itemAddEdit,
+      binding: ItemAddEditDependencies(),
+      page: () => ItemAddEditPage(),
     ),
   ];
 }

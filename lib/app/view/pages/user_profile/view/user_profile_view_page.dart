@@ -1,6 +1,6 @@
 import 'package:cimabe/app/core/models/user_profile_model.dart';
 import 'package:cimabe/app/view/controllers/user_profile/view/user_profile_view_controller.dart';
-import 'package:cimabe/app/view/pages/utils/app_container_photo.dart';
+import 'package:cimabe/app/view/pages/utils/app_photo_show.dart';
 import 'package:cimabe/app/view/pages/utils/app_text_title_value.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,7 +31,7 @@ class UserProfileViewPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AppContainerPhoto(
+                        AppPhotoShow(
                           photoUrl: userProfileModel.photo,
                           height: 100,
                           width: 100,

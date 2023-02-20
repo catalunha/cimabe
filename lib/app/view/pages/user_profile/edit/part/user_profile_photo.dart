@@ -6,11 +6,13 @@ import 'package:image_picker/image_picker.dart';
 
 class UserProfileEditPhoto extends StatefulWidget {
   // final UserProfileController _profileController = Get.find();
+  final String label;
   final String? photoUrl;
   final Function(XFile?) setXFile;
 
   const UserProfileEditPhoto({
     Key? key,
+    this.label = '',
     this.photoUrl,
     required this.setXFile,
   }) : super(key: key);
@@ -60,9 +62,10 @@ class _UserProfileEditPhotoState extends State<UserProfileEditPhoto> {
                     border: Border.all(color: Colors.green),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      'Click aqui para buscar sua foto, apenas face. Padrão 3x4.',
+                      widget.label,
+                      // 'Click aqui para buscar sua foto, apenas face. Padrão 3x4.',
                       textAlign: TextAlign.center,
                     ),
                   ),

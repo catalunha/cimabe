@@ -2,71 +2,74 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:cimabe/app/core/models/user_profile_model.dart';
-
 class ItemModel {
   final String? id;
+  final String? photo;
   final String? description;
   final String? serie;
   final String? lote;
   final String? brand;
   final String? model;
   final String? calibre;
-  final DateTime? validate;
-  final List<String>? groups;
+  final String? doc;
   final String? obsCaution;
+  final DateTime? validate;
+  final bool? isMunition;
   final bool? isBlockedOperator;
   final bool? isBlockedDoc;
-  final String? doc;
-  final List<UserProfileModel>? operatorsExclusive;
+  final List<String>? groups;
+  // final List<UserProfileModel>? operatorsExclusive;
   ItemModel({
     this.id,
+    this.photo,
     this.description,
     this.serie,
     this.lote,
     this.brand,
     this.model,
     this.calibre,
-    this.validate,
-    this.groups,
+    this.doc,
     this.obsCaution,
+    this.validate,
+    this.isMunition,
     this.isBlockedOperator,
     this.isBlockedDoc,
-    this.doc,
-    this.operatorsExclusive,
+    this.groups,
   });
 
   ItemModel copyWith({
     String? id,
+    String? photo,
     String? description,
     String? serie,
     String? lote,
     String? brand,
     String? model,
     String? calibre,
-    DateTime? validate,
-    List<String>? groups,
+    String? doc,
     String? obsCaution,
+    DateTime? validate,
+    bool? isMunition,
     bool? isBlockedOperator,
     bool? isBlockedDoc,
-    String? doc,
-    List<UserProfileModel>? operatorsExclusive,
+    List<String>? groups,
   }) {
     return ItemModel(
       id: id ?? this.id,
+      photo: photo ?? this.photo,
       description: description ?? this.description,
       serie: serie ?? this.serie,
       lote: lote ?? this.lote,
       brand: brand ?? this.brand,
       model: model ?? this.model,
       calibre: calibre ?? this.calibre,
-      validate: validate ?? this.validate,
-      groups: groups ?? this.groups,
+      doc: doc ?? this.doc,
       obsCaution: obsCaution ?? this.obsCaution,
+      validate: validate ?? this.validate,
+      isMunition: isMunition ?? this.isMunition,
       isBlockedOperator: isBlockedOperator ?? this.isBlockedOperator,
       isBlockedDoc: isBlockedDoc ?? this.isBlockedDoc,
-      doc: doc ?? this.doc,
-      operatorsExclusive: operatorsExclusive ?? this.operatorsExclusive,
+      groups: groups ?? this.groups,
     );
   }
 
@@ -75,6 +78,9 @@ class ItemModel {
 
     if (id != null) {
       result.addAll({'id': id});
+    }
+    if (photo != null) {
+      result.addAll({'photo': photo});
     }
     if (description != null) {
       result.addAll({'description': description});
@@ -94,14 +100,17 @@ class ItemModel {
     if (calibre != null) {
       result.addAll({'calibre': calibre});
     }
-    if (validate != null) {
-      result.addAll({'validate': validate!.millisecondsSinceEpoch});
-    }
-    if (groups != null) {
-      result.addAll({'groups': groups});
+    if (doc != null) {
+      result.addAll({'doc': doc});
     }
     if (obsCaution != null) {
       result.addAll({'obsCaution': obsCaution});
+    }
+    if (validate != null) {
+      result.addAll({'validate': validate!.millisecondsSinceEpoch});
+    }
+    if (isMunition != null) {
+      result.addAll({'isMunition': isMunition});
     }
     if (isBlockedOperator != null) {
       result.addAll({'isBlockedOperator': isBlockedOperator});
@@ -109,13 +118,8 @@ class ItemModel {
     if (isBlockedDoc != null) {
       result.addAll({'isBlockedDoc': isBlockedDoc});
     }
-    if (doc != null) {
-      result.addAll({'doc': doc});
-    }
-    if (operatorsExclusive != null) {
-      result.addAll({
-        'operatorsExclusive': operatorsExclusive!.map((x) => x.toMap()).toList()
-      });
+    if (groups != null) {
+      result.addAll({'groups': groups});
     }
 
     return result;
@@ -124,24 +128,22 @@ class ItemModel {
   factory ItemModel.fromMap(Map<String, dynamic> map) {
     return ItemModel(
       id: map['id'],
+      photo: map['photo'],
       description: map['description'],
       serie: map['serie'],
       lote: map['lote'],
       brand: map['brand'],
       model: map['model'],
       calibre: map['calibre'],
+      doc: map['doc'],
+      obsCaution: map['obsCaution'],
       validate: map['validate'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['validate'])
           : null,
-      groups: List<String>.from(map['groups']),
-      obsCaution: map['obsCaution'],
+      isMunition: map['isMunition'],
       isBlockedOperator: map['isBlockedOperator'],
       isBlockedDoc: map['isBlockedDoc'],
-      doc: map['doc'],
-      operatorsExclusive: map['operatorsExclusive'] != null
-          ? List<UserProfileModel>.from(map['operatorsExclusive']
-              ?.map((x) => UserProfileModel.fromMap(x)))
-          : null,
+      groups: List<String>.from(map['groups']),
     );
   }
 
@@ -152,7 +154,7 @@ class ItemModel {
 
   @override
   String toString() {
-    return 'ItemModel(id: $id, description: $description, serie: $serie, lote: $lote, brand: $brand, model: $model, calibre: $calibre, validate: $validate, groups: $groups, obsCaution: $obsCaution, isBlockedOperator: $isBlockedOperator, isBlockedDoc: $isBlockedDoc, doc: $doc, operatorsExclusive: $operatorsExclusive)';
+    return 'ItemModel(id: $id, photo: $photo, description: $description, serie: $serie, lote: $lote, brand: $brand, model: $model, calibre: $calibre, doc: $doc, obsCaution: $obsCaution, validate: $validate, isMunition: $isMunition, isBlockedOperator: $isBlockedOperator, isBlockedDoc: $isBlockedDoc, groups: $groups)';
   }
 
   @override
@@ -161,36 +163,38 @@ class ItemModel {
 
     return other is ItemModel &&
         other.id == id &&
+        other.photo == photo &&
         other.description == description &&
         other.serie == serie &&
         other.lote == lote &&
         other.brand == brand &&
         other.model == model &&
         other.calibre == calibre &&
-        other.validate == validate &&
-        listEquals(other.groups, groups) &&
+        other.doc == doc &&
         other.obsCaution == obsCaution &&
+        other.validate == validate &&
+        other.isMunition == isMunition &&
         other.isBlockedOperator == isBlockedOperator &&
         other.isBlockedDoc == isBlockedDoc &&
-        other.doc == doc &&
-        listEquals(other.operatorsExclusive, operatorsExclusive);
+        listEquals(other.groups, groups);
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
+        photo.hashCode ^
         description.hashCode ^
         serie.hashCode ^
         lote.hashCode ^
         brand.hashCode ^
         model.hashCode ^
         calibre.hashCode ^
-        validate.hashCode ^
-        groups.hashCode ^
+        doc.hashCode ^
         obsCaution.hashCode ^
+        validate.hashCode ^
+        isMunition.hashCode ^
         isBlockedOperator.hashCode ^
         isBlockedDoc.hashCode ^
-        doc.hashCode ^
-        operatorsExclusive.hashCode;
+        groups.hashCode;
   }
 }

@@ -2,6 +2,7 @@ import 'package:cimabe/app/core/models/user_profile_model.dart';
 import 'package:cimabe/app/routes.dart';
 import 'package:cimabe/app/view/pages/utils/app_text_title_value.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class UserProfileCard extends StatelessWidget {
@@ -79,6 +80,12 @@ class UserProfileCard extends StatelessWidget {
                             Icons.assignment_ind_outlined,
                           ),
                         ),
+                        IconButton(
+                          onPressed: () => copy(profile.id),
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -89,5 +96,11 @@ class UserProfileCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  copy(String text) async {
+    Get.snackbar(text, 'Id copiado.',
+        margin: const EdgeInsets.all(10), duration: const Duration(seconds: 1));
+    await Clipboard.setData(ClipboardData(text: text));
   }
 }

@@ -107,6 +107,8 @@ class _UserProfileEditPageState extends State<UserProfileEditPage> {
                     ),
                     const SizedBox(height: 5),
                     UserProfileEditPhoto(
+                      label:
+                          'Click aqui para buscar sua foto, apenas face. Padrão 3x4.',
                       photoUrl:
                           widget._userProfileController.userProfile!.photo,
                       setXFile: (value) =>
