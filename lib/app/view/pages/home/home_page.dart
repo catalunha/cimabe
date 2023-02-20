@@ -25,6 +25,7 @@ class HomePage extends StatelessWidget {
           children: const [
             AccessOperators(),
             Items(),
+            DeliveryItem(),
           ],
         ),
       ),
@@ -109,6 +110,54 @@ class Items extends StatelessWidget {
                       },
                       icon: const Icon(Icons.search),
                     ),
+                  ],
+                ),
+              ],
+            )
+          ],
+        ),
+      );
+    } else {
+      return const SizedBox.shrink();
+    }
+  }
+}
+
+class DeliveryItem extends StatelessWidget {
+  const DeliveryItem({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (AllowedAccess.consultFor(['admin', 'reserva'])) {
+      return Card(
+        child: Row(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Icon(
+                Icons.delivery_dining,
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Entregar um item'),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.toNamed(Routes.cautionDeliverySearch);
+                      },
+                      icon: const Icon(Icons.add),
+                    ),
+                    // IconButton(
+                    //   onPressed: () {
+                    //     Get.toNamed(Routes.itemSearch);
+                    //   },
+                    //   icon: const Icon(Icons.search),
+                    // ),
                   ],
                 ),
               ],

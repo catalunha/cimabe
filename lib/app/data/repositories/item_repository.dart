@@ -9,4 +9,6 @@ abstract class ItemRepository {
   );
   Future<String> update(ItemModel itemModel);
   Future<ItemModel?> readById(String id);
+  Future<ItemModel?> getBySerie(String value);
+  Future<ItemModel?> getByLote(String value);
 }

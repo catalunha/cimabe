@@ -49,12 +49,12 @@ class ItemCard extends StatelessWidget {
                   Icons.assignment_ind_outlined,
                 ),
               ),
-              // IconButton(
-              //   onPressed: () => copy(itemModel.id!),
-              //   icon: const Icon(
-              //     Icons.copy,
-              //   ),
-              // ),
+              IconButton(
+                onPressed: () => copy(itemModel.id!),
+                icon: const Icon(
+                  Icons.copy,
+                ),
+              ),
             ],
           ),
         ],

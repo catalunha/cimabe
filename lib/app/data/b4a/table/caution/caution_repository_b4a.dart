@@ -1,14 +1,14 @@
 import 'dart:developer';
 
-import 'package:cimabe/app/core/models/user_profile_model.dart';
-import 'package:cimabe/app/data/b4a/entity/user_profile_entity.dart';
-import 'package:cimabe/app/data/b4a/table/user_profile/user_profile_repository_exception.dart';
+import 'package:cimabe/app/core/models/caution_model.dart';
+import 'package:cimabe/app/data/b4a/entity/caution_entity.dart';
+import 'package:cimabe/app/data/b4a/table/caution/caution_repository_exception.dart';
 import 'package:cimabe/app/data/b4a/utils/parse_error_code.dart';
-import 'package:cimabe/app/data/repositories/user_profile_repository.dart';
+import 'package:cimabe/app/data/repositories/caution_repository.dart';
 import 'package:cimabe/app/data/utils/pagination.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
-class UserProfileRepositoryB4a implements UserProfileRepository {
+class CautionRepositoryB4a implements CautionRepository {
   Future<QueryBuilder<ParseObject>> getQueryAll(
       QueryBuilder<ParseObject> query, Pagination pagination) async {
     query.setAmountToSkip((pagination.page - 1) * pagination.limit);
@@ -18,7 +18,7 @@ class UserProfileRepositoryB4a implements UserProfileRepository {
   }
 
   @override
-  Future<List<UserProfileModel>> list(
+  Future<List<CautionModel>> list(
     QueryBuilder<ParseObject> query,
     Pagination pagination,
   ) async {
@@ -28,10 +28,10 @@ class UserProfileRepositoryB4a implements UserProfileRepository {
     ParseResponse? response;
     try {
       response = await query2.query();
-      List<UserProfileModel> listTemp = <UserProfileModel>[];
+      List<CautionModel> listTemp = <CautionModel>[];
       if (response.success && response.results != null) {
         for (var element in response.results!) {
-          listTemp.add(UserProfileEntity().fromParse(element));
+          listTemp.add(CautionEntity().fromParse(element));
         }
         return listTemp;
       } else {
@@ -39,7 +39,7 @@ class UserProfileRepositoryB4a implements UserProfileRepository {
       }
     } on Exception {
       var errorCodes = ParseErrorCode(response!.error!);
-      throw UserProfileRepositoryException(
+      throw CautionRepositoryException(
         code: errorCodes.code,
         message: errorCodes.message,
       );
@@ -47,10 +47,10 @@ class UserProfileRepositoryB4a implements UserProfileRepository {
   }
 
   @override
-  Future<UserProfileModel?> readById(String id) async {
-    log('+++', name: 'UserProfileRepositoryB4a.readById');
+  Future<CautionModel?> readById(String id) async {
+    log('+++', name: 'CautionRepositoryB4a.readById');
     QueryBuilder<ParseObject> query =
-        QueryBuilder<ParseObject>(ParseObject(UserProfileEntity.className));
+        QueryBuilder<ParseObject>(ParseObject(CautionEntity.className));
     query.whereEqualTo('objectId', id);
 
     query.first();
@@ -59,13 +59,13 @@ class UserProfileRepositoryB4a implements UserProfileRepository {
       response = await query.query();
 
       if (response.success && response.results != null) {
-        return UserProfileEntity().fromParse(response.results!.first);
+        return CautionEntity().fromParse(response.results!.first);
       } else {
         throw Exception();
       }
     } on Exception {
       var errorCodes = ParseErrorCode(response!.error!);
-      throw UserProfileRepositoryException(
+      throw CautionRepositoryException(
         code: errorCodes.code,
         message: errorCodes.message,
       );
@@ -73,8 +73,8 @@ class UserProfileRepositoryB4a implements UserProfileRepository {
   }
 
   @override
-  Future<String> update(UserProfileModel profileModel) async {
-    final userProfileParse = await UserProfileEntity().toParse(profileModel);
+  Future<String> update(CautionModel profileModel) async {
+    final userProfileParse = await CautionEntity().toParse(profileModel);
     ParseResponse? response;
     try {
       response = await userProfileParse.save();
@@ -87,33 +87,7 @@ class UserProfileRepositoryB4a implements UserProfileRepository {
       }
     } on Exception {
       var errorCodes = ParseErrorCode(response!.error!);
-      throw UserProfileRepositoryException(
-        code: errorCodes.code,
-        message: errorCodes.message,
-      );
-    }
-  }
-
-  @override
-  Future<UserProfileModel?> getByRegister(String? value) async {
-    QueryBuilder<ParseObject> query =
-        QueryBuilder<ParseObject>(ParseObject(UserProfileEntity.className));
-    query.whereEqualTo('register', value);
-
-    query.first();
-    ParseResponse? response;
-    try {
-      response = await query.query();
-
-      if (response.success && response.results != null) {
-        return UserProfileEntity().fromParse(response.results!.first);
-      } else {
-        // throw Exception();
-        return null;
-      }
-    } on Exception {
-      var errorCodes = ParseErrorCode(response!.error!);
-      throw UserProfileRepositoryException(
+      throw CautionRepositoryException(
         code: errorCodes.code,
         message: errorCodes.message,
       );

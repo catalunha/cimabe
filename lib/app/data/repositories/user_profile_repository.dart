@@ -9,4 +9,5 @@ abstract class UserProfileRepository {
   );
   Future<String> update(UserProfileModel userProfileModel);
   Future<UserProfileModel?> readById(String id);
+  Future<UserProfileModel?> getByRegister(String? value);
 }

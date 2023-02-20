@@ -93,4 +93,54 @@ class ItemRepositoryB4a implements ItemRepository {
       );
     }
   }
+
+  @override
+  Future<ItemModel?> getBySerie(String value) async {
+    QueryBuilder<ParseObject> query =
+        QueryBuilder<ParseObject>(ParseObject(ItemEntity.className));
+    query.whereEqualTo('serie', value);
+
+    query.first();
+    ParseResponse? response;
+    try {
+      response = await query.query();
+
+      if (response.success && response.results != null) {
+        return ItemEntity().fromParse(response.results!.first);
+      } else {
+        throw Exception();
+      }
+    } on Exception {
+      var errorCodes = ParseErrorCode(response!.error!);
+      throw ItemRepositoryException(
+        code: errorCodes.code,
+        message: errorCodes.message,
+      );
+    }
+  }
+
+  @override
+  Future<ItemModel?> getByLote(String value) async {
+    QueryBuilder<ParseObject> query =
+        QueryBuilder<ParseObject>(ParseObject(ItemEntity.className));
+    query.whereEqualTo('lote', value);
+
+    query.first();
+    ParseResponse? response;
+    try {
+      response = await query.query();
+
+      if (response.success && response.results != null) {
+        return ItemEntity().fromParse(response.results!.first);
+      } else {
+        throw Exception();
+      }
+    } on Exception {
+      var errorCodes = ParseErrorCode(response!.error!);
+      throw ItemRepositoryException(
+        code: errorCodes.code,
+        message: errorCodes.message,
+      );
+    }
+  }
 }

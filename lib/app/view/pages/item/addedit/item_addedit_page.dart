@@ -174,7 +174,7 @@ class _ItemAddEditPageState extends State<ItemAddEditPage> {
                           controller: quantityTEC,
                           validator: Validatorless.multiple([
                             Validatorless.number('Apenas números.'),
-                            Validatorless.required('Nome é obrigatório'),
+                            Validatorless.required('Quantidade é obrigatório'),
                             Validatorless.min(
                                 1, 'Valor mínimo é 1 (uma) unidade'),
                             Validatorless.max(

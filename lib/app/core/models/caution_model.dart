@@ -9,7 +9,7 @@ class CautionModel {
   UserProfileModel? userProfileDeliver;
   final DateTime? deliverDt;
 
-  ItemModel? itemModel;
+  ItemModel? item;
 
   UserProfileModel? userProfileReceiver;
 
@@ -40,7 +40,7 @@ class CautionModel {
     this.id,
     this.userProfileDeliver,
     this.deliverDt,
-    this.itemModel,
+    this.item,
     this.userProfileReceiver,
     this.receiverAnalyzingItem,
     this.receiverAnalyzedItemDt,
@@ -57,7 +57,7 @@ class CautionModel {
     String? id,
     UserProfileModel? userProfileDeliver,
     DateTime? deliverDt,
-    ItemModel? itemModel,
+    ItemModel? item,
     UserProfileModel? userProfileReceiver,
     bool? receiverAnalyzingItem,
     DateTime? receiverAnalyzedItemDt,
@@ -73,7 +73,7 @@ class CautionModel {
       id: id ?? this.id,
       userProfileDeliver: userProfileDeliver ?? this.userProfileDeliver,
       deliverDt: deliverDt ?? this.deliverDt,
-      itemModel: itemModel ?? this.itemModel,
+      item: item ?? this.item,
       userProfileReceiver: userProfileReceiver ?? this.userProfileReceiver,
       receiverAnalyzingItem:
           receiverAnalyzingItem ?? this.receiverAnalyzingItem,
@@ -107,8 +107,8 @@ class CautionModel {
     if (deliverDt != null) {
       result.addAll({'deliverDt': deliverDt!.millisecondsSinceEpoch});
     }
-    if (itemModel != null) {
-      result.addAll({'itemModel': itemModel!.toMap()});
+    if (item != null) {
+      result.addAll({'item': item!.toMap()});
     }
     if (userProfileReceiver != null) {
       result.addAll({'userProfileReceiver': userProfileReceiver!.toMap()});
@@ -161,8 +161,7 @@ class CautionModel {
       deliverDt: map['deliverDt'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['deliverDt'])
           : null,
-      itemModel:
-          map['itemModel'] != null ? ItemModel.fromMap(map['itemModel']) : null,
+      item: map['item'] != null ? ItemModel.fromMap(map['item']) : null,
       userProfileReceiver: map['userProfileReceiver'] != null
           ? UserProfileModel.fromMap(map['userProfileReceiver'])
           : null,
@@ -193,7 +192,7 @@ class CautionModel {
 
   @override
   String toString() {
-    return 'CautionModel(id: $id, userProfileDeliver: $userProfileDeliver, deliverDt: $deliverDt, itemModel: $itemModel, userProfileReceiver: $userProfileReceiver, receiverAnalyzingItem: $receiverAnalyzingItem, receiverAnalyzedItemDt: $receiverAnalyzedItemDt, receiverStartGiveback: $receiverStartGiveback, receiverGivebackItemDt: $receiverGivebackItemDt, receiverGivebackDescription: $receiverGivebackDescription, userProfileGiveback: $userProfileGiveback, givebackAnalyzingItem: $givebackAnalyzingItem, givebackAnalyzedItemDt: $givebackAnalyzedItemDt, givebackAnalysisDescription: $givebackAnalysisDescription)';
+    return 'CautionModel(id: $id, userProfileDeliver: $userProfileDeliver, deliverDt: $deliverDt, item: $item, userProfileReceiver: $userProfileReceiver, receiverAnalyzingItem: $receiverAnalyzingItem, receiverAnalyzedItemDt: $receiverAnalyzedItemDt, receiverStartGiveback: $receiverStartGiveback, receiverGivebackItemDt: $receiverGivebackItemDt, receiverGivebackDescription: $receiverGivebackDescription, userProfileGiveback: $userProfileGiveback, givebackAnalyzingItem: $givebackAnalyzingItem, givebackAnalyzedItemDt: $givebackAnalyzedItemDt, givebackAnalysisDescription: $givebackAnalysisDescription)';
   }
 
   @override
@@ -204,7 +203,7 @@ class CautionModel {
         other.id == id &&
         other.userProfileDeliver == userProfileDeliver &&
         other.deliverDt == deliverDt &&
-        other.itemModel == itemModel &&
+        other.item == item &&
         other.userProfileReceiver == userProfileReceiver &&
         other.receiverAnalyzingItem == receiverAnalyzingItem &&
         other.receiverAnalyzedItemDt == receiverAnalyzedItemDt &&
@@ -222,7 +221,7 @@ class CautionModel {
     return id.hashCode ^
         userProfileDeliver.hashCode ^
         deliverDt.hashCode ^
-        itemModel.hashCode ^
+        item.hashCode ^
         userProfileReceiver.hashCode ^
         receiverAnalyzingItem.hashCode ^
         receiverAnalyzedItemDt.hashCode ^

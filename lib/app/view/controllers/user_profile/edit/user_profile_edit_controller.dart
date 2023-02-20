@@ -2,7 +2,7 @@ import 'package:cimabe/app/core/models/user_profile_model.dart';
 import 'package:cimabe/app/data/b4a/entity/user_profile_entity.dart';
 import 'package:cimabe/app/data/b4a/table/user_profile/user_profile_repository_exception.dart';
 import 'package:cimabe/app/data/b4a/utils/xfile_to_parsefile.dart';
-import 'package:cimabe/app/data/repositories/profile_repository.dart';
+import 'package:cimabe/app/data/repositories/user_profile_repository.dart';
 import 'package:cimabe/app/view/controllers/splash/splash_controller.dart';
 import 'package:cimabe/app/view/controllers/utils/loader_mixin.dart';
 import 'package:cimabe/app/view/controllers/utils/message_mixin.dart';
