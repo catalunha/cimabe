@@ -26,6 +26,7 @@ class HomePage extends StatelessWidget {
             AccessOperators(),
             Items(),
             DeliveryItem(),
+            ReceiverItem(),
           ],
         ),
       ),
@@ -158,6 +159,54 @@ class DeliveryItem extends StatelessWidget {
                     //   },
                     //   icon: const Icon(Icons.search),
                     // ),
+                  ],
+                ),
+              ],
+            )
+          ],
+        ),
+      );
+    } else {
+      return const SizedBox.shrink();
+    }
+  }
+}
+
+class ReceiverItem extends StatelessWidget {
+  const ReceiverItem({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (AllowedAccess.consultFor(['admin', 'reserva', 'operador'])) {
+      return Card(
+        child: Row(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Icon(
+                Icons.receipt_long_outlined,
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Meus itens atuais'),
+                Row(
+                  children: [
+                    // IconButton(
+                    //   onPressed: () {
+                    //     Get.toNamed(Routes.cautionDeliverySearch);
+                    //   },
+                    //   icon: const Icon(Icons.add),
+                    // ),
+                    IconButton(
+                      onPressed: () {
+                        Get.toNamed(Routes.cautionReceiver);
+                      },
+                      icon: const Icon(Icons.search),
+                    ),
                   ],
                 ),
               ],

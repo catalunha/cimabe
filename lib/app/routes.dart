@@ -1,4 +1,5 @@
 import 'package:cimabe/app/view/controllers/caution/delivery/caution_delivery_dependencies.dart';
+import 'package:cimabe/app/view/controllers/caution/receiver/caution_receiver_dependencies.dart';
 import 'package:cimabe/app/view/controllers/home/home_dependencies.dart';
 import 'package:cimabe/app/view/controllers/item/addedit/item_addedit_dependencies.dart';
 import 'package:cimabe/app/view/controllers/item/search/item_search_dependencies.dart';
@@ -11,6 +12,7 @@ import 'package:cimabe/app/view/controllers/user_profile/search/user_profile_sea
 import 'package:cimabe/app/view/controllers/user_profile/view/user_profile_view_dependencies.dart';
 import 'package:cimabe/app/view/pages/caution/delivery/caution_delivery_confirm_page.dart';
 import 'package:cimabe/app/view/pages/caution/delivery/caution_delivery_search_page.dart';
+import 'package:cimabe/app/view/pages/caution/receiver/caution_receiver_page.dart';
 import 'package:cimabe/app/view/pages/home/home_page.dart';
 import 'package:cimabe/app/view/pages/item/addedit/item_addedit_page.dart';
 import 'package:cimabe/app/view/pages/item/search/item_search_list_page.dart';
@@ -43,6 +45,8 @@ class Routes {
 
   static const cautionDeliverySearch = '/caution/delivery/search';
   static const cautionDeliveryConfirm = '/caution/delivery/confirm';
+
+  static const cautionReceiver = '/caution/receiver';
 
   static final pageList = [
     GetPage(
@@ -112,6 +116,11 @@ class Routes {
     GetPage(
       name: Routes.cautionDeliveryConfirm,
       page: () => CautionDeliveryConfirmPage(),
+    ),
+    GetPage(
+      name: Routes.cautionReceiver,
+      binding: CautionReceiverDependencies(),
+      page: () => CautionReceiverPage(),
     ),
   ];
 }

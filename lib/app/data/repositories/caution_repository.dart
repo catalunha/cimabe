@@ -5,7 +5,7 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 abstract class CautionRepository {
   Future<List<CautionModel>> list(
     QueryBuilder<ParseObject> query,
-    Pagination pagination,
+    Pagination? pagination,
   );
   Future<String> update(CautionModel userProfileModel);
   Future<CautionModel?> readById(String id);

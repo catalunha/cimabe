@@ -10,9 +10,11 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class CautionRepositoryB4a implements CautionRepository {
   Future<QueryBuilder<ParseObject>> getQueryAll(
-      QueryBuilder<ParseObject> query, Pagination pagination) async {
-    query.setAmountToSkip((pagination.page - 1) * pagination.limit);
-    query.setLimit(pagination.limit);
+      QueryBuilder<ParseObject> query, Pagination? pagination) async {
+    if (pagination != null) {
+      query.setAmountToSkip((pagination.page - 1) * pagination.limit);
+      query.setLimit(pagination.limit);
+    }
 
     return query;
   }
@@ -20,7 +22,7 @@ class CautionRepositoryB4a implements CautionRepository {
   @override
   Future<List<CautionModel>> list(
     QueryBuilder<ParseObject> query,
-    Pagination pagination,
+    Pagination? pagination,
   ) async {
     QueryBuilder<ParseObject> query2;
     query2 = await getQueryAll(query, pagination);
