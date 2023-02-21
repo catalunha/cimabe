@@ -1,4 +1,5 @@
 import 'package:cimabe/app/core/models/caution_model.dart';
+import 'package:cimabe/app/view/controllers/caution/receiver/caution_receiver_controller.dart';
 import 'package:cimabe/app/view/pages/utils/app_photo_show.dart';
 import 'package:cimabe/app/view/pages/utils/app_text_title_value.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +8,10 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class CautionReceiverCard extends StatelessWidget {
+  final _cautionReceiverController = Get.find<CautionReceiverController>();
+
   final CautionModel cautionModel;
-  const CautionReceiverCard({Key? key, required this.cautionModel})
-      : super(key: key);
+  CautionReceiverCard({Key? key, required this.cautionModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,31 +38,45 @@ class CautionReceiverCard extends StatelessWidget {
           ),
           Wrap(
             children: [
-              IconButton(
-                onPressed: () {
-                  // Get.toNamed(Routes.itemAddEdit, arguments: cautionModel);
-                },
-                icon: const Icon(
-                  Icons.edit,
+              if (cautionModel.receiverAnalyzingItem == null)
+                IconButton(
+                  onPressed: () {
+                    // Get.toNamed(Routes.itemAddEdit, arguments: cautionModel);
+                    _cautionReceiverController.updateReceiverAnalyzingItem(
+                        cautionModel, false);
+                  },
+                  icon: const Icon(
+                    Icons.not_interested,
+                  ),
                 ),
-              ),
-              IconButton(
-                onPressed: () {
-                  // Get.toNamed(
-                  //   Routes.userProfileView,
-                  //   arguments: cautionModel.id,
-                  // );
-                },
-                icon: const Icon(
-                  Icons.assignment_ind_outlined,
+              if (cautionModel.receiverAnalyzingItem == null)
+                IconButton(
+                  onPressed: () {
+                    // Get.toNamed(Routes.itemAddEdit, arguments: cautionModel);
+                    _cautionReceiverController.updateReceiverAnalyzingItem(
+                        cautionModel, true);
+                  },
+                  icon: const Icon(
+                    Icons.check_outlined,
+                  ),
                 ),
-              ),
-              IconButton(
-                onPressed: () => copy(cautionModel.id!),
-                icon: const Icon(
-                  Icons.copy,
-                ),
-              ),
+              // IconButton(
+              //   onPressed: () {
+              //     // Get.toNamed(
+              //     //   Routes.userProfileView,
+              //     //   arguments: cautionModel.id,
+              //     // );
+              //   },
+              //   icon: const Icon(
+              //     Icons.assignment_ind_outlined,
+              //   ),
+              // ),
+              // IconButton(
+              //   onPressed: () => copy(cautionModel.id!),
+              //   icon: const Icon(
+              //     Icons.copy,
+              //   ),
+              // ),
             ],
           ),
         ],

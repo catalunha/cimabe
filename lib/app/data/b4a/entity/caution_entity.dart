@@ -20,6 +20,9 @@ class CautionEntity {
           ? UserProfileEntity()
               .fromParse(parseObject.get('userProfileReceiver'))
           : null,
+      receiverAnalyzingItem: parseObject.get('receiverAnalyzingItem'),
+      receiverAnalyzedItemDt:
+          parseObject.get<DateTime>('receiverAnalyzedItemDt')?.toLocal(),
     );
     return profileModel;
   }
@@ -50,6 +53,14 @@ class CautionEntity {
           (ParseObject(UserProfileEntity.className)
                 ..objectId = cautionModel.userProfileReceiver!.id)
               .toPointer());
+    }
+    if (cautionModel.receiverAnalyzingItem != null) {
+      cautionParseObject.set(
+          'receiverAnalyzingItem', cautionModel.receiverAnalyzingItem);
+    }
+    if (cautionModel.receiverAnalyzedItemDt != null) {
+      cautionParseObject.set<DateTime?>(
+          'receiverAnalyzedItemDt', cautionModel.receiverAnalyzedItemDt);
     }
     return cautionParseObject;
   }

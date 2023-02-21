@@ -1,5 +1,6 @@
 import 'package:cimabe/app/core/models/caution_model.dart';
 import 'package:cimabe/app/data/b4a/entity/caution_entity.dart';
+import 'package:cimabe/app/data/b4a/table/caution/caution_repository_exception.dart';
 import 'package:cimabe/app/data/repositories/caution_repository.dart';
 import 'package:cimabe/app/data/repositories/item_repository.dart';
 import 'package:cimabe/app/view/controllers/utils/loader_mixin.dart';
@@ -31,11 +32,12 @@ class CautionReceiverController extends GetxController
   void onInit() async {
     loaderListener(_loading);
     messageListener(_message);
-    // getCurrentCautions();
+    getCurrentCautions();
     super.onInit();
   }
 
   Future<void> getCurrentCautions() async {
+    cautionList.clear();
     // _loading(true);
     // var splashController = Get.find<SplashController>();
     // UserProfileModel userProfileReceiver =
@@ -51,5 +53,31 @@ class CautionReceiverController extends GetxController
     List<CautionModel> temp = await _cautionRepository.list(query, null);
     cautionList.addAll(temp);
     // _loading(false);
+  }
+
+  Future<void> updateReceiverAnalyzingItem(
+      CautionModel cautionModel, bool value) async {
+    try {
+      _loading(true);
+      DateTime now = DateTime.now();
+      DateTime datetime =
+          DateTime(now.year, now.month, now.day, now.hour, now.minute);
+
+      CautionModel cautionModelTemp = cautionModel.copyWith(
+        receiverAnalyzingItem: value,
+        receiverAnalyzedItemDt: datetime,
+      );
+      await _cautionRepository.update(cautionModelTemp);
+      getCurrentCautions();
+    } on CautionRepositoryException {
+      _loading(false);
+      _message.value = MessageModel(
+        title: 'Erro em CautionDeliveryController',
+        message: 'Não foi possivel salvar em Caution',
+        isError: true,
+      );
+    } finally {
+      _loading(false);
+    }
   }
 }
