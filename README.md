@@ -4,6 +4,10 @@ Controle Interno de Materiais Bélicos
 
 # Diário
 
+cd /home/catalunha/myapp/cimabe && flutter build web && cd back4app/cimabe && b4a deploy
+
+ln -s /home/catalunha/myapp/cimabe/build/web public
+
 
 catalunha@pop-os:~/myapp/cimabe/back4app$ b4a new
 

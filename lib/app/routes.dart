@@ -1,6 +1,7 @@
 import 'package:cimabe/app/view/controllers/caution/delivery/caution_delivery_dependencies.dart';
 import 'package:cimabe/app/view/controllers/caution/giveback/caution_giveback_dependencies.dart';
 import 'package:cimabe/app/view/controllers/caution/receiver/caution_receiver_dependencies.dart';
+import 'package:cimabe/app/view/controllers/caution/search/caution_search_dependencies.dart';
 import 'package:cimabe/app/view/controllers/home/home_dependencies.dart';
 import 'package:cimabe/app/view/controllers/item/addedit/item_addedit_dependencies.dart';
 import 'package:cimabe/app/view/controllers/item/search/item_search_dependencies.dart';
@@ -16,6 +17,8 @@ import 'package:cimabe/app/view/pages/caution/giveback/caution_giveback_page.dar
 import 'package:cimabe/app/view/pages/caution/receiver/caution_receiver_history_page.dart';
 import 'package:cimabe/app/view/pages/caution/receiver/caution_receiver_page.dart';
 import 'package:cimabe/app/view/pages/caution/receiver/caution_receiver_permanent_page.dart';
+import 'package:cimabe/app/view/pages/caution/search/caution_search_list_page.dart';
+import 'package:cimabe/app/view/pages/caution/search/caution_search_page.dart';
 import 'package:cimabe/app/view/pages/home/home_page.dart';
 import 'package:cimabe/app/view/pages/item/addedit/item_addedit_page.dart';
 import 'package:cimabe/app/view/pages/item/search/item_search_list_page.dart';
@@ -56,6 +59,9 @@ class Routes {
   static const cautionReceiverHistory = '/caution/receiver/history';
 
   static const cautionGiveback = '/caution/giveback';
+
+  static const cautionSearch = '/caution/search';
+  static const cautionSearchList = '/caution/search/List';
 
   static final pageList = [
     GetPage(
@@ -148,6 +154,15 @@ class Routes {
       name: Routes.cautionGiveback,
       binding: CautionGivebackDependencies(),
       page: () => CautionGivebackPage(),
+    ),
+    GetPage(
+      name: Routes.cautionSearch,
+      binding: CautionSearchDependencies(),
+      page: () => CautionSearchPage(),
+    ),
+    GetPage(
+      name: Routes.cautionSearchList,
+      page: () => CautionSearchListPage(),
     ),
   ];
 }

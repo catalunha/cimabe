@@ -83,7 +83,7 @@ class Items extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (AllowedAccess.consultFor(['admin'])) {
+    if (AllowedAccess.consultFor(['patrimonio'])) {
       return Card(
         child: Row(
           children: [
@@ -131,7 +131,7 @@ class DeliveryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (AllowedAccess.consultFor(['admin', 'reserva'])) {
+    if (AllowedAccess.consultFor(['reserva'])) {
       return Card(
         child: Row(
           children: [
@@ -159,6 +159,12 @@ class DeliveryItem extends StatelessWidget {
                       },
                       icon: const Icon(Icons.keyboard_return),
                     ),
+                    IconButton(
+                      onPressed: () {
+                        Get.toNamed(Routes.cautionSearch);
+                      },
+                      icon: const Icon(Icons.search),
+                    ),
                   ],
                 ),
               ],
@@ -179,7 +185,7 @@ class ReceiverItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (AllowedAccess.consultFor(['admin', 'reserva', 'operador'])) {
+    if (AllowedAccess.consultFor(['operador'])) {
       return Card(
         child: Row(
           children: [
