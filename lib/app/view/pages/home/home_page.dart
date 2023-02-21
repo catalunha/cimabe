@@ -144,21 +144,21 @@ class DeliveryItem extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Entregar um item'),
+                const Text('Fluxo de itens'),
                 Row(
                   children: [
                     IconButton(
                       onPressed: () {
                         Get.toNamed(Routes.cautionDeliverySearch);
                       },
-                      icon: const Icon(Icons.add),
+                      icon: const Icon(Icons.keyboard_tab),
                     ),
-                    // IconButton(
-                    //   onPressed: () {
-                    //     Get.toNamed(Routes.itemSearch);
-                    //   },
-                    //   icon: const Icon(Icons.search),
-                    // ),
+                    IconButton(
+                      onPressed: () {
+                        Get.toNamed(Routes.cautionGiveback);
+                      },
+                      icon: const Icon(Icons.keyboard_return),
+                    ),
                   ],
                 ),
               ],
@@ -192,20 +192,26 @@ class ReceiverItem extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Meus itens atuais'),
+                const Text('Meus itens'),
                 Row(
                   children: [
-                    // IconButton(
-                    //   onPressed: () {
-                    //     Get.toNamed(Routes.cautionDeliverySearch);
-                    //   },
-                    //   icon: const Icon(Icons.add),
-                    // ),
                     IconButton(
                       onPressed: () {
                         Get.toNamed(Routes.cautionReceiver);
                       },
-                      icon: const Icon(Icons.search),
+                      icon: const Icon(Icons.access_time),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Get.toNamed(Routes.cautionReceiverPermanent);
+                      },
+                      icon: const Icon(Icons.gps_fixed),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Get.toNamed(Routes.cautionReceiverHistory);
+                      },
+                      icon: const Icon(Icons.history_edu),
                     ),
                   ],
                 ),

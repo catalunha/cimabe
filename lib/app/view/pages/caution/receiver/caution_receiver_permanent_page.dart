@@ -3,27 +3,29 @@ import 'package:cimabe/app/view/pages/caution/receiver/caution_receiver_card.dar
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CautionReceiverPage extends StatefulWidget {
+class CautionReceiverPermanentPage extends StatefulWidget {
   final _cautionReceiverController = Get.find<CautionReceiverController>();
 
-  CautionReceiverPage({super.key});
+  CautionReceiverPermanentPage({super.key});
 
   @override
-  State<CautionReceiverPage> createState() => _CautionReceiverPageState();
+  State<CautionReceiverPermanentPage> createState() =>
+      _CautionReceiverPermanentPageState();
 }
 
-class _CautionReceiverPageState extends State<CautionReceiverPage> {
+class _CautionReceiverPermanentPageState
+    extends State<CautionReceiverPermanentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Obx(
           () => Text(
-              'Itens temporários: ${widget._cautionReceiverController.cautionList.length}'),
+              'Itens permanentes: ${widget._cautionReceiverController.cautionList.length}'),
         ),
       ),
       body: FutureBuilder(
-          future: widget._cautionReceiverController.getCurrentCautions(),
+          future: widget._cautionReceiverController.getPermanentCautions(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());

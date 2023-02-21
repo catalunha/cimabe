@@ -73,7 +73,7 @@ class UserProfileCard extends StatelessWidget {
                           onPressed: () {
                             Get.toNamed(
                               Routes.userProfileView,
-                              arguments: profile.id,
+                              arguments: profile,
                             );
                           },
                           icon: const Icon(

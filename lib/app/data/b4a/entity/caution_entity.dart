@@ -23,6 +23,21 @@ class CautionEntity {
       receiverAnalyzingItem: parseObject.get('receiverAnalyzingItem'),
       receiverAnalyzedItemDt:
           parseObject.get<DateTime>('receiverAnalyzedItemDt')?.toLocal(),
+      receiverIsPermanentItem: parseObject.get('receiverIsPermanentItem'),
+      receiverStartGiveback: parseObject.get('receiverStartGiveback'),
+      receiverGivebackItemDt:
+          parseObject.get<DateTime>('receiverGivebackItemDt')?.toLocal(),
+      receiverGivebackDescription:
+          parseObject.get('receiverGivebackDescription'),
+      userProfileGiveback: parseObject.get('userProfileGiveback') != null
+          ? UserProfileEntity()
+              .fromParse(parseObject.get('userProfileGiveback'))
+          : null,
+      givebackAnalyzingItem: parseObject.get('givebackAnalyzingItem'),
+      givebackAnalyzedItemDt:
+          parseObject.get<DateTime>('givebackAnalyzedItemDt')?.toLocal(),
+      givebackAnalysisDescription:
+          parseObject.get('givebackAnalysisDescription'),
     );
     return profileModel;
   }
@@ -61,6 +76,42 @@ class CautionEntity {
     if (cautionModel.receiverAnalyzedItemDt != null) {
       cautionParseObject.set<DateTime?>(
           'receiverAnalyzedItemDt', cautionModel.receiverAnalyzedItemDt);
+    }
+    if (cautionModel.receiverIsPermanentItem != null) {
+      cautionParseObject.set(
+          'receiverIsPermanentItem', cautionModel.receiverIsPermanentItem);
+    }
+    if (cautionModel.receiverStartGiveback != null) {
+      cautionParseObject.set(
+          'receiverStartGiveback', cautionModel.receiverStartGiveback);
+    }
+    if (cautionModel.receiverGivebackItemDt != null) {
+      cautionParseObject.set<DateTime?>(
+          'receiverGivebackItemDt', cautionModel.receiverGivebackItemDt);
+    }
+    if (cautionModel.receiverGivebackDescription != null) {
+      cautionParseObject.set('receiverGivebackDescription',
+          cautionModel.receiverGivebackDescription);
+    }
+
+    if (cautionModel.userProfileGiveback != null) {
+      cautionParseObject.set(
+          'userProfileGiveback',
+          (ParseObject(UserProfileEntity.className)
+                ..objectId = cautionModel.userProfileGiveback!.id)
+              .toPointer());
+    }
+    if (cautionModel.givebackAnalyzingItem != null) {
+      cautionParseObject.set(
+          'givebackAnalyzingItem', cautionModel.givebackAnalyzingItem);
+    }
+    if (cautionModel.givebackAnalyzedItemDt != null) {
+      cautionParseObject.set<DateTime?>(
+          'givebackAnalyzedItemDt', cautionModel.givebackAnalyzedItemDt);
+    }
+    if (cautionModel.givebackAnalysisDescription != null) {
+      cautionParseObject.set('givebackAnalysisDescription',
+          cautionModel.givebackAnalysisDescription);
     }
     return cautionParseObject;
   }

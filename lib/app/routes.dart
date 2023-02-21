@@ -1,4 +1,5 @@
 import 'package:cimabe/app/view/controllers/caution/delivery/caution_delivery_dependencies.dart';
+import 'package:cimabe/app/view/controllers/caution/giveback/caution_giveback_dependencies.dart';
 import 'package:cimabe/app/view/controllers/caution/receiver/caution_receiver_dependencies.dart';
 import 'package:cimabe/app/view/controllers/home/home_dependencies.dart';
 import 'package:cimabe/app/view/controllers/item/addedit/item_addedit_dependencies.dart';
@@ -9,14 +10,17 @@ import 'package:cimabe/app/view/controllers/user/register/email/user_register_em
 import 'package:cimabe/app/view/controllers/user_profile/access/user_profile_access_dependencies.dart';
 import 'package:cimabe/app/view/controllers/user_profile/edit/user_profile_edit_dependencies.dart';
 import 'package:cimabe/app/view/controllers/user_profile/search/user_profile_search_dependencies.dart';
-import 'package:cimabe/app/view/controllers/user_profile/view/user_profile_view_dependencies.dart';
 import 'package:cimabe/app/view/pages/caution/delivery/caution_delivery_confirm_page.dart';
 import 'package:cimabe/app/view/pages/caution/delivery/caution_delivery_search_page.dart';
+import 'package:cimabe/app/view/pages/caution/giveback/caution_giveback_page.dart';
+import 'package:cimabe/app/view/pages/caution/receiver/caution_receiver_history_page.dart';
 import 'package:cimabe/app/view/pages/caution/receiver/caution_receiver_page.dart';
+import 'package:cimabe/app/view/pages/caution/receiver/caution_receiver_permanent_page.dart';
 import 'package:cimabe/app/view/pages/home/home_page.dart';
 import 'package:cimabe/app/view/pages/item/addedit/item_addedit_page.dart';
 import 'package:cimabe/app/view/pages/item/search/item_search_list_page.dart';
 import 'package:cimabe/app/view/pages/item/search/item_search_page.dart';
+import 'package:cimabe/app/view/pages/item/view/item_view_page.dart';
 import 'package:cimabe/app/view/pages/splash/splash_page.dart';
 import 'package:cimabe/app/view/pages/user/login/auth_login_page.dart';
 import 'package:cimabe/app/view/pages/user/register/email/user_register_email.page.dart';
@@ -42,11 +46,16 @@ class Routes {
   static const itemAddEdit = '/item/addedit';
   static const itemSearch = '/item/search';
   static const itemSearchList = '/item/search/list';
+  static const itemView = '/item/view';
 
   static const cautionDeliverySearch = '/caution/delivery/search';
   static const cautionDeliveryConfirm = '/caution/delivery/confirm';
 
   static const cautionReceiver = '/caution/receiver';
+  static const cautionReceiverPermanent = '/caution/receiver/permanent';
+  static const cautionReceiverHistory = '/caution/receiver/history';
+
+  static const cautionGiveback = '/caution/giveback';
 
   static final pageList = [
     GetPage(
@@ -91,7 +100,6 @@ class Routes {
     ),
     GetPage(
       name: Routes.userProfileView,
-      binding: UserProfileViewDependencies(),
       page: () => UserProfileViewPage(),
     ),
     GetPage(
@@ -109,6 +117,10 @@ class Routes {
       page: () => ItemSearchListPage(),
     ),
     GetPage(
+      name: Routes.itemView,
+      page: () => ItemViewPage(),
+    ),
+    GetPage(
       name: Routes.cautionDeliverySearch,
       binding: CautionDeliveryDependencies(),
       page: () => CautionDeliverySearchPage(),
@@ -121,6 +133,21 @@ class Routes {
       name: Routes.cautionReceiver,
       binding: CautionReceiverDependencies(),
       page: () => CautionReceiverPage(),
+    ),
+    GetPage(
+      name: Routes.cautionReceiverPermanent,
+      binding: CautionReceiverDependencies(),
+      page: () => CautionReceiverPermanentPage(),
+    ),
+    GetPage(
+      name: Routes.cautionReceiverHistory,
+      binding: CautionReceiverDependencies(),
+      page: () => CautionReceiverHistoryPage(),
+    ),
+    GetPage(
+      name: Routes.cautionGiveback,
+      binding: CautionGivebackDependencies(),
+      page: () => CautionGivebackPage(),
     ),
   ];
 }

@@ -61,7 +61,7 @@ class UserProfileRepositoryB4a implements UserProfileRepository {
       if (response.success && response.results != null) {
         return UserProfileEntity().fromParse(response.results!.first);
       } else {
-        throw Exception();
+        // throw Exception();
       }
     } on Exception {
       var errorCodes = ParseErrorCode(response!.error!);
@@ -70,6 +70,7 @@ class UserProfileRepositoryB4a implements UserProfileRepository {
         message: errorCodes.message,
       );
     }
+    return null;
   }
 
   @override

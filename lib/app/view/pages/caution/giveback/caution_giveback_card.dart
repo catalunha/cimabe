@@ -1,5 +1,5 @@
 import 'package:cimabe/app/core/models/caution_model.dart';
-import 'package:cimabe/app/view/controllers/caution/receiver/caution_receiver_controller.dart';
+import 'package:cimabe/app/view/controllers/caution/giveback/caution_giveback_controller.dart';
 import 'package:cimabe/app/view/pages/caution/receiver/dialog_description.dart';
 import 'package:cimabe/app/view/pages/utils/app_photo_show.dart';
 import 'package:cimabe/app/view/pages/utils/app_text_title_value.dart';
@@ -8,16 +8,16 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class CautionReceiverCard extends StatefulWidget {
-  final _cautionReceiverController = Get.find<CautionReceiverController>();
+class CautionGivebackCard extends StatefulWidget {
+  final _cautionGivebackController = Get.find<CautionGivebackController>();
   final CautionModel cautionModel;
-  CautionReceiverCard({Key? key, required this.cautionModel}) : super(key: key);
+  CautionGivebackCard({Key? key, required this.cautionModel}) : super(key: key);
 
   @override
-  State<CautionReceiverCard> createState() => _CautionReceiverCardState();
+  State<CautionGivebackCard> createState() => _CautionGivebackCardState();
 }
 
-class _CautionReceiverCardState extends State<CautionReceiverCard> {
+class _CautionGivebackCardState extends State<CautionGivebackCard> {
   @override
   Widget build(BuildContext context) {
     final dateFormat = DateFormat('dd/MM/y hh:mm');
@@ -28,10 +28,20 @@ class _CautionReceiverCardState extends State<CautionReceiverCard> {
             title: 'Id: ',
             value: widget.cautionModel.id,
           ),
-          AppPhotoShow(
-            photoUrl: widget.cautionModel.item!.photo,
-            width: 300,
-            height: 100,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AppPhotoShow(
+                photoUrl: widget.cautionModel.userProfileReceiver!.photo,
+                height: 125,
+                // width: 150,
+              ),
+              AppPhotoShow(
+                photoUrl: widget.cautionModel.item!.photo,
+                // height: 50,
+                width: 300,
+              ),
+            ],
           ),
           AppTextTitleValue(
             title: 'Item: ',
@@ -44,11 +54,6 @@ class _CautionReceiverCardState extends State<CautionReceiverCard> {
           AppTextTitleValue(
             title: 'Entregue em: ',
             value: dateFormat.format(widget.cautionModel.deliverDt!),
-          ),
-          AppTextTitleValue(
-            title: 'Observações para cautela: ',
-            value: widget.cautionModel.item!.obsCaution,
-            inColumn: true,
           ),
           AppTextTitleValue(
             title: 'Cautelado a: ',
@@ -122,12 +127,9 @@ class _CautionReceiverCardState extends State<CautionReceiverCard> {
           ),
           Wrap(
             children: [
-              if (widget.cautionModel.receiverAnalyzingItem == null)
+              if (widget.cautionModel.receiverStartGiveback == true)
                 IconButton(
                   onPressed: () async {
-                    await widget._cautionReceiverController
-                        .updateReceiverAnalyzingItemWithRefused(
-                            widget.cautionModel);
                     String? res = await showDialog(
                       barrierDismissible: false,
                       context: context,
@@ -139,8 +141,8 @@ class _CautionReceiverCardState extends State<CautionReceiverCard> {
                       },
                     );
                     if (res != null) {
-                      widget._cautionReceiverController
-                          .updateReceiverStartGiveback(
+                      widget._cautionGivebackController
+                          .updateGivebackAnalyzingItemWithRefused(
                               widget.cautionModel, res);
                     }
                     // setState(() {});
@@ -149,66 +151,16 @@ class _CautionReceiverCardState extends State<CautionReceiverCard> {
                     Icons.not_interested,
                   ),
                 ),
-              if (widget.cautionModel.receiverAnalyzingItem == null)
+              if (widget.cautionModel.receiverStartGiveback == true)
                 IconButton(
                   onPressed: () {
                     // Get.toNamed(Routes.itemAddEdit, arguments: cautionModel);
-                    widget._cautionReceiverController
-                        .updateReceiverAnalyzingItemWithAccepted(
+                    widget._cautionGivebackController
+                        .updateGivebackAnalyzingItemWithAccepted(
                             widget.cautionModel);
                   },
                   icon: const Icon(
                     Icons.check_outlined,
-                  ),
-                ),
-              if (widget.cautionModel.receiverStartGiveback == false)
-                IconButton(
-                  onPressed: () async {
-                    String? res = await showDialog(
-                      barrierDismissible: false,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return const DialogDescription(
-                          title: 'Descrição',
-                          formFieldLabel: '',
-                        );
-                      },
-                    );
-                    if (res != null) {
-                      widget._cautionReceiverController
-                          .updateReceiverStartGiveback(
-                              widget.cautionModel, res);
-                    }
-                    // setState(() {});
-                  },
-                  icon: const Icon(
-                    Icons.assignment_return,
-                  ),
-                ),
-              if (widget.cautionModel.receiverIsPermanentItem == false &&
-                  widget.cautionModel.receiverAnalyzingItem == true)
-                IconButton(
-                  onPressed: () {
-                    // Get.toNamed(Routes.itemAddEdit, arguments: cautionModel);
-                    widget._cautionReceiverController
-                        .updateReceiverIsPermanentItem(
-                            widget.cautionModel, true);
-                  },
-                  icon: const Icon(
-                    Icons.person,
-                  ),
-                ),
-              if (widget.cautionModel.receiverIsPermanentItem == true &&
-                  widget.cautionModel.receiverAnalyzingItem == true)
-                IconButton(
-                  onPressed: () {
-                    // Get.toNamed(Routes.itemAddEdit, arguments: cautionModel);
-                    widget._cautionReceiverController
-                        .updateReceiverIsPermanentItem(
-                            widget.cautionModel, false);
-                  },
-                  icon: const Icon(
-                    Icons.person_off,
                   ),
                 ),
             ],

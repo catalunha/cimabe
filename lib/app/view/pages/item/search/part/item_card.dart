@@ -41,8 +41,8 @@ class ItemCard extends StatelessWidget {
               IconButton(
                 onPressed: () {
                   Get.toNamed(
-                    Routes.userProfileView,
-                    arguments: itemModel.id,
+                    Routes.itemView,
+                    arguments: itemModel,
                   );
                 },
                 icon: const Icon(

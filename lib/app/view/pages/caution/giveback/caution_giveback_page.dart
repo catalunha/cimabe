@@ -1,29 +1,29 @@
-import 'package:cimabe/app/view/controllers/caution/receiver/caution_receiver_controller.dart';
-import 'package:cimabe/app/view/pages/caution/receiver/caution_receiver_card.dart';
+import 'package:cimabe/app/view/controllers/caution/giveback/caution_giveback_controller.dart';
+import 'package:cimabe/app/view/pages/caution/giveback/caution_giveback_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CautionReceiverPage extends StatefulWidget {
-  final _cautionReceiverController = Get.find<CautionReceiverController>();
+class CautionGivebackPage extends StatefulWidget {
+  final _cautionGivebackController = Get.find<CautionGivebackController>();
 
-  CautionReceiverPage({super.key});
+  CautionGivebackPage({super.key});
 
   @override
-  State<CautionReceiverPage> createState() => _CautionReceiverPageState();
+  State<CautionGivebackPage> createState() => _CautionGivebackPageState();
 }
 
-class _CautionReceiverPageState extends State<CautionReceiverPage> {
+class _CautionGivebackPageState extends State<CautionGivebackPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Obx(
           () => Text(
-              'Itens temporários: ${widget._cautionReceiverController.cautionList.length}'),
+              'Itens em devolução: ${widget._cautionGivebackController.cautionList.length}'),
         ),
       ),
       body: FutureBuilder(
-          future: widget._cautionReceiverController.getCurrentCautions(),
+          future: widget._cautionGivebackController.getCurrentCautions(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
@@ -41,12 +41,12 @@ class _CautionReceiverPageState extends State<CautionReceiverPage> {
                         child: Obx(
                           () => ListView.builder(
                             itemCount: widget
-                                ._cautionReceiverController.cautionList.length,
+                                ._cautionGivebackController.cautionList.length,
                             itemBuilder: (context, index) {
                               final cautionModel = widget
-                                  ._cautionReceiverController
+                                  ._cautionGivebackController
                                   .cautionList[index];
-                              return CautionReceiverCard(
+                              return CautionGivebackCard(
                                 cautionModel: cautionModel,
                               );
                             },
@@ -68,11 +68,11 @@ class _CautionReceiverPageState extends State<CautionReceiverPage> {
       //         child: Obx(
       //           () => ListView.builder(
       //             itemCount:
-      //                 widget._cautionReceiverController.cautionList.length,
+      //                 widget._cautionGivebackController.cautionList.length,
       //             itemBuilder: (context, index) {
       //               final cautionModel =
-      //                   widget._cautionReceiverController.cautionList[index];
-      //               return CautionReceiverCard(
+      //                   widget._cautionGivebackController.cautionList[index];
+      //               return CautionGivebackCard(
       //                 cautionModel: cautionModel,
       //               );
       //             },

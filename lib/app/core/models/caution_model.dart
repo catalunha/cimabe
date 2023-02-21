@@ -20,6 +20,7 @@ class CautionModel {
   // True: item aceito.
   final bool? receiverAnalyzingItem;
   final DateTime? receiverAnalyzedItemDt;
+  final bool? receiverIsPermanentItem;
 
   // Null: ainda nao analisado.
   // False: operador de posse do item recebido e aceito.
@@ -31,7 +32,7 @@ class CautionModel {
   UserProfileModel? userProfileGiveback;
   // Null: analisando item.
   // False: item deve atualizar doc (item.isBlockedOperator=false,item.isBlockedDoc=true).
-  // T: item aceito (item.isBlockedOperator=false)
+  // True: item aceito sem obs em doc (item.isBlockedOperator=false)
   final bool? givebackAnalyzingItem;
   final DateTime? givebackAnalyzedItemDt;
   final String? givebackAnalysisDescription;
@@ -44,6 +45,7 @@ class CautionModel {
     this.userProfileReceiver,
     this.receiverAnalyzingItem,
     this.receiverAnalyzedItemDt,
+    this.receiverIsPermanentItem,
     this.receiverStartGiveback,
     this.receiverGivebackItemDt,
     this.receiverGivebackDescription,
@@ -61,6 +63,7 @@ class CautionModel {
     UserProfileModel? userProfileReceiver,
     bool? receiverAnalyzingItem,
     DateTime? receiverAnalyzedItemDt,
+    bool? receiverIsPermanentItem,
     bool? receiverStartGiveback,
     DateTime? receiverGivebackItemDt,
     String? receiverGivebackDescription,
@@ -79,6 +82,8 @@ class CautionModel {
           receiverAnalyzingItem ?? this.receiverAnalyzingItem,
       receiverAnalyzedItemDt:
           receiverAnalyzedItemDt ?? this.receiverAnalyzedItemDt,
+      receiverIsPermanentItem:
+          receiverIsPermanentItem ?? this.receiverIsPermanentItem,
       receiverStartGiveback:
           receiverStartGiveback ?? this.receiverStartGiveback,
       receiverGivebackItemDt:
@@ -120,6 +125,9 @@ class CautionModel {
       result.addAll({
         'receiverAnalyzedItemDt': receiverAnalyzedItemDt!.millisecondsSinceEpoch
       });
+    }
+    if (receiverIsPermanentItem != null) {
+      result.addAll({'receiverIsPermanentItem': receiverIsPermanentItem});
     }
     if (receiverStartGiveback != null) {
       result.addAll({'receiverStartGiveback': receiverStartGiveback});
@@ -169,6 +177,7 @@ class CautionModel {
       receiverAnalyzedItemDt: map['receiverAnalyzedItemDt'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['receiverAnalyzedItemDt'])
           : null,
+      receiverIsPermanentItem: map['receiverIsPermanentItem'],
       receiverStartGiveback: map['receiverStartGiveback'],
       receiverGivebackItemDt: map['receiverGivebackItemDt'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['receiverGivebackItemDt'])
@@ -192,7 +201,7 @@ class CautionModel {
 
   @override
   String toString() {
-    return 'CautionModel(id: $id, userProfileDeliver: $userProfileDeliver, deliverDt: $deliverDt, item: $item, userProfileReceiver: $userProfileReceiver, receiverAnalyzingItem: $receiverAnalyzingItem, receiverAnalyzedItemDt: $receiverAnalyzedItemDt, receiverStartGiveback: $receiverStartGiveback, receiverGivebackItemDt: $receiverGivebackItemDt, receiverGivebackDescription: $receiverGivebackDescription, userProfileGiveback: $userProfileGiveback, givebackAnalyzingItem: $givebackAnalyzingItem, givebackAnalyzedItemDt: $givebackAnalyzedItemDt, givebackAnalysisDescription: $givebackAnalysisDescription)';
+    return 'CautionModel(id: $id, userProfileDeliver: $userProfileDeliver, deliverDt: $deliverDt, item: $item, userProfileReceiver: $userProfileReceiver, receiverAnalyzingItem: $receiverAnalyzingItem, receiverAnalyzedItemDt: $receiverAnalyzedItemDt, receiverIsPermanentItem: $receiverIsPermanentItem, receiverStartGiveback: $receiverStartGiveback, receiverGivebackItemDt: $receiverGivebackItemDt, receiverGivebackDescription: $receiverGivebackDescription, userProfileGiveback: $userProfileGiveback, givebackAnalyzingItem: $givebackAnalyzingItem, givebackAnalyzedItemDt: $givebackAnalyzedItemDt, givebackAnalysisDescription: $givebackAnalysisDescription)';
   }
 
   @override
@@ -207,6 +216,7 @@ class CautionModel {
         other.userProfileReceiver == userProfileReceiver &&
         other.receiverAnalyzingItem == receiverAnalyzingItem &&
         other.receiverAnalyzedItemDt == receiverAnalyzedItemDt &&
+        other.receiverIsPermanentItem == receiverIsPermanentItem &&
         other.receiverStartGiveback == receiverStartGiveback &&
         other.receiverGivebackItemDt == receiverGivebackItemDt &&
         other.receiverGivebackDescription == receiverGivebackDescription &&
@@ -225,6 +235,7 @@ class CautionModel {
         userProfileReceiver.hashCode ^
         receiverAnalyzingItem.hashCode ^
         receiverAnalyzedItemDt.hashCode ^
+        receiverIsPermanentItem.hashCode ^
         receiverStartGiveback.hashCode ^
         receiverGivebackItemDt.hashCode ^
         receiverGivebackDescription.hashCode ^
