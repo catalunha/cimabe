@@ -37,6 +37,7 @@ class CautionDeliveryConfirmPage extends StatelessWidget {
                     value: _cautionDeliveryController
                         .cautionModel!.item!.description,
                   ),
+
                   AppTextTitleValue(
                     title: 'Grupos: ',
                     value: _cautionDeliveryController
