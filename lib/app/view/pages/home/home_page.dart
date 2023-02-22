@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                 title: 'Entregar item',
                 access: const ['reserva'],
                 onAction: () {
-                  Get.toNamed(Routes.cautionDeliverySearch);
+                  Get.toNamed(Routes.cautionDeliverySearch, arguments: null);
                 },
                 icon: Icons.keyboard_tab,
                 color: Colors.black38,

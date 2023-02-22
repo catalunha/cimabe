@@ -144,7 +144,7 @@ class _ItemAddEditPageState extends State<ItemAddEditPage> {
                         },
                       ),
                       AppTextFormField(
-                        label: 'Grupos a que pertence:',
+                        label: 'Grupos a que pertence (um grupo por linha):',
                         controller: groupsTEC,
                         maxLines: 5,
                       ),

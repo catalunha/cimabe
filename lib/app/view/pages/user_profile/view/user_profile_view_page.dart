@@ -23,6 +23,10 @@ class UserProfileViewPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const AppTextTitleValue(
+                  title: 'Foto:',
+                  value: '',
+                ),
                 AppPhotoShow(
                   photoUrl: userProfileModel.photo,
                   height: 100,

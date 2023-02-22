@@ -22,6 +22,10 @@ class ItemViewPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const AppTextTitleValue(
+                  title: 'Foto:',
+                  value: '',
+                ),
                 AppPhotoShow(
                   photoUrl: itemModel.photo,
                   width: 300,
@@ -74,13 +78,13 @@ class ItemViewPage extends StatelessWidget {
                       : dateFormat.format(itemModel.validate!),
                 ),
                 AppTextTitleValue(
-                  title: 'É munição ?',
+                  title: 'É munição ? ',
                   value: itemModel.isMunition != null && itemModel.isMunition!
                       ? "Sim"
                       : "Não",
                 ),
                 AppTextTitleValue(
-                  title: 'Esta bloqueado para operador ? ',
+                  title: 'Esta bloqueado pela operador ? ',
                   value: itemModel.isBlockedOperator != null &&
                           itemModel.isBlockedOperator!
                       ? "Sim"
@@ -95,7 +99,7 @@ class ItemViewPage extends StatelessWidget {
                 ),
                 AppTextTitleValue(
                   title: 'Grupos: ',
-                  value: itemModel.groups?.join(','),
+                  value: itemModel.groups?.join('\n'),
                   inColumn: true,
                 ),
               ],

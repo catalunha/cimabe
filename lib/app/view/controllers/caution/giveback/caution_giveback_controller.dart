@@ -1,4 +1,5 @@
 import 'package:cimabe/app/core/models/caution_model.dart';
+import 'package:cimabe/app/core/models/item_model.dart';
 import 'package:cimabe/app/core/models/user_profile_model.dart';
 import 'package:cimabe/app/data/b4a/entity/caution_entity.dart';
 import 'package:cimabe/app/data/b4a/table/caution/caution_repository_exception.dart';
@@ -126,8 +127,12 @@ class CautionGivebackController extends GetxController
         givebackAnalyzedItemDt: datetime,
         givebackAnalysisDescription: description,
       );
+      ItemModel itemModelSend = cautionModel.item!;
+      await _itemRepository
+          .update(itemModelSend.copyWith(isBlockedOperator: false));
 
       await _cautionRepository.update(cautionModelTemp);
+
       getCurrentCautions();
     } on CautionRepositoryException {
       // _loading(false);
@@ -159,6 +164,9 @@ class CautionGivebackController extends GetxController
         givebackAnalyzedItemDt: datetime,
         givebackAnalysisDescription: 'Devolvido sem obs.',
       );
+      ItemModel itemModelSend = cautionModel.item!;
+      await _itemRepository
+          .update(itemModelSend.copyWith(isBlockedOperator: false));
 
       await _cautionRepository.update(cautionModelTemp);
       getCurrentCautions();

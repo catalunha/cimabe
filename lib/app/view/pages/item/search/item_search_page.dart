@@ -237,7 +237,7 @@ class _SearchPageState extends State<ItemSearchPage> {
                     controller: _groupEqualsToTEC,
                   ),
                   SearchCardBool(
-                    title: 'Que tenha Munição',
+                    title: 'Que seja uma Munição',
                     label: 'Selecionada como ?',
                     isSelected: _isMunitionEqualsTo,
                     selectedOnChanged: (value) {

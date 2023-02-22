@@ -38,7 +38,7 @@ class _CautionGivebackCardState extends State<CautionGivebackCard> {
               ),
               AppPhotoShow(
                 photoUrl: widget.cautionModel.item!.photo,
-                // height: 50,
+                height: 125,
                 width: 300,
               ),
             ],

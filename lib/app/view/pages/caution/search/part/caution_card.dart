@@ -24,21 +24,36 @@ class CautionCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AppPhotoShow(
-                photoUrl: cautionModel.userProfileDeliver?.photo,
-                height: 125,
-                // width: 150,
+              Column(
+                children: [
+                  AppPhotoShow(
+                    photoUrl: cautionModel.userProfileDeliver?.photo,
+                    height: 125,
+                    // width: 150,
+                  ),
+                  const Text('Entrega')
+                ],
               ),
-              AppPhotoShow(
-                photoUrl: cautionModel.userProfileReceiver?.photo,
-                height: 125,
-                // width: 150,
+              Column(
+                children: [
+                  AppPhotoShow(
+                    photoUrl: cautionModel.userProfileReceiver?.photo,
+                    height: 125,
+                    // width: 150,
+                  ),
+                  const Text('Operador')
+                ],
               ),
               // if (cautionModel.userProfileGiveback != null)
-              AppPhotoShow(
-                photoUrl: cautionModel.userProfileGiveback?.photo,
-                height: 125,
-                // width: 150,
+              Column(
+                children: [
+                  AppPhotoShow(
+                    photoUrl: cautionModel.userProfileGiveback?.photo,
+                    height: 125,
+                    // width: 150,
+                  ),
+                  const Text('Recebimento')
+                ],
               ),
             ],
           ),

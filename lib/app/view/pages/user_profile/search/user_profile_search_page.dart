@@ -39,7 +39,7 @@ class _SearchPageState extends State<UserProfileSearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Buscando operador'),
+        title: const Text('Buscando usuário'),
       ),
       body: Center(
         child: ConstrainedBox(

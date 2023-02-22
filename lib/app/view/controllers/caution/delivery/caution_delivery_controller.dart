@@ -1,6 +1,7 @@
 import 'package:cimabe/app/core/models/caution_model.dart';
 import 'package:cimabe/app/core/models/item_model.dart';
 import 'package:cimabe/app/core/models/user_profile_model.dart';
+import 'package:cimabe/app/data/b4a/table/caution/caution_repository_exception.dart';
 import 'package:cimabe/app/data/b4a/table/item/item_repository_exception.dart';
 import 'package:cimabe/app/data/repositories/caution_repository.dart';
 import 'package:cimabe/app/data/repositories/item_repository.dart';
@@ -32,8 +33,15 @@ class CautionDeliveryController extends GetxController
   set cautionModel(CautionModel? profileModelNew) =>
       _cautionModel(profileModelNew);
   int quantityEnd = 1;
+  String registerEnd = '';
+  List<ItemModel> itemModelSelected = [];
   @override
   void onInit() async {
+    if (Get.arguments == null) {
+      registerEnd = '';
+    } else {
+      registerEnd = Get.arguments;
+    }
     loaderListener(_loading);
     messageListener(_message);
     super.onInit();
@@ -48,6 +56,7 @@ class CautionDeliveryController extends GetxController
     try {
       _loading(true);
       quantityEnd = quantity;
+      registerEnd = register!;
       var splashController = Get.find<SplashController>();
       UserProfileModel userProfileDeliver =
           splashController.userModel!.userProfile!;
@@ -56,13 +65,16 @@ class CautionDeliveryController extends GetxController
       DateTime deliverDt =
           DateTime(now.year, now.month, now.day, now.hour, now.minute);
 
-      ItemModel? itemmodel;
+      List<ItemModel> itemModelList = [];
       if (serie != null && serie.isNotEmpty) {
-        itemmodel = await _itemRepository.getBySerie(serie);
+        ItemModel? itemModel = await _itemRepository.getBySerie(serie);
+        if (itemModel != null) {
+          itemModelList.add(itemModel);
+        }
       } else if (lote != null && lote.isNotEmpty) {
-        itemmodel = await _itemRepository.getByLote(lote);
+        itemModelList.addAll(await _itemRepository.getByLote(lote));
       }
-      if (itemmodel == null) {
+      if (itemModelList.isEmpty) {
         _loading(false);
         _message.value = MessageModel(
           title: 'Erro em Item',
@@ -70,25 +82,35 @@ class CautionDeliveryController extends GetxController
           isError: true,
         );
       } else {
-        UserProfileModel? userProfileReceiver;
-        userProfileReceiver =
-            await _userProfileRepository.getByRegister(register);
-        if (userProfileReceiver == null) {
+        if (itemModelList.length < quantity) {
           _loading(false);
           _message.value = MessageModel(
-            title: 'Erro em Operador',
-            message: 'Não foi possível encontrar um operador',
+            title: 'Erro em Item',
+            message: 'Quantidade não disponível',
             isError: true,
           );
         } else {
-          cautionModel = CautionModel(
-            userProfileDeliver: userProfileDeliver,
-            deliverDt: deliverDt,
-            item: itemmodel,
-            userProfileReceiver: userProfileReceiver,
-          );
-          _loading(false);
-          Get.toNamed(Routes.cautionDeliveryConfirm);
+          UserProfileModel? userProfileReceiver;
+          userProfileReceiver =
+              await _userProfileRepository.getByRegister(register);
+          if (userProfileReceiver == null) {
+            _loading(false);
+            _message.value = MessageModel(
+              title: 'Erro em Operador',
+              message: 'Não foi possível encontrar um operador',
+              isError: true,
+            );
+          } else {
+            cautionModel = CautionModel(
+              userProfileDeliver: userProfileDeliver,
+              deliverDt: deliverDt,
+              item: itemModelList[0],
+              userProfileReceiver: userProfileReceiver,
+            );
+            itemModelSelected = itemModelList;
+            _loading(false);
+            Get.toNamed(Routes.cautionDeliveryConfirm);
+          }
         }
       }
     } on ItemRepositoryException {
@@ -106,14 +128,27 @@ class CautionDeliveryController extends GetxController
     try {
       _loading(true);
       for (var i = 0; i < quantityEnd; i++) {
-        await _cautionRepository.update(cautionModel!);
+        ItemModel itemModelSend = itemModelSelected[i];
+        CautionModel cautionModelSend =
+            cautionModel!.copyWith(item: itemModelSend);
+        await _cautionRepository.update(cautionModelSend);
+        await _itemRepository
+            .update(itemModelSend.copyWith(isBlockedOperator: true));
       }
       return true;
-    } on ItemRepositoryException {
+    } on CautionRepositoryException {
       _loading(false);
       _message.value = MessageModel(
         title: 'Erro em CautionDeliveryController',
         message: 'Não foi possivel salvar em Caution',
+        isError: true,
+      );
+      return false;
+    } on ItemRepositoryException {
+      _loading(false);
+      _message.value = MessageModel(
+        title: 'Erro em CautionDeliveryController',
+        message: 'Não foi possivel salvar em Item',
         isError: true,
       );
       return false;

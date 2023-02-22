@@ -25,7 +25,7 @@ class _CautionDeliverySearchPageState extends State<CautionDeliverySearchPage> {
     super.initState();
     serieTEC.text = "";
     loteTEC.text = "";
-    registerTEC.text = "";
+    registerTEC.text = widget._cautionDeliveryController.registerEnd;
     quantityTEC.text = '1';
   }
 

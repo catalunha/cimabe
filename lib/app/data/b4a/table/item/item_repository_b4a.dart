@@ -99,6 +99,8 @@ class ItemRepositoryB4a implements ItemRepository {
     QueryBuilder<ParseObject> query =
         QueryBuilder<ParseObject>(ParseObject(ItemEntity.className));
     query.whereEqualTo('serie', value);
+    query.whereEqualTo('isBlockedOperator', false);
+    query.whereEqualTo('isBlockedDoc', false);
 
     query.first();
     ParseResponse? response;
@@ -108,7 +110,8 @@ class ItemRepositoryB4a implements ItemRepository {
       if (response.success && response.results != null) {
         return ItemEntity().fromParse(response.results!.first);
       } else {
-        throw Exception();
+        // throw Exception();
+        return null;
       }
     } on Exception {
       var errorCodes = ParseErrorCode(response!.error!);
@@ -120,20 +123,25 @@ class ItemRepositoryB4a implements ItemRepository {
   }
 
   @override
-  Future<ItemModel?> getByLote(String value) async {
+  Future<List<ItemModel>> getByLote(String value) async {
     QueryBuilder<ParseObject> query =
         QueryBuilder<ParseObject>(ParseObject(ItemEntity.className));
     query.whereEqualTo('lote', value);
+    query.whereEqualTo('isBlockedOperator', false);
+    query.whereEqualTo('isBlockedDoc', false);
 
-    query.first();
     ParseResponse? response;
     try {
       response = await query.query();
+      List<ItemModel> listTemp = <ItemModel>[];
 
       if (response.success && response.results != null) {
-        return ItemEntity().fromParse(response.results!.first);
+        for (var element in response.results!) {
+          listTemp.add(ItemEntity().fromParse(element));
+        }
+        return listTemp;
       } else {
-        throw Exception();
+        return [];
       }
     } on Exception {
       var errorCodes = ParseErrorCode(response!.error!);

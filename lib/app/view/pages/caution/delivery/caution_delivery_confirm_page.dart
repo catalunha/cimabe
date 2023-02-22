@@ -20,8 +20,10 @@ class CautionDeliveryConfirmPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                      'Quantidade de itens: ${_cautionDeliveryController.quantityEnd}'),
+                  AppTextTitleValue(
+                    title: 'Quantidade de itens: ',
+                    value: _cautionDeliveryController.quantityEnd.toString(),
+                  ),
                   const SizedBox(height: 15),
                   AppPhotoShow(
                     photoUrl:
@@ -51,12 +53,28 @@ class CautionDeliveryConfirmPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 15),
                   IconButton(
-                      onPressed: () async {
-                        await _cautionDeliveryController.confirmed();
-                        Get.back();
-                        Get.back();
-                      },
-                      icon: const Icon(Icons.send))
+                    tooltip: 'Novo item.',
+                    onPressed: () async {
+                      await _cautionDeliveryController.confirmed();
+                      Get.back();
+                      Get.back();
+                      // Get.toNamed(Routes.cautionDeliverySearch,
+                      //     arguments: _cautionDeliveryController.registerEnd);
+                    },
+                    icon: const Icon(Icons.send),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  // IconButton(
+                  //   tooltip: 'Nova item, outro operador',
+                  //   onPressed: () async {
+                  //     await _cautionDeliveryController.confirmed();
+                  //     Get.back();
+                  //     Get.back();
+                  //   },
+                  //   icon: const Icon(Icons.keyboard_tab),
+                  // )
                 ],
               ),
             ),
