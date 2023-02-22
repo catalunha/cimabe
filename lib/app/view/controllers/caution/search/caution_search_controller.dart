@@ -55,18 +55,18 @@ class CautionSearchController extends GetxController
     _loading(true);
     query = QueryBuilder<ParseObject>(ParseObject(CautionEntity.className));
     query.includeObject([
-      'userProfileDeliver',
-      'userProfileReceiver',
-      'userProfileGiveback',
+      'deliveryUserProfile',
+      'receiverUserProfile',
+      'givebackUserProfile',
       'item'
     ]);
     if (deliveryDtSelected) {
       query.whereGreaterThanOrEqualsTo(
-          'deliverDt',
+          'deliveryDt',
           DateTime(deliveryDtValue.year, deliveryDtValue.month,
               deliveryDtValue.day));
       query.whereLessThanOrEqualTo(
-          'deliverDt',
+          'deliveryDt',
           DateTime(deliveryDtValue.year, deliveryDtValue.month,
               deliveryDtValue.day, 23, 59));
     }

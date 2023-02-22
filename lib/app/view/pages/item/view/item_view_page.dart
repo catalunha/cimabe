@@ -22,8 +22,12 @@ class ItemViewPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                AppTextTitleValue(
+                  title: 'Id: ',
+                  value: itemModel.id,
+                ),
                 const AppTextTitleValue(
-                  title: 'Foto:',
+                  title: 'Foto: ',
                   value: '',
                 ),
                 AppPhotoShow(
@@ -84,7 +88,7 @@ class ItemViewPage extends StatelessWidget {
                       : "Não",
                 ),
                 AppTextTitleValue(
-                  title: 'Esta bloqueado pela operador ? ',
+                  title: 'Esta bloqueado para operador ? ',
                   value: itemModel.isBlockedOperator != null &&
                           itemModel.isBlockedOperator!
                       ? "Sim"

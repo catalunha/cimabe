@@ -6,97 +6,96 @@ import 'package:cimabe/app/core/models/user_profile_model.dart';
 class CautionModel {
   final String? id;
 
-  UserProfileModel? userProfileDeliver;
-  final DateTime? deliverDt;
+  UserProfileModel? deliveryUserProfile;
+  final DateTime? deliveryDt;
 
   ItemModel? item;
 
-  UserProfileModel? userProfileReceiver;
+  UserProfileModel? receiverUserProfile;
 
   // (item.isBlockedOperator=true)
 
   // Null: analisando item.
   // False: item recusado.
   // True: item aceito.
-  final bool? receiverAnalyzingItem;
+  final bool? receiverIsAnalyzingItem;
   final DateTime? receiverAnalyzedItemDt;
   final bool? receiverIsPermanentItem;
 
   // Null: ainda nao analisado.
   // False: operador de posse do item recebido e aceito.
   // True: iniciar devolução.
-  final bool? receiverStartGiveback;
+  final bool? receiverIsStartGiveback;
   final DateTime? receiverGivebackItemDt;
   final String? receiverGivebackDescription;
 
-  UserProfileModel? userProfileGiveback;
+  UserProfileModel? givebackUserProfile;
   // Null: analisando item.
   // False: item deve atualizar doc (item.isBlockedOperator=false,item.isBlockedDoc=true).
   // True: item aceito sem obs em doc (item.isBlockedOperator=false)
-  final bool? givebackAnalyzingItem;
+  final bool? givebackIsAnalyzingItem;
   final DateTime? givebackAnalyzedItemDt;
-  final String? givebackAnalysisDescription;
+  final String? givebackDescription;
 
   CautionModel({
     this.id,
-    this.userProfileDeliver,
-    this.deliverDt,
+    this.deliveryUserProfile,
+    this.deliveryDt,
     this.item,
-    this.userProfileReceiver,
-    this.receiverAnalyzingItem,
+    this.receiverUserProfile,
+    this.receiverIsAnalyzingItem,
     this.receiverAnalyzedItemDt,
     this.receiverIsPermanentItem,
-    this.receiverStartGiveback,
+    this.receiverIsStartGiveback,
     this.receiverGivebackItemDt,
     this.receiverGivebackDescription,
-    this.userProfileGiveback,
-    this.givebackAnalyzingItem,
+    this.givebackUserProfile,
+    this.givebackIsAnalyzingItem,
     this.givebackAnalyzedItemDt,
-    this.givebackAnalysisDescription,
+    this.givebackDescription,
   });
 
   CautionModel copyWith({
     String? id,
-    UserProfileModel? userProfileDeliver,
-    DateTime? deliverDt,
+    UserProfileModel? deliveryUserProfile,
+    DateTime? deliveryDt,
     ItemModel? item,
-    UserProfileModel? userProfileReceiver,
-    bool? receiverAnalyzingItem,
+    UserProfileModel? receiverUserProfile,
+    bool? receiverIsAnalyzingItem,
     DateTime? receiverAnalyzedItemDt,
     bool? receiverIsPermanentItem,
-    bool? receiverStartGiveback,
+    bool? receiverIsStartGiveback,
     DateTime? receiverGivebackItemDt,
     String? receiverGivebackDescription,
-    UserProfileModel? userProfileGiveback,
-    bool? givebackAnalyzingItem,
+    UserProfileModel? givebackUserProfile,
+    bool? givebackIsAnalyzingItem,
     DateTime? givebackAnalyzedItemDt,
-    String? givebackAnalysisDescription,
+    String? givebackDescription,
   }) {
     return CautionModel(
       id: id ?? this.id,
-      userProfileDeliver: userProfileDeliver ?? this.userProfileDeliver,
-      deliverDt: deliverDt ?? this.deliverDt,
+      deliveryUserProfile: deliveryUserProfile ?? this.deliveryUserProfile,
+      deliveryDt: deliveryDt ?? this.deliveryDt,
       item: item ?? this.item,
-      userProfileReceiver: userProfileReceiver ?? this.userProfileReceiver,
-      receiverAnalyzingItem:
-          receiverAnalyzingItem ?? this.receiverAnalyzingItem,
+      receiverUserProfile: receiverUserProfile ?? this.receiverUserProfile,
+      receiverIsAnalyzingItem:
+          receiverIsAnalyzingItem ?? this.receiverIsAnalyzingItem,
       receiverAnalyzedItemDt:
           receiverAnalyzedItemDt ?? this.receiverAnalyzedItemDt,
       receiverIsPermanentItem:
           receiverIsPermanentItem ?? this.receiverIsPermanentItem,
-      receiverStartGiveback:
-          receiverStartGiveback ?? this.receiverStartGiveback,
+      receiverIsStartGiveback:
+          receiverIsStartGiveback ?? this.receiverIsStartGiveback,
       receiverGivebackItemDt:
           receiverGivebackItemDt ?? this.receiverGivebackItemDt,
       receiverGivebackDescription:
           receiverGivebackDescription ?? this.receiverGivebackDescription,
-      userProfileGiveback: userProfileGiveback ?? this.userProfileGiveback,
-      givebackAnalyzingItem:
-          givebackAnalyzingItem ?? this.givebackAnalyzingItem,
+      givebackUserProfile: givebackUserProfile ?? this.givebackUserProfile,
+      givebackIsAnalyzingItem:
+          givebackIsAnalyzingItem ?? this.givebackIsAnalyzingItem,
       givebackAnalyzedItemDt:
           givebackAnalyzedItemDt ?? this.givebackAnalyzedItemDt,
-      givebackAnalysisDescription:
-          givebackAnalysisDescription ?? this.givebackAnalysisDescription,
+      givebackDescription: givebackDescription ?? this.givebackDescription,
     );
   }
 
@@ -106,20 +105,20 @@ class CautionModel {
     if (id != null) {
       result.addAll({'id': id});
     }
-    if (userProfileDeliver != null) {
-      result.addAll({'userProfileDeliver': userProfileDeliver!.toMap()});
+    if (deliveryUserProfile != null) {
+      result.addAll({'deliveryUserProfile': deliveryUserProfile!.toMap()});
     }
-    if (deliverDt != null) {
-      result.addAll({'deliverDt': deliverDt!.millisecondsSinceEpoch});
+    if (deliveryDt != null) {
+      result.addAll({'deliveryDt': deliveryDt!.millisecondsSinceEpoch});
     }
     if (item != null) {
       result.addAll({'item': item!.toMap()});
     }
-    if (userProfileReceiver != null) {
-      result.addAll({'userProfileReceiver': userProfileReceiver!.toMap()});
+    if (receiverUserProfile != null) {
+      result.addAll({'receiverUserProfile': receiverUserProfile!.toMap()});
     }
-    if (receiverAnalyzingItem != null) {
-      result.addAll({'receiverAnalyzingItem': receiverAnalyzingItem});
+    if (receiverIsAnalyzingItem != null) {
+      result.addAll({'receiverIsAnalyzingItem': receiverIsAnalyzingItem});
     }
     if (receiverAnalyzedItemDt != null) {
       result.addAll({
@@ -129,8 +128,8 @@ class CautionModel {
     if (receiverIsPermanentItem != null) {
       result.addAll({'receiverIsPermanentItem': receiverIsPermanentItem});
     }
-    if (receiverStartGiveback != null) {
-      result.addAll({'receiverStartGiveback': receiverStartGiveback});
+    if (receiverIsStartGiveback != null) {
+      result.addAll({'receiverIsStartGiveback': receiverIsStartGiveback});
     }
     if (receiverGivebackItemDt != null) {
       result.addAll({
@@ -141,20 +140,19 @@ class CautionModel {
       result
           .addAll({'receiverGivebackDescription': receiverGivebackDescription});
     }
-    if (userProfileGiveback != null) {
-      result.addAll({'userProfileGiveback': userProfileGiveback!.toMap()});
+    if (givebackUserProfile != null) {
+      result.addAll({'givebackUserProfile': givebackUserProfile!.toMap()});
     }
-    if (givebackAnalyzingItem != null) {
-      result.addAll({'givebackAnalyzingItem': givebackAnalyzingItem});
+    if (givebackIsAnalyzingItem != null) {
+      result.addAll({'givebackIsAnalyzingItem': givebackIsAnalyzingItem});
     }
     if (givebackAnalyzedItemDt != null) {
       result.addAll({
         'givebackAnalyzedItemDt': givebackAnalyzedItemDt!.millisecondsSinceEpoch
       });
     }
-    if (givebackAnalysisDescription != null) {
-      result
-          .addAll({'givebackAnalysisDescription': givebackAnalysisDescription});
+    if (givebackDescription != null) {
+      result.addAll({'givebackDescription': givebackDescription});
     }
 
     return result;
@@ -163,34 +161,34 @@ class CautionModel {
   factory CautionModel.fromMap(Map<String, dynamic> map) {
     return CautionModel(
       id: map['id'],
-      userProfileDeliver: map['userProfileDeliver'] != null
-          ? UserProfileModel.fromMap(map['userProfileDeliver'])
+      deliveryUserProfile: map['deliveryUserProfile'] != null
+          ? UserProfileModel.fromMap(map['deliveryUserProfile'])
           : null,
-      deliverDt: map['deliverDt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['deliverDt'])
+      deliveryDt: map['deliveryDt'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['deliveryDt'])
           : null,
       item: map['item'] != null ? ItemModel.fromMap(map['item']) : null,
-      userProfileReceiver: map['userProfileReceiver'] != null
-          ? UserProfileModel.fromMap(map['userProfileReceiver'])
+      receiverUserProfile: map['receiverUserProfile'] != null
+          ? UserProfileModel.fromMap(map['receiverUserProfile'])
           : null,
-      receiverAnalyzingItem: map['receiverAnalyzingItem'],
+      receiverIsAnalyzingItem: map['receiverIsAnalyzingItem'],
       receiverAnalyzedItemDt: map['receiverAnalyzedItemDt'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['receiverAnalyzedItemDt'])
           : null,
       receiverIsPermanentItem: map['receiverIsPermanentItem'],
-      receiverStartGiveback: map['receiverStartGiveback'],
+      receiverIsStartGiveback: map['receiverIsStartGiveback'],
       receiverGivebackItemDt: map['receiverGivebackItemDt'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['receiverGivebackItemDt'])
           : null,
       receiverGivebackDescription: map['receiverGivebackDescription'],
-      userProfileGiveback: map['userProfileGiveback'] != null
-          ? UserProfileModel.fromMap(map['userProfileGiveback'])
+      givebackUserProfile: map['givebackUserProfile'] != null
+          ? UserProfileModel.fromMap(map['givebackUserProfile'])
           : null,
-      givebackAnalyzingItem: map['givebackAnalyzingItem'],
+      givebackIsAnalyzingItem: map['givebackIsAnalyzingItem'],
       givebackAnalyzedItemDt: map['givebackAnalyzedItemDt'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['givebackAnalyzedItemDt'])
           : null,
-      givebackAnalysisDescription: map['givebackAnalysisDescription'],
+      givebackDescription: map['givebackDescription'],
     );
   }
 
@@ -201,7 +199,7 @@ class CautionModel {
 
   @override
   String toString() {
-    return 'CautionModel(id: $id, userProfileDeliver: $userProfileDeliver, deliverDt: $deliverDt, item: $item, userProfileReceiver: $userProfileReceiver, receiverAnalyzingItem: $receiverAnalyzingItem, receiverAnalyzedItemDt: $receiverAnalyzedItemDt, receiverIsPermanentItem: $receiverIsPermanentItem, receiverStartGiveback: $receiverStartGiveback, receiverGivebackItemDt: $receiverGivebackItemDt, receiverGivebackDescription: $receiverGivebackDescription, userProfileGiveback: $userProfileGiveback, givebackAnalyzingItem: $givebackAnalyzingItem, givebackAnalyzedItemDt: $givebackAnalyzedItemDt, givebackAnalysisDescription: $givebackAnalysisDescription)';
+    return 'CautionModel(id: $id, deliveryUserProfile: $deliveryUserProfile, deliveryDt: $deliveryDt, item: $item, receiverUserProfile: $receiverUserProfile, receiverIsAnalyzingItem: $receiverIsAnalyzingItem, receiverAnalyzedItemDt: $receiverAnalyzedItemDt, receiverIsPermanentItem: $receiverIsPermanentItem, receiverIsStartGiveback: $receiverIsStartGiveback, receiverGivebackItemDt: $receiverGivebackItemDt, receiverGivebackDescription: $receiverGivebackDescription, givebackUserProfile: $givebackUserProfile, givebackIsAnalyzingItem: $givebackIsAnalyzingItem, givebackAnalyzedItemDt: $givebackAnalyzedItemDt, givebackDescription: $givebackDescription)';
   }
 
   @override
@@ -210,38 +208,38 @@ class CautionModel {
 
     return other is CautionModel &&
         other.id == id &&
-        other.userProfileDeliver == userProfileDeliver &&
-        other.deliverDt == deliverDt &&
+        other.deliveryUserProfile == deliveryUserProfile &&
+        other.deliveryDt == deliveryDt &&
         other.item == item &&
-        other.userProfileReceiver == userProfileReceiver &&
-        other.receiverAnalyzingItem == receiverAnalyzingItem &&
+        other.receiverUserProfile == receiverUserProfile &&
+        other.receiverIsAnalyzingItem == receiverIsAnalyzingItem &&
         other.receiverAnalyzedItemDt == receiverAnalyzedItemDt &&
         other.receiverIsPermanentItem == receiverIsPermanentItem &&
-        other.receiverStartGiveback == receiverStartGiveback &&
+        other.receiverIsStartGiveback == receiverIsStartGiveback &&
         other.receiverGivebackItemDt == receiverGivebackItemDt &&
         other.receiverGivebackDescription == receiverGivebackDescription &&
-        other.userProfileGiveback == userProfileGiveback &&
-        other.givebackAnalyzingItem == givebackAnalyzingItem &&
+        other.givebackUserProfile == givebackUserProfile &&
+        other.givebackIsAnalyzingItem == givebackIsAnalyzingItem &&
         other.givebackAnalyzedItemDt == givebackAnalyzedItemDt &&
-        other.givebackAnalysisDescription == givebackAnalysisDescription;
+        other.givebackDescription == givebackDescription;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-        userProfileDeliver.hashCode ^
-        deliverDt.hashCode ^
+        deliveryUserProfile.hashCode ^
+        deliveryDt.hashCode ^
         item.hashCode ^
-        userProfileReceiver.hashCode ^
-        receiverAnalyzingItem.hashCode ^
+        receiverUserProfile.hashCode ^
+        receiverIsAnalyzingItem.hashCode ^
         receiverAnalyzedItemDt.hashCode ^
         receiverIsPermanentItem.hashCode ^
-        receiverStartGiveback.hashCode ^
+        receiverIsStartGiveback.hashCode ^
         receiverGivebackItemDt.hashCode ^
         receiverGivebackDescription.hashCode ^
-        userProfileGiveback.hashCode ^
-        givebackAnalyzingItem.hashCode ^
+        givebackUserProfile.hashCode ^
+        givebackIsAnalyzingItem.hashCode ^
         givebackAnalyzedItemDt.hashCode ^
-        givebackAnalysisDescription.hashCode;
+        givebackDescription.hashCode;
   }
 }

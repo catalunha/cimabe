@@ -43,25 +43,25 @@ class CautionGivebackController extends GetxController
     cautionList.clear();
     // _loading(true);
     // var splashController = Get.find<SplashController>();
-    // UserProfileModel userProfileGiveback =
+    // UserProfileModel givebackUserProfile =
     //     splashController.userModel!.userProfile!;
     QueryBuilder<ParseObject> query =
         QueryBuilder<ParseObject>(ParseObject(CautionEntity.className));
     query.includeObject([
-      'userProfileDeliver',
-      'userProfileReceiver',
-      'userProfileGiveback',
+      'deliveryUserProfile',
+      'receiverUserProfile',
+      'givebackUserProfile',
       'item'
     ]);
     // query.whereEqualTo(
-    //     'userProfileGiveback',
+    //     'givebackUserProfile',
     //     (ParseObject(UserProfileEntity.className)
-    //           ..objectId = userProfileGiveback.id)
+    //           ..objectId = givebackUserProfile.id)
     //         .toPointer());
-    query.whereEqualTo('receiverStartGiveback', true);
-    query.whereEqualTo('givebackAnalyzingItem', null);
-    // query.whereNotEqualTo('givebackAnalyzingItem', true);
-    // query.whereNotEqualTo('givebackAnalyzingItem', false);
+    query.whereEqualTo('receiverIsStartGiveback', true);
+    query.whereEqualTo('givebackIsAnalyzingItem', null);
+    // query.whereNotEqualTo('givebackIsAnalyzingItem', true);
+    // query.whereNotEqualTo('givebackIsAnalyzingItem', false);
     List<CautionModel> temp = await _cautionRepository.list(query, null);
     cautionList.addAll(temp);
     // _loading(false);
@@ -71,18 +71,18 @@ class CautionGivebackController extends GetxController
   //   cautionList.clear();
   //   // _loading(true);
   //   var splashController = Get.find<SplashController>();
-  //   UserProfileModel userProfileGiveback =
+  //   UserProfileModel givebackUserProfile =
   //       splashController.userModel!.userProfile!;
   //   QueryBuilder<ParseObject> query =
   //       QueryBuilder<ParseObject>(ParseObject(CautionEntity.className));
-  //   query.includeObject(['userProfileDeliver', 'userProfileGiveback', 'item']);
+  //   query.includeObject(['deliveryUserProfile', 'givebackUserProfile', 'item']);
   //   query.whereEqualTo(
-  //       'userProfileGiveback',
+  //       'givebackUserProfile',
   //       (ParseObject(UserProfileEntity.className)
-  //             ..objectId = userProfileGiveback.id)
+  //             ..objectId = givebackUserProfile.id)
   //           .toPointer());
-  //   query.whereNotEqualTo('givebackAnalyzingItem', true);
-  //   query.whereNotEqualTo('givebackAnalyzingItem', false);
+  //   query.whereNotEqualTo('givebackIsAnalyzingItem', true);
+  //   query.whereNotEqualTo('givebackIsAnalyzingItem', false);
   //   query.whereEqualTo('receiverIsPermanentItem', true);
   //   List<CautionModel> temp = await _cautionRepository.list(query, null);
   //   cautionList.addAll(temp);
@@ -93,28 +93,28 @@ class CautionGivebackController extends GetxController
   //   cautionList.clear();
   //   // _loading(true);
   //   var splashController = Get.find<SplashController>();
-  //   UserProfileModel userProfileGiveback =
+  //   UserProfileModel givebackUserProfile =
   //       splashController.userModel!.userProfile!;
   //   QueryBuilder<ParseObject> query =
   //       QueryBuilder<ParseObject>(ParseObject(CautionEntity.className));
-  //   query.includeObject(['userProfileDeliver', 'userProfileGiveback', 'item']);
+  //   query.includeObject(['deliveryUserProfile', 'givebackUserProfile', 'item']);
   //   query.whereEqualTo(
-  //       'userProfileGiveback',
+  //       'givebackUserProfile',
   //       (ParseObject(UserProfileEntity.className)
-  //             ..objectId = userProfileGiveback.id)
+  //             ..objectId = givebackUserProfile.id)
   //           .toPointer());
-  //   // query.whereEqualTo('receiverStartGiveback', true);
+  //   // query.whereEqualTo('receiverIsStartGiveback', true);
   //   List<CautionModel> temp = await _cautionRepository.list(query, null);
   //   cautionList.addAll(temp);
   //   // _loading(false);
   // }
 
-  Future<void> updateGivebackAnalyzingItemWithRefused(
+  Future<void> updategivebackIsAnalyzingItemWithRefused(
       CautionModel cautionModel, String description) async {
     try {
       // _loading(true);
       var splashController = Get.find<SplashController>();
-      UserProfileModel userProfileGiveback =
+      UserProfileModel givebackUserProfile =
           splashController.userModel!.userProfile!;
       DateTime now = DateTime.now();
       DateTime datetime =
@@ -122,14 +122,14 @@ class CautionGivebackController extends GetxController
       CautionModel cautionModelTemp;
 
       cautionModelTemp = cautionModel.copyWith(
-        userProfileGiveback: userProfileGiveback,
-        givebackAnalyzingItem: false,
+        givebackUserProfile: givebackUserProfile,
+        givebackIsAnalyzingItem: false,
         givebackAnalyzedItemDt: datetime,
-        givebackAnalysisDescription: description,
+        givebackDescription: description,
       );
       ItemModel itemModelSend = cautionModel.item!;
-      await _itemRepository
-          .update(itemModelSend.copyWith(isBlockedOperator: false));
+      await _itemRepository.update(
+          itemModelSend.copyWith(isBlockedOperator: false, isBlockedDoc: true));
 
       await _cautionRepository.update(cautionModelTemp);
 
@@ -146,12 +146,12 @@ class CautionGivebackController extends GetxController
     }
   }
 
-  Future<void> updateGivebackAnalyzingItemWithAccepted(
+  Future<void> updategivebackIsAnalyzingItemWithAccepted(
       CautionModel cautionModel) async {
     try {
       // _loading(true);
       var splashController = Get.find<SplashController>();
-      UserProfileModel userProfileGiveback =
+      UserProfileModel givebackUserProfile =
           splashController.userModel!.userProfile!;
       DateTime now = DateTime.now();
       DateTime datetime =
@@ -159,10 +159,10 @@ class CautionGivebackController extends GetxController
       CautionModel cautionModelTemp;
 
       cautionModelTemp = cautionModel.copyWith(
-        userProfileGiveback: userProfileGiveback,
-        givebackAnalyzingItem: true,
+        givebackUserProfile: givebackUserProfile,
+        givebackIsAnalyzingItem: true,
         givebackAnalyzedItemDt: datetime,
-        givebackAnalysisDescription: 'Devolvido sem obs.',
+        givebackDescription: '',
       );
       ItemModel itemModelSend = cautionModel.item!;
       await _itemRepository
@@ -191,7 +191,7 @@ class CautionGivebackController extends GetxController
   //         DateTime(now.year, now.month, now.day, now.hour, now.minute);
   //     CautionModel cautionModelTemp;
   //     cautionModelTemp = cautionModel.copyWith(
-  //       receiverStartGiveback: true,
+  //       receiverIsStartGiveback: true,
   //       receiverGivebackItemDt: datetime,
   //       receiverGivebackDescription: description,
   //     );

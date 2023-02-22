@@ -27,32 +27,32 @@ class CautionCard extends StatelessWidget {
               Column(
                 children: [
                   AppPhotoShow(
-                    photoUrl: cautionModel.userProfileDeliver?.photo,
+                    photoUrl: cautionModel.deliveryUserProfile?.photo,
                     height: 125,
                     // width: 150,
                   ),
-                  const Text('Entrega')
+                  const Text('Entregador')
                 ],
               ),
               Column(
                 children: [
                   AppPhotoShow(
-                    photoUrl: cautionModel.userProfileReceiver?.photo,
+                    photoUrl: cautionModel.receiverUserProfile?.photo,
                     height: 125,
                     // width: 150,
                   ),
                   const Text('Operador')
                 ],
               ),
-              // if (cautionModel.userProfileGiveback != null)
+              // if (cautionModel.givebackUserProfile != null)
               Column(
                 children: [
                   AppPhotoShow(
-                    photoUrl: cautionModel.userProfileGiveback?.photo,
+                    photoUrl: cautionModel.givebackUserProfile?.photo,
                     height: 125,
                     // width: 150,
                   ),
-                  const Text('Recebimento')
+                  const Text('Recebedor')
                 ],
               ),
             ],
@@ -68,21 +68,21 @@ class CautionCard extends StatelessWidget {
           ),
           AppTextTitleValue(
             title: 'Entregue por: ',
-            value: cautionModel.userProfileDeliver!.nickname!,
+            value: cautionModel.deliveryUserProfile!.nickname!,
           ),
           AppTextTitleValue(
             title: 'Entregue em: ',
-            value: dateFormat.format(cautionModel.deliverDt!),
+            value: dateFormat.format(cautionModel.deliveryDt!),
           ),
           AppTextTitleValue(
             title: 'Cautelado a: ',
-            value: cautionModel.userProfileReceiver!.nickname!,
+            value: cautionModel.receiverUserProfile!.nickname!,
           ),
           AppTextTitleValue(
             title: 'Situação da análise ? ',
-            value: cautionModel.receiverAnalyzingItem == null
+            value: cautionModel.receiverIsAnalyzingItem == null
                 ? 'Analisando'
-                : cautionModel.receiverAnalyzingItem == true
+                : cautionModel.receiverIsAnalyzingItem == true
                     ? 'Aceito'
                     : 'Recusado',
           ),
@@ -99,9 +99,9 @@ class CautionCard extends StatelessWidget {
           ),
           AppTextTitleValue(
             title: 'Situação da devolução ? ',
-            value: cautionModel.receiverStartGiveback == null
+            value: cautionModel.receiverIsStartGiveback == null
                 ? 'Analisando'
-                : cautionModel.receiverStartGiveback == false
+                : cautionModel.receiverIsStartGiveback == false
                     ? 'Nao devolver. Em uso.'
                     : 'Devolução iniciada',
           ),
@@ -118,15 +118,15 @@ class CautionCard extends StatelessWidget {
           ),
           AppTextTitleValue(
             title: 'Recebido por: ',
-            value: cautionModel.userProfileGiveback?.nickname,
+            value: cautionModel.givebackUserProfile?.nickname,
           ),
           AppTextTitleValue(
             title: 'Situação da recebimento ? ',
-            value: cautionModel.receiverStartGiveback != true
+            value: cautionModel.receiverIsStartGiveback != true
                 ? '...'
-                : cautionModel.givebackAnalyzingItem == null
+                : cautionModel.givebackIsAnalyzingItem == null
                     ? 'Analisando'
-                    : cautionModel.givebackAnalyzingItem == false
+                    : cautionModel.givebackIsAnalyzingItem == false
                         ? 'Com observações.'
                         : 'Normal',
           ),
@@ -138,7 +138,7 @@ class CautionCard extends StatelessWidget {
           ),
           AppTextTitleValue(
             title: 'Descrição do recebimento: ',
-            value: cautionModel.givebackAnalysisDescription,
+            value: cautionModel.givebackDescription,
           ),
         ],
       ),

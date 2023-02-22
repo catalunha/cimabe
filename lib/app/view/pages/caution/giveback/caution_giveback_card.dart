@@ -32,7 +32,7 @@ class _CautionGivebackCardState extends State<CautionGivebackCard> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AppPhotoShow(
-                photoUrl: widget.cautionModel.userProfileReceiver!.photo,
+                photoUrl: widget.cautionModel.receiverUserProfile!.photo,
                 height: 125,
                 // width: 150,
               ),
@@ -49,21 +49,21 @@ class _CautionGivebackCardState extends State<CautionGivebackCard> {
           ),
           AppTextTitleValue(
             title: 'Entregue por: ',
-            value: widget.cautionModel.userProfileDeliver!.nickname!,
+            value: widget.cautionModel.deliveryUserProfile!.nickname!,
           ),
           AppTextTitleValue(
             title: 'Entregue em: ',
-            value: dateFormat.format(widget.cautionModel.deliverDt!),
+            value: dateFormat.format(widget.cautionModel.deliveryDt!),
           ),
           AppTextTitleValue(
             title: 'Cautelado a: ',
-            value: widget.cautionModel.userProfileReceiver!.nickname!,
+            value: widget.cautionModel.receiverUserProfile!.nickname!,
           ),
           AppTextTitleValue(
             title: 'Situação da análise ? ',
-            value: widget.cautionModel.receiverAnalyzingItem == null
+            value: widget.cautionModel.receiverIsAnalyzingItem == null
                 ? 'Analisando'
-                : widget.cautionModel.receiverAnalyzingItem == true
+                : widget.cautionModel.receiverIsAnalyzingItem == true
                     ? 'Aceito'
                     : 'Recusado',
           ),
@@ -82,9 +82,9 @@ class _CautionGivebackCardState extends State<CautionGivebackCard> {
           ),
           AppTextTitleValue(
             title: 'Situação da devolução ? ',
-            value: widget.cautionModel.receiverStartGiveback == null
+            value: widget.cautionModel.receiverIsStartGiveback == null
                 ? 'Analisando'
-                : widget.cautionModel.receiverStartGiveback == false
+                : widget.cautionModel.receiverIsStartGiveback == false
                     ? 'Nao devolver. Em uso.'
                     : 'Devolução iniciada',
           ),
@@ -102,15 +102,15 @@ class _CautionGivebackCardState extends State<CautionGivebackCard> {
           ),
           AppTextTitleValue(
             title: 'Recebido por: ',
-            value: widget.cautionModel.userProfileGiveback?.nickname,
+            value: widget.cautionModel.givebackUserProfile?.nickname,
           ),
           AppTextTitleValue(
             title: 'Situação da recebimento ? ',
-            value: widget.cautionModel.receiverStartGiveback != true
+            value: widget.cautionModel.receiverIsStartGiveback != true
                 ? '...'
-                : widget.cautionModel.givebackAnalyzingItem == null
+                : widget.cautionModel.givebackIsAnalyzingItem == null
                     ? 'Analisando'
-                    : widget.cautionModel.givebackAnalyzingItem == false
+                    : widget.cautionModel.givebackIsAnalyzingItem == false
                         ? 'Com observações.'
                         : 'Normal',
           ),
@@ -123,11 +123,11 @@ class _CautionGivebackCardState extends State<CautionGivebackCard> {
           ),
           AppTextTitleValue(
             title: 'Descrição do recebimento: ',
-            value: widget.cautionModel.givebackAnalysisDescription,
+            value: widget.cautionModel.givebackDescription,
           ),
           Wrap(
             children: [
-              if (widget.cautionModel.receiverStartGiveback == true)
+              if (widget.cautionModel.receiverIsStartGiveback == true)
                 IconButton(
                   onPressed: () async {
                     String? res = await showDialog(
@@ -142,7 +142,7 @@ class _CautionGivebackCardState extends State<CautionGivebackCard> {
                     );
                     if (res != null) {
                       widget._cautionGivebackController
-                          .updateGivebackAnalyzingItemWithRefused(
+                          .updategivebackIsAnalyzingItemWithRefused(
                               widget.cautionModel, res);
                     }
                     // setState(() {});
@@ -151,12 +151,12 @@ class _CautionGivebackCardState extends State<CautionGivebackCard> {
                     Icons.not_interested,
                   ),
                 ),
-              if (widget.cautionModel.receiverStartGiveback == true)
+              if (widget.cautionModel.receiverIsStartGiveback == true)
                 IconButton(
                   onPressed: () {
                     // Get.toNamed(Routes.itemAddEdit, arguments: cautionModel);
                     widget._cautionGivebackController
-                        .updateGivebackAnalyzingItemWithAccepted(
+                        .updategivebackIsAnalyzingItemWithAccepted(
                             widget.cautionModel);
                   },
                   icon: const Icon(

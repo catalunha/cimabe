@@ -43,22 +43,22 @@ class CautionReceiverController extends GetxController
     cautionList.clear();
     // _loading(true);
     var splashController = Get.find<SplashController>();
-    UserProfileModel userProfileReceiver =
+    UserProfileModel receiverUserProfile =
         splashController.userModel!.userProfile!;
     QueryBuilder<ParseObject> query =
         QueryBuilder<ParseObject>(ParseObject(CautionEntity.className));
     query.includeObject([
-      'userProfileDeliver',
-      'userProfileReceiver',
-      'userProfileGiveback',
+      'deliveryUserProfile',
+      'receiverUserProfile',
+      'givebackUserProfile',
       'item'
     ]);
     query.whereEqualTo(
-        'userProfileReceiver',
+        'receiverUserProfile',
         (ParseObject(UserProfileEntity.className)
-              ..objectId = userProfileReceiver.id)
+              ..objectId = receiverUserProfile.id)
             .toPointer());
-    query.whereEqualTo('givebackAnalyzingItem', null);
+    query.whereEqualTo('givebackIsAnalyzingItem', null);
     query.whereEqualTo('receiverIsPermanentItem', false);
     List<CautionModel> temp = await _cautionRepository.list(query, null);
     cautionList.addAll(temp);
@@ -69,22 +69,22 @@ class CautionReceiverController extends GetxController
     cautionList.clear();
     // _loading(true);
     var splashController = Get.find<SplashController>();
-    UserProfileModel userProfileReceiver =
+    UserProfileModel receiverUserProfile =
         splashController.userModel!.userProfile!;
     QueryBuilder<ParseObject> query =
         QueryBuilder<ParseObject>(ParseObject(CautionEntity.className));
     query.includeObject([
-      'userProfileDeliver',
-      'userProfileReceiver',
-      'userProfileGiveback',
+      'deliveryUserProfile',
+      'receiverUserProfile',
+      'givebackUserProfile',
       'item'
     ]);
     query.whereEqualTo(
-        'userProfileReceiver',
+        'receiverUserProfile',
         (ParseObject(UserProfileEntity.className)
-              ..objectId = userProfileReceiver.id)
+              ..objectId = receiverUserProfile.id)
             .toPointer());
-    query.whereEqualTo('givebackAnalyzingItem', null);
+    query.whereEqualTo('givebackIsAnalyzingItem', null);
     query.whereEqualTo('receiverIsPermanentItem', true);
     List<CautionModel> temp = await _cautionRepository.list(query, null);
     cautionList.addAll(temp);
@@ -95,28 +95,28 @@ class CautionReceiverController extends GetxController
     cautionList.clear();
     // _loading(true);
     var splashController = Get.find<SplashController>();
-    UserProfileModel userProfileReceiver =
+    UserProfileModel receiverUserProfile =
         splashController.userModel!.userProfile!;
     QueryBuilder<ParseObject> query =
         QueryBuilder<ParseObject>(ParseObject(CautionEntity.className));
     query.includeObject([
-      'userProfileDeliver',
-      'userProfileReceiver',
-      'userProfileGiveback',
+      'deliveryUserProfile',
+      'receiverUserProfile',
+      'givebackUserProfile',
       'item'
     ]);
     query.whereEqualTo(
-        'userProfileReceiver',
+        'receiverUserProfile',
         (ParseObject(UserProfileEntity.className)
-              ..objectId = userProfileReceiver.id)
+              ..objectId = receiverUserProfile.id)
             .toPointer());
-    // query.whereEqualTo('receiverStartGiveback', true);
+    // query.whereEqualTo('receiverIsStartGiveback', true);
     List<CautionModel> temp = await _cautionRepository.list(query, null);
     cautionList.addAll(temp);
     // _loading(false);
   }
 
-  Future<void> updateReceiverAnalyzingItemWithRefused(
+  Future<void> updatereceiverIsAnalyzingItemWithRefused(
       CautionModel cautionModel) async {
     try {
       // _loading(true);
@@ -126,9 +126,9 @@ class CautionReceiverController extends GetxController
       CautionModel cautionModelTemp;
 
       cautionModelTemp = cautionModel.copyWith(
-        receiverAnalyzingItem: false,
+        receiverIsAnalyzingItem: false,
         receiverAnalyzedItemDt: datetime,
-        receiverStartGiveback: true,
+        receiverIsStartGiveback: true,
         receiverGivebackItemDt: datetime,
       );
 
@@ -146,7 +146,7 @@ class CautionReceiverController extends GetxController
     }
   }
 
-  Future<void> updateReceiverAnalyzingItemWithAccepted(
+  Future<void> updatereceiverIsAnalyzingItemWithAccepted(
       CautionModel cautionModel) async {
     try {
       // _loading(true);
@@ -155,9 +155,9 @@ class CautionReceiverController extends GetxController
           DateTime(now.year, now.month, now.day, now.hour, now.minute);
       CautionModel cautionModelTemp;
       cautionModelTemp = cautionModel.copyWith(
-        receiverAnalyzingItem: true,
+        receiverIsAnalyzingItem: true,
         receiverAnalyzedItemDt: datetime,
-        receiverStartGiveback: false,
+        receiverIsStartGiveback: false,
       );
 
       await _cautionRepository.update(cautionModelTemp);
@@ -174,7 +174,7 @@ class CautionReceiverController extends GetxController
     }
   }
 
-  Future<void> updateReceiverStartGiveback(
+  Future<void> updatereceiverIsStartGiveback(
       CautionModel cautionModel, String description) async {
     try {
       // _loading(true);
@@ -183,7 +183,7 @@ class CautionReceiverController extends GetxController
           DateTime(now.year, now.month, now.day, now.hour, now.minute);
       CautionModel cautionModelTemp;
       cautionModelTemp = cautionModel.copyWith(
-        receiverStartGiveback: true,
+        receiverIsStartGiveback: true,
         receiverGivebackItemDt: datetime,
         receiverGivebackDescription: description,
       );

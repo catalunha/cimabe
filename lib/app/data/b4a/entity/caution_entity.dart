@@ -9,35 +9,35 @@ class CautionEntity {
   CautionModel fromParse(ParseObject parseObject) {
     CautionModel profileModel = CautionModel(
       id: parseObject.objectId!,
-      userProfileDeliver: parseObject.get('userProfileDeliver') != null
-          ? UserProfileEntity().fromParse(parseObject.get('userProfileDeliver'))
+      deliveryUserProfile: parseObject.get('deliveryUserProfile') != null
+          ? UserProfileEntity()
+              .fromParse(parseObject.get('deliveryUserProfile'))
           : null,
-      deliverDt: parseObject.get<DateTime>('deliverDt')?.toLocal(),
+      deliveryDt: parseObject.get<DateTime>('deliveryDt')?.toLocal(),
       item: parseObject.get('item') != null
           ? ItemEntity().fromParse(parseObject.get('item'))
           : null,
-      userProfileReceiver: parseObject.get('userProfileReceiver') != null
+      receiverUserProfile: parseObject.get('receiverUserProfile') != null
           ? UserProfileEntity()
-              .fromParse(parseObject.get('userProfileReceiver'))
+              .fromParse(parseObject.get('receiverUserProfile'))
           : null,
-      receiverAnalyzingItem: parseObject.get('receiverAnalyzingItem'),
+      receiverIsAnalyzingItem: parseObject.get('receiverIsAnalyzingItem'),
       receiverAnalyzedItemDt:
           parseObject.get<DateTime>('receiverAnalyzedItemDt')?.toLocal(),
       receiverIsPermanentItem: parseObject.get('receiverIsPermanentItem'),
-      receiverStartGiveback: parseObject.get('receiverStartGiveback'),
+      receiverIsStartGiveback: parseObject.get('receiverIsStartGiveback'),
       receiverGivebackItemDt:
           parseObject.get<DateTime>('receiverGivebackItemDt')?.toLocal(),
       receiverGivebackDescription:
           parseObject.get('receiverGivebackDescription'),
-      userProfileGiveback: parseObject.get('userProfileGiveback') != null
+      givebackUserProfile: parseObject.get('givebackUserProfile') != null
           ? UserProfileEntity()
-              .fromParse(parseObject.get('userProfileGiveback'))
+              .fromParse(parseObject.get('givebackUserProfile'))
           : null,
-      givebackAnalyzingItem: parseObject.get('givebackAnalyzingItem'),
+      givebackIsAnalyzingItem: parseObject.get('givebackIsAnalyzingItem'),
       givebackAnalyzedItemDt:
           parseObject.get<DateTime>('givebackAnalyzedItemDt')?.toLocal(),
-      givebackAnalysisDescription:
-          parseObject.get('givebackAnalysisDescription'),
+      givebackDescription: parseObject.get('givebackDescription'),
     );
     return profileModel;
   }
@@ -46,15 +46,15 @@ class CautionEntity {
     final cautionParseObject = ParseObject(CautionEntity.className);
     cautionParseObject.objectId = cautionModel.id;
 
-    if (cautionModel.userProfileDeliver != null) {
+    if (cautionModel.deliveryUserProfile != null) {
       cautionParseObject.set(
-          'userProfileDeliver',
+          'deliveryUserProfile',
           (ParseObject(UserProfileEntity.className)
-                ..objectId = cautionModel.userProfileDeliver!.id)
+                ..objectId = cautionModel.deliveryUserProfile!.id)
               .toPointer());
     }
-    if (cautionModel.deliverDt != null) {
-      cautionParseObject.set<DateTime?>('deliverDt', cautionModel.deliverDt);
+    if (cautionModel.deliveryDt != null) {
+      cautionParseObject.set<DateTime?>('deliveryDt', cautionModel.deliveryDt);
     }
     if (cautionModel.item != null) {
       cautionParseObject.set(
@@ -62,16 +62,16 @@ class CautionEntity {
           (ParseObject(ItemEntity.className)..objectId = cautionModel.item!.id)
               .toPointer());
     }
-    if (cautionModel.userProfileReceiver != null) {
+    if (cautionModel.receiverUserProfile != null) {
       cautionParseObject.set(
-          'userProfileReceiver',
+          'receiverUserProfile',
           (ParseObject(UserProfileEntity.className)
-                ..objectId = cautionModel.userProfileReceiver!.id)
+                ..objectId = cautionModel.receiverUserProfile!.id)
               .toPointer());
     }
-    if (cautionModel.receiverAnalyzingItem != null) {
+    if (cautionModel.receiverIsAnalyzingItem != null) {
       cautionParseObject.set(
-          'receiverAnalyzingItem', cautionModel.receiverAnalyzingItem);
+          'receiverIsAnalyzingItem', cautionModel.receiverIsAnalyzingItem);
     }
     if (cautionModel.receiverAnalyzedItemDt != null) {
       cautionParseObject.set<DateTime?>(
@@ -81,9 +81,9 @@ class CautionEntity {
       cautionParseObject.set(
           'receiverIsPermanentItem', cautionModel.receiverIsPermanentItem);
     }
-    if (cautionModel.receiverStartGiveback != null) {
+    if (cautionModel.receiverIsStartGiveback != null) {
       cautionParseObject.set(
-          'receiverStartGiveback', cautionModel.receiverStartGiveback);
+          'receiverIsStartGiveback', cautionModel.receiverIsStartGiveback);
     }
     if (cautionModel.receiverGivebackItemDt != null) {
       cautionParseObject.set<DateTime?>(
@@ -94,24 +94,24 @@ class CautionEntity {
           cautionModel.receiverGivebackDescription);
     }
 
-    if (cautionModel.userProfileGiveback != null) {
+    if (cautionModel.givebackUserProfile != null) {
       cautionParseObject.set(
-          'userProfileGiveback',
+          'givebackUserProfile',
           (ParseObject(UserProfileEntity.className)
-                ..objectId = cautionModel.userProfileGiveback!.id)
+                ..objectId = cautionModel.givebackUserProfile!.id)
               .toPointer());
     }
-    if (cautionModel.givebackAnalyzingItem != null) {
+    if (cautionModel.givebackIsAnalyzingItem != null) {
       cautionParseObject.set(
-          'givebackAnalyzingItem', cautionModel.givebackAnalyzingItem);
+          'givebackIsAnalyzingItem', cautionModel.givebackIsAnalyzingItem);
     }
     if (cautionModel.givebackAnalyzedItemDt != null) {
       cautionParseObject.set<DateTime?>(
           'givebackAnalyzedItemDt', cautionModel.givebackAnalyzedItemDt);
     }
-    if (cautionModel.givebackAnalysisDescription != null) {
-      cautionParseObject.set('givebackAnalysisDescription',
-          cautionModel.givebackAnalysisDescription);
+    if (cautionModel.givebackDescription != null) {
+      cautionParseObject.set(
+          'givebackDescription', cautionModel.givebackDescription);
     }
     return cautionParseObject;
   }

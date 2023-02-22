@@ -158,7 +158,7 @@ class CardHome extends StatelessWidget {
         ),
       );
     } else {
-      return const SizedBox.shrink();
+      return const SizedBox();
     }
   }
 }

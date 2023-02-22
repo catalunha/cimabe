@@ -37,23 +37,40 @@ class CautionDeliveryConfirmPage extends StatelessWidget {
                     value: _cautionDeliveryController
                         .cautionModel!.item!.description,
                   ),
+                  AppTextTitleValue(
+                    title: 'Grupos: ',
+                    value: _cautionDeliveryController
+                        .cautionModel!.item!.groups!
+                        .join('\n'),
+                    inColumn: true,
+                  ),
+                  const Divider(height: 5),
                   const SizedBox(height: 15),
                   AppPhotoShow(
                     photoUrl: _cautionDeliveryController
-                        .cautionModel!.userProfileReceiver!.photo,
+                        .cautionModel!.receiverUserProfile!.photo,
                     height: 100,
                     width: 100,
                   ),
+
                   const SizedBox(height: 15),
                   AppTextTitleValue(
                     title: 'Nome em tropa: ',
                     value: _cautionDeliveryController
-                        .cautionModel!.userProfileReceiver!.nickname,
+                        .cautionModel!.receiverUserProfile!.nickname,
+                    inColumn: true,
+                  ),
+                  AppTextTitleValue(
+                    title: 'Restrições: ',
+                    value: _cautionDeliveryController
+                        .cautionModel!.receiverUserProfile!.restrictions!
+                        .join('\n'),
                     inColumn: true,
                   ),
                   const SizedBox(height: 15),
+                  const Divider(height: 5),
                   IconButton(
-                    tooltip: 'Novo item.',
+                    tooltip: 'Confirmar cautela.',
                     onPressed: () async {
                       await _cautionDeliveryController.confirmed();
                       Get.back();

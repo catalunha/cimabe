@@ -58,11 +58,11 @@ class CautionDeliveryController extends GetxController
       quantityEnd = quantity;
       registerEnd = register!;
       var splashController = Get.find<SplashController>();
-      UserProfileModel userProfileDeliver =
+      UserProfileModel deliveryUserProfile =
           splashController.userModel!.userProfile!;
 
       DateTime now = DateTime.now();
-      DateTime deliverDt =
+      DateTime deliveryDt =
           DateTime(now.year, now.month, now.day, now.hour, now.minute);
 
       List<ItemModel> itemModelList = [];
@@ -90,10 +90,10 @@ class CautionDeliveryController extends GetxController
             isError: true,
           );
         } else {
-          UserProfileModel? userProfileReceiver;
-          userProfileReceiver =
+          UserProfileModel? receiverUserProfile;
+          receiverUserProfile =
               await _userProfileRepository.getByRegister(register);
-          if (userProfileReceiver == null) {
+          if (receiverUserProfile == null) {
             _loading(false);
             _message.value = MessageModel(
               title: 'Erro em Operador',
@@ -102,10 +102,10 @@ class CautionDeliveryController extends GetxController
             );
           } else {
             cautionModel = CautionModel(
-              userProfileDeliver: userProfileDeliver,
-              deliverDt: deliverDt,
+              deliveryUserProfile: deliveryUserProfile,
+              deliveryDt: deliveryDt,
               item: itemModelList[0],
-              userProfileReceiver: userProfileReceiver,
+              receiverUserProfile: receiverUserProfile,
             );
             itemModelSelected = itemModelList;
             _loading(false);
