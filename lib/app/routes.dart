@@ -29,6 +29,7 @@ import 'package:cimabe/app/view/pages/user/login/auth_login_page.dart';
 import 'package:cimabe/app/view/pages/user/register/email/user_register_email.page.dart';
 import 'package:cimabe/app/view/pages/user_profile/access/user_profile_access_page.dart';
 import 'package:cimabe/app/view/pages/user_profile/edit/user_profile_edit_page.dart';
+import 'package:cimabe/app/view/pages/user_profile/print/user_profile_print_page.dart';
 import 'package:cimabe/app/view/pages/user_profile/search/user_profile_search_list_page.dart';
 import 'package:cimabe/app/view/pages/user_profile/search/user_profile_search_page.dart';
 import 'package:cimabe/app/view/pages/user_profile/view/user_profile_view_page.dart';
@@ -62,6 +63,8 @@ class Routes {
 
   static const cautionSearch = '/caution/search';
   static const cautionSearchList = '/caution/search/List';
+
+  static const pdf = '/pdf';
 
   static final pageList = [
     GetPage(
@@ -163,6 +166,10 @@ class Routes {
     GetPage(
       name: Routes.cautionSearchList,
       page: () => CautionSearchListPage(),
+    ),
+    GetPage(
+      name: Routes.pdf,
+      page: () => UserProfilePrintPage(),
     ),
   ];
 }

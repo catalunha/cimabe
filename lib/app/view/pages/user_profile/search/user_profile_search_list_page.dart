@@ -1,3 +1,4 @@
+import 'package:cimabe/app/routes.dart';
 import 'package:cimabe/app/view/controllers/user_profile/search/user_profile_search_controller.dart';
 import 'package:cimabe/app/view/pages/user_profile/search/part/user_profile_list.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,14 @@ class UserProfileSearchListPage extends StatelessWidget {
           () => Text(
               'Operadores encontrados: ${_userProfileSearchController.userProfileList.length}'),
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                // _userProfileSearchController.print();
+                Get.toNamed(Routes.pdf);
+              },
+              icon: const Icon(Icons.print))
+        ],
       ),
       body: Column(
         children: [
