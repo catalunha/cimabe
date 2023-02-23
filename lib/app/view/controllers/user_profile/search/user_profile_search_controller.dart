@@ -78,6 +78,7 @@ class UserProfileSearchController extends GetxController
     if (phoneEqualToBool) {
       query.whereEqualTo('phone', phoneEqualToString);
     }
+    query.orderByDescending('updatedAt');
 
     userProfileList.clear();
     // if (lastPage) {

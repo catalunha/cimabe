@@ -1,7 +1,8 @@
-import 'package:cimabe/app/view/controllers/caution/search/caution_search_controller.dart';
-import 'package:cimabe/app/view/pages/caution/search/part/caution_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:cimabe/app/view/controllers/caution/search/caution_search_controller.dart';
+import 'package:cimabe/app/view/pages/caution/search/part/caution_list.dart';
+import 'package:cimabe/app/view/pages/caution/print/caution_print_page.dart';
 
 class CautionSearchListPage extends StatelessWidget {
   final _itemSearchController = Get.find<CautionSearchController>();
@@ -15,6 +16,14 @@ class CautionSearchListPage extends StatelessWidget {
         title: Obx(
           () => Text('Cautelas: ${_itemSearchController.cautionList.length}'),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.to(() => CautionPrintPage());
+            },
+            icon: const Icon(Icons.print),
+          )
+        ],
       ),
       body: Column(
         children: [

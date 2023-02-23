@@ -113,6 +113,8 @@ class ItemSearchController extends GetxController
     if (isBlockedDocEqualsToBool) {
       query.whereEqualTo('isBlockedDoc', isBlockedDocEqualsToValue);
     }
+    query.orderByDescending('updatedAt');
+
     itemList.clear();
     // if (lastPage) {
     _lastPage(false);

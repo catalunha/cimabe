@@ -1,8 +1,11 @@
 import 'package:cimabe/app/core/models/caution_model.dart';
+import 'package:cimabe/app/core/models/user_profile_model.dart';
 import 'package:cimabe/app/data/b4a/entity/caution_entity.dart';
+import 'package:cimabe/app/data/b4a/entity/user_profile_entity.dart';
 import 'package:cimabe/app/data/repositories/caution_repository.dart';
 import 'package:cimabe/app/data/utils/pagination.dart';
 import 'package:cimabe/app/routes.dart';
+import 'package:cimabe/app/view/controllers/splash/splash_controller.dart';
 import 'package:cimabe/app/view/controllers/utils/loader_mixin.dart';
 import 'package:cimabe/app/view/controllers/utils/message_mixin.dart';
 import 'package:get/get.dart';
@@ -25,7 +28,7 @@ class CautionSearchController extends GetxController
 
   QueryBuilder<ParseObject> query =
       QueryBuilder<ParseObject>(ParseObject(CautionEntity.className));
-
+  bool myCautions = true;
   @override
   void onInit() {
     cautionList.clear();
@@ -33,7 +36,7 @@ class CautionSearchController extends GetxController
     ever(_pagination, (_) async => await getMoreData());
     loaderListener(_loading);
     messageListener(_message);
-
+    myCautions = Get.arguments;
     super.onInit();
   }
 
@@ -54,6 +57,16 @@ class CautionSearchController extends GetxController
   }) async {
     _loading(true);
     query = QueryBuilder<ParseObject>(ParseObject(CautionEntity.className));
+    if (myCautions) {
+      var splashController = Get.find<SplashController>();
+      UserProfileModel receiverUserProfile =
+          splashController.userModel!.userProfile!;
+      query.whereEqualTo(
+          'receiverUserProfile',
+          (ParseObject(UserProfileEntity.className)
+                ..objectId = receiverUserProfile.id)
+              .toPointer());
+    }
     query.includeObject([
       'deliveryUserProfile',
       'receiverUserProfile',
@@ -70,6 +83,8 @@ class CautionSearchController extends GetxController
           DateTime(deliveryDtValue.year, deliveryDtValue.month,
               deliveryDtValue.day, 23, 59));
     }
+    query.orderByAscending('createdAt');
+
     cautionList.clear();
     // if (lastPage) {
     _lastPage(false);

@@ -71,10 +71,10 @@ class HomePage extends StatelessWidget {
                 color: Colors.black38,
               ),
               CardHome(
-                title: 'Buscar item',
+                title: 'Cautelas',
                 access: const ['reserva'],
                 onAction: () {
-                  Get.toNamed(Routes.cautionSearch);
+                  Get.toNamed(Routes.cautionSearch, arguments: false);
                 },
                 icon: Icons.search,
                 color: Colors.black38,
@@ -98,10 +98,11 @@ class HomePage extends StatelessWidget {
                 color: Colors.black26,
               ),
               CardHome(
-                title: 'Histórico de cautelas',
+                title: 'Minhas cautelas',
                 access: const ['operador'],
                 onAction: () {
-                  Get.toNamed(Routes.cautionReceiverHistory);
+                  // Get.toNamed(Routes.cautionReceiverHistory);
+                  Get.toNamed(Routes.cautionSearch, arguments: true);
                 },
                 icon: Icons.av_timer,
                 color: Colors.black26,

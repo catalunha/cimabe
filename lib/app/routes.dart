@@ -14,7 +14,6 @@ import 'package:cimabe/app/view/controllers/user_profile/search/user_profile_sea
 import 'package:cimabe/app/view/pages/caution/delivery/caution_delivery_confirm_page.dart';
 import 'package:cimabe/app/view/pages/caution/delivery/caution_delivery_search_page.dart';
 import 'package:cimabe/app/view/pages/caution/giveback/caution_giveback_page.dart';
-import 'package:cimabe/app/view/pages/caution/receiver/caution_receiver_history_page.dart';
 import 'package:cimabe/app/view/pages/caution/receiver/caution_receiver_page.dart';
 import 'package:cimabe/app/view/pages/caution/receiver/caution_receiver_permanent_page.dart';
 import 'package:cimabe/app/view/pages/caution/search/caution_search_list_page.dart';
@@ -148,11 +147,11 @@ class Routes {
       binding: CautionReceiverDependencies(),
       page: () => CautionReceiverPermanentPage(),
     ),
-    GetPage(
-      name: Routes.cautionReceiverHistory,
-      binding: CautionReceiverDependencies(),
-      page: () => CautionReceiverHistoryPage(),
-    ),
+    // GetPage(
+    //   name: Routes.cautionReceiverHistory,
+    //   binding: CautionReceiverDependencies(),
+    //   page: () => CautionReceiverHistoryPage(),
+    // ),
     GetPage(
       name: Routes.cautionGiveback,
       binding: CautionGivebackDependencies(),
