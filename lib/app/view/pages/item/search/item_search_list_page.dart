@@ -2,6 +2,7 @@ import 'package:cimabe/app/view/controllers/item/search/item_search_controller.d
 import 'package:cimabe/app/view/pages/item/search/part/item_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:cimabe/app/view/pages/item/print/item_print_page.dart';
 
 class ItemSearchListPage extends StatelessWidget {
   final _itemSearchController = Get.find<ItemSearchController>();
@@ -13,9 +14,16 @@ class ItemSearchListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Obx(
-          () => Text(
-              'Itens encontrados: ${_itemSearchController.itemList.length}'),
+          () => Text('Itens: ${_itemSearchController.itemList.length}'),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.to(() => ItemPrintPage());
+            },
+            icon: const Icon(Icons.print),
+          )
+        ],
       ),
       body: Column(
         children: [

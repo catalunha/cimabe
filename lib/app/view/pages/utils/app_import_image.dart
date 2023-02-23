@@ -4,24 +4,28 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class UserProfileEditPhoto extends StatefulWidget {
+class AppImportImage extends StatefulWidget {
   // final UserProfileController _profileController = Get.find();
   final String label;
   final String? photoUrl;
   final Function(XFile?) setXFile;
+  final double? maxHeightImage;
+  final double? maxWidthImage;
 
-  const UserProfileEditPhoto({
+  const AppImportImage({
     Key? key,
     this.label = '',
     this.photoUrl,
     required this.setXFile,
+    this.maxHeightImage,
+    this.maxWidthImage,
   }) : super(key: key);
 
   @override
-  State<UserProfileEditPhoto> createState() => _UserProfileEditPhotoState();
+  State<AppImportImage> createState() => _AppImportImageState();
 }
 
-class _UserProfileEditPhotoState extends State<UserProfileEditPhoto> {
+class _AppImportImageState extends State<AppImportImage> {
   final ImagePicker _picker = ImagePicker();
   XFile? _xfile;
   bool isLoading = false;
@@ -89,8 +93,10 @@ class _UserProfileEditPhotoState extends State<UserProfileEditPhoto> {
                 ),
       onTap: () async {
         //print('aqui...');
-        final XFile? pickedFile =
-            await _picker.pickImage(source: ImageSource.gallery);
+        final XFile? pickedFile = await _picker.pickImage(
+            source: ImageSource.gallery,
+            maxHeight: widget.maxHeightImage,
+            maxWidth: widget.maxWidthImage);
 
         if (pickedFile != null) {
           widget.setXFile(pickedFile);

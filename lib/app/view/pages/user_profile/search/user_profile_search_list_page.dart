@@ -15,15 +15,16 @@ class UserProfileSearchListPage extends StatelessWidget {
       appBar: AppBar(
         title: Obx(
           () => Text(
-              'Operadores encontrados: ${_userProfileSearchController.userProfileList.length}'),
+              'Usuarios: ${_userProfileSearchController.userProfileList.length}'),
         ),
         actions: [
           IconButton(
-              onPressed: () {
-                // _userProfileSearchController.print();
-                Get.toNamed(Routes.pdf);
-              },
-              icon: const Icon(Icons.print))
+            onPressed: () {
+              // _userProfileSearchController.print();
+              Get.toNamed(Routes.pdf);
+            },
+            icon: const Icon(Icons.print),
+          )
         ],
       ),
       body: Column(

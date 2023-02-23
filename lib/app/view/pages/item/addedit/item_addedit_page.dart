@@ -1,5 +1,5 @@
 import 'package:cimabe/app/view/controllers/item/addedit/item_addedit_controller.dart';
-import 'package:cimabe/app/view/pages/user_profile/edit/part/user_profile_photo.dart';
+import 'package:cimabe/app/view/pages/utils/app_import_image.dart';
 import 'package:cimabe/app/view/pages/utils/app_textformfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -148,11 +148,13 @@ class _ItemAddEditPageState extends State<ItemAddEditPage> {
                         controller: groupsTEC,
                         maxLines: 5,
                       ),
-                      UserProfileEditPhoto(
+                      AppImportImage(
                         label: 'Click aqui para buscar uma foto.',
                         photoUrl: widget._itemAddEditController.item?.photo,
                         setXFile: (value) =>
                             widget._itemAddEditController.xfile = value,
+                        maxHeightImage: 200,
+                        maxWidthImage: 200,
                       ),
                       const SizedBox(height: 5),
                       const Text('Validade'),

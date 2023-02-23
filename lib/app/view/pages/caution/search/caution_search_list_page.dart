@@ -13,8 +13,7 @@ class CautionSearchListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Obx(
-          () => Text(
-              'Cautelas encontradas: ${_itemSearchController.cautionList.length}'),
+          () => Text('Cautelas: ${_itemSearchController.cautionList.length}'),
         ),
       ),
       body: Column(

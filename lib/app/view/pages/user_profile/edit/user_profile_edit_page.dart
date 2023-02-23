@@ -1,5 +1,5 @@
 import 'package:cimabe/app/view/controllers/user_profile/edit/user_profile_edit_controller.dart';
-import 'package:cimabe/app/view/pages/user_profile/edit/part/user_profile_photo.dart';
+import 'package:cimabe/app/view/pages/utils/app_import_image.dart';
 import 'package:cimabe/app/view/pages/utils/app_textformfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -106,13 +106,15 @@ class _UserProfileEditPageState extends State<UserProfileEditPage> {
                       ]),
                     ),
                     const SizedBox(height: 5),
-                    UserProfileEditPhoto(
+                    AppImportImage(
                       label:
                           'Click aqui para buscar sua foto, apenas face. Padrão 3x4.',
                       photoUrl:
                           widget._userProfileController.userProfile!.photo,
                       setXFile: (value) =>
                           widget._userProfileController.xfile = value,
+                      maxHeightImage: 150,
+                      maxWidthImage: 100,
                     ),
                     const SizedBox(height: 70),
                   ],

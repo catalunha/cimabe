@@ -87,7 +87,6 @@ class UserProfilePrintPage extends StatelessWidget {
   }
 
   Future<Uint8List> makePdf() async {
-    // final pdf = pw.Document(version: PdfVersion.pdf_1_5, compress: true);
     final pdf = pw.Document();
     await getImages();
     pdf.addPage(
