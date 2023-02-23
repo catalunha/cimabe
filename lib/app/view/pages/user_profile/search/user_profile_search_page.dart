@@ -61,6 +61,7 @@ class _SearchPageState extends State<UserProfileSearchPage> {
                                 setState(() {
                                   _nicknameContains = value!;
                                 });
+                                Get.back();
                               },
                             ),
                             Expanded(
