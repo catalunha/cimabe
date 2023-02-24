@@ -3,6 +3,7 @@ import 'package:cimabe/app/data/b4a/entity/item_entity.dart';
 import 'package:cimabe/app/data/b4a/table/item/item_repository_exception.dart';
 import 'package:cimabe/app/data/b4a/utils/xfile_to_parsefile.dart';
 import 'package:cimabe/app/data/repositories/item_repository.dart';
+import 'package:cimabe/app/view/controllers/item/search/item_search_controller.dart';
 import 'package:cimabe/app/view/controllers/utils/loader_mixin.dart';
 import 'package:cimabe/app/view/controllers/utils/message_mixin.dart';
 import 'package:get/get.dart';
@@ -71,7 +72,7 @@ class ItemAddEditController extends GetxController
     bool? isBlockedOperator,
     bool? isBlockedDoc,
     String? groups,
-    int? quantity = 1,
+    int quantity = 1,
   }) async {
     try {
       _loading(true);
@@ -108,19 +109,27 @@ class ItemAddEditController extends GetxController
           groups: groups?.split('\n'),
         );
       }
-      if (quantity != null) {
-        for (var i = 0; i < quantity; i++) {
-          String itemId = await _itemRepository.update(item!);
 
-          if (_xfile != null) {
-            String? photoUrl = await XFileToParseFile.xFileToParseFile(
-              xfile: _xfile!,
-              className: ItemEntity.className,
-              objectId: itemId,
-              objectAttribute: 'photo',
-            );
-          }
+      for (var i = 0; i < quantity; i++) {
+        ItemModel itemModel = await _itemRepository.update(item!);
+        if (_xfile != null) {
+          String? photoUrl = await XFileToParseFile.xFileToParseFile(
+            xfile: _xfile!,
+            className: ItemEntity.className,
+            objectId: itemModel.id!,
+            objectAttribute: 'photo',
+          );
+          item = item!.copyWith(photo: photoUrl);
         }
+      }
+      bool existCautionSearchController =
+          Get.isRegistered<ItemSearchController>();
+      if (existCautionSearchController) {
+        var itemSearchController = Get.find<ItemSearchController>();
+        itemSearchController.itemList;
+        int index = itemSearchController.itemList
+            .indexWhere((model) => model.id == item!.id!);
+        itemSearchController.itemList.replaceRange(index, index + 1, [item!]);
       }
     } on ItemRepositoryException {
       _message.value = MessageModel(

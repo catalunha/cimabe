@@ -142,7 +142,7 @@ class _CautionGivebackCardState extends State<CautionGivebackCard> {
                     );
                     if (res != null) {
                       widget._cautionGivebackController
-                          .updategivebackIsAnalyzingItemWithRefused(
+                          .updateGivebackIsAnalyzingItemWithRefused(
                               widget.cautionModel, res);
                     }
                     // setState(() {});
@@ -156,7 +156,7 @@ class _CautionGivebackCardState extends State<CautionGivebackCard> {
                   onPressed: () {
                     // Get.toNamed(Routes.itemAddEdit, arguments: cautionModel);
                     widget._cautionGivebackController
-                        .updategivebackIsAnalyzingItemWithAccepted(
+                        .updateGivebackIsAnalyzingItemWithAccepted(
                             widget.cautionModel);
                   },
                   icon: const Icon(

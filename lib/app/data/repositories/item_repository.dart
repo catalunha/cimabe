@@ -7,7 +7,7 @@ abstract class ItemRepository {
     QueryBuilder<ParseObject> query,
     Pagination pagination,
   );
-  Future<String> update(ItemModel itemModel);
+  Future<ItemModel> update(ItemModel itemModel);
   Future<ItemModel?> readById(String id);
   Future<ItemModel?> getBySerie(String value);
   Future<List<ItemModel>> getByLote(String value);

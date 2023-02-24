@@ -82,6 +82,15 @@ class CautionSearchController extends GetxController
           'deliveryDt',
           DateTime(deliveryDtValue.year, deliveryDtValue.month,
               deliveryDtValue.day, 23, 59));
+    } else {
+      query.whereGreaterThanOrEqualsTo(
+          'deliveryDt',
+          DateTime(
+              DateTime.now().year, DateTime.now().month, DateTime.now().day));
+      query.whereLessThanOrEqualTo(
+          'deliveryDt',
+          DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day, 23, 59));
     }
     query.orderByAscending('createdAt');
 

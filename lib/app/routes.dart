@@ -12,7 +12,7 @@ import 'package:cimabe/app/view/controllers/user_profile/access/user_profile_acc
 import 'package:cimabe/app/view/controllers/user_profile/edit/user_profile_edit_dependencies.dart';
 import 'package:cimabe/app/view/controllers/user_profile/search/user_profile_search_dependencies.dart';
 import 'package:cimabe/app/view/pages/caution/delivery/caution_delivery_confirm_page.dart';
-import 'package:cimabe/app/view/pages/caution/delivery/caution_delivery_search_page.dart';
+import 'package:cimabe/app/view/pages/caution/delivery/caution_delivery_consult_page.dart';
 import 'package:cimabe/app/view/pages/caution/giveback/caution_giveback_page.dart';
 import 'package:cimabe/app/view/pages/caution/receiver/caution_receiver_page.dart';
 import 'package:cimabe/app/view/pages/caution/receiver/caution_receiver_permanent_page.dart';
@@ -51,12 +51,11 @@ class Routes {
   static const itemSearchList = '/item/search/list';
   static const itemView = '/item/view';
 
-  static const cautionDeliverySearch = '/caution/delivery/search';
+  static const cautionDeliveryConsult = '/caution/delivery/search';
   static const cautionDeliveryConfirm = '/caution/delivery/confirm';
 
   static const cautionReceiver = '/caution/receiver';
   static const cautionReceiverPermanent = '/caution/receiver/permanent';
-  static const cautionReceiverHistory = '/caution/receiver/history';
 
   static const cautionGiveback = '/caution/giveback';
 
@@ -129,9 +128,9 @@ class Routes {
       page: () => ItemViewPage(),
     ),
     GetPage(
-      name: Routes.cautionDeliverySearch,
+      name: Routes.cautionDeliveryConsult,
       binding: CautionDeliveryDependencies(),
-      page: () => CautionDeliverySearchPage(),
+      page: () => CautionDeliveryConsultPage(),
     ),
     GetPage(
       name: Routes.cautionDeliveryConfirm,
@@ -147,11 +146,6 @@ class Routes {
       binding: CautionReceiverDependencies(),
       page: () => CautionReceiverPermanentPage(),
     ),
-    // GetPage(
-    //   name: Routes.cautionReceiverHistory,
-    //   binding: CautionReceiverDependencies(),
-    //   page: () => CautionReceiverHistoryPage(),
-    // ),
     GetPage(
       name: Routes.cautionGiveback,
       binding: CautionGivebackDependencies(),

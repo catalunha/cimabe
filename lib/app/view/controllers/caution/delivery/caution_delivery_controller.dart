@@ -6,7 +6,6 @@ import 'package:cimabe/app/data/b4a/table/item/item_repository_exception.dart';
 import 'package:cimabe/app/data/repositories/caution_repository.dart';
 import 'package:cimabe/app/data/repositories/item_repository.dart';
 import 'package:cimabe/app/data/repositories/user_profile_repository.dart';
-import 'package:cimabe/app/routes.dart';
 import 'package:cimabe/app/view/controllers/splash/splash_controller.dart';
 import 'package:cimabe/app/view/controllers/utils/loader_mixin.dart';
 import 'package:cimabe/app/view/controllers/utils/message_mixin.dart';
@@ -33,21 +32,21 @@ class CautionDeliveryController extends GetxController
   set cautionModel(CautionModel? profileModelNew) =>
       _cautionModel(profileModelNew);
   int quantityEnd = 1;
-  String registerEnd = '';
+  // String registerEnd = '';
   List<ItemModel> itemModelSelected = [];
   @override
   void onInit() async {
-    if (Get.arguments == null) {
-      registerEnd = '';
-    } else {
-      registerEnd = Get.arguments;
-    }
+    // if (Get.arguments == null) {
+    //   registerEnd = '';
+    // } else {
+    //   registerEnd = Get.arguments;
+    // }
     loaderListener(_loading);
     messageListener(_message);
     super.onInit();
   }
 
-  Future<void> add({
+  Future<bool> consult({
     String? serie,
     String? lote,
     String? register,
@@ -56,7 +55,7 @@ class CautionDeliveryController extends GetxController
     try {
       _loading(true);
       quantityEnd = quantity;
-      registerEnd = register!;
+      // registerEnd = register!;
       var splashController = Get.find<SplashController>();
       UserProfileModel deliveryUserProfile =
           splashController.userModel!.userProfile!;
@@ -109,22 +108,25 @@ class CautionDeliveryController extends GetxController
             );
             itemModelSelected = itemModelList;
             _loading(false);
-            Get.toNamed(Routes.cautionDeliveryConfirm);
+            return true;
+            // Get.toNamed(Routes.cautionDeliveryConfirm);
           }
         }
       }
+      return false;
     } on ItemRepositoryException {
       _message.value = MessageModel(
         title: 'Erro em CautionDeliveryController',
         message: 'Não foi possivel salvar em Caution',
         isError: true,
       );
+      return false;
     } finally {
       // _loading(false);
     }
   }
 
-  Future<bool> confirmed() async {
+  Future<bool> confirmOrder() async {
     try {
       _loading(true);
       for (var i = 0; i < quantityEnd; i++) {

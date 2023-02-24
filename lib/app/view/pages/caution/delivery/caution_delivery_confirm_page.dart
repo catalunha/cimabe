@@ -37,7 +37,6 @@ class CautionDeliveryConfirmPage extends StatelessWidget {
                     value: _cautionDeliveryController
                         .cautionModel!.item!.description,
                   ),
-
                   AppTextTitleValue(
                     title: 'Grupos: ',
                     value: _cautionDeliveryController
@@ -53,7 +52,6 @@ class CautionDeliveryConfirmPage extends StatelessWidget {
                     height: 100,
                     width: 100,
                   ),
-
                   const SizedBox(height: 15),
                   AppTextTitleValue(
                     title: 'Nome em tropa: ',
@@ -73,9 +71,10 @@ class CautionDeliveryConfirmPage extends StatelessWidget {
                   IconButton(
                     tooltip: 'Confirmar cautela.',
                     onPressed: () async {
-                      await _cautionDeliveryController.confirmed();
-                      Get.back();
-                      Get.back();
+                      await _cautionDeliveryController.confirmOrder();
+                      // Get.back();
+                      Get.back(result: true);
+
                       // Get.toNamed(Routes.cautionDeliverySearch,
                       //     arguments: _cautionDeliveryController.registerEnd);
                     },
@@ -84,15 +83,14 @@ class CautionDeliveryConfirmPage extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  // IconButton(
-                  //   tooltip: 'Nova item, outro operador',
-                  //   onPressed: () async {
-                  //     await _cautionDeliveryController.confirmed();
-                  //     Get.back();
-                  //     Get.back();
-                  //   },
-                  //   icon: const Icon(Icons.keyboard_tab),
-                  // )
+                  IconButton(
+                    tooltip: 'Nova item, outro operador',
+                    onPressed: () async {
+                      await _cautionDeliveryController.confirmOrder();
+                      Get.back(result: false);
+                    },
+                    icon: const Icon(Icons.keyboard_tab),
+                  )
                 ],
               ),
             ),

@@ -211,7 +211,9 @@ class _ItemAddEditPageState extends State<ItemAddEditPage> {
         isBlockedOperator: isBlockedOperator,
         isBlockedDoc: isBlockedDoc,
         groups: groupsTEC.text,
-        quantity: int.tryParse(quantityTEC.text),
+        quantity: int.tryParse(quantityTEC.text) == null
+            ? 1
+            : int.parse(quantityTEC.text),
       );
       return true;
     }

@@ -1,19 +1,21 @@
+import 'package:cimabe/app/routes.dart';
 import 'package:cimabe/app/view/controllers/caution/delivery/caution_delivery_controller.dart';
 import 'package:cimabe/app/view/pages/utils/app_textformfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:validatorless/validatorless.dart';
 
-class CautionDeliverySearchPage extends StatefulWidget {
-  CautionDeliverySearchPage({Key? key}) : super(key: key);
+class CautionDeliveryConsultPage extends StatefulWidget {
+  CautionDeliveryConsultPage({Key? key}) : super(key: key);
   final _cautionDeliveryController = Get.find<CautionDeliveryController>();
 
   @override
-  State<CautionDeliverySearchPage> createState() =>
-      _CautionDeliverySearchPageState();
+  State<CautionDeliveryConsultPage> createState() =>
+      _CautionDeliveryConsultPageState();
 }
 
-class _CautionDeliverySearchPageState extends State<CautionDeliverySearchPage> {
+class _CautionDeliveryConsultPageState
+    extends State<CautionDeliveryConsultPage> {
   final _formKey = GlobalKey<FormState>();
   final serieTEC = TextEditingController();
   final loteTEC = TextEditingController();
@@ -25,7 +27,8 @@ class _CautionDeliverySearchPageState extends State<CautionDeliverySearchPage> {
     super.initState();
     serieTEC.text = "";
     loteTEC.text = "";
-    registerTEC.text = widget._cautionDeliveryController.registerEnd;
+    registerTEC.text = "";
+    // registerTEC.text = widget._cautionDeliveryController.registerEnd;
     quantityTEC.text = '1';
   }
 
@@ -39,15 +42,6 @@ class _CautionDeliverySearchPageState extends State<CautionDeliverySearchPage> {
         child: const Icon(Icons.cloud_upload),
         onPressed: () async {
           var result = await saveItem();
-          if (result) {
-            // Get.back();
-          } else {
-            Get.snackbar(
-              'Atenção',
-              'Campos obrigatórios não foram preenchidos.',
-              backgroundColor: Colors.red,
-            );
-          }
         },
       ),
       body: Center(
@@ -88,7 +82,8 @@ class _CautionDeliverySearchPageState extends State<CautionDeliverySearchPage> {
                     ),
                     const SizedBox(height: 5),
                     AppTextFormField(
-                      label: 'Quantidade deste item a ser cautelado:',
+                      label:
+                          'Quantidade deste item a ser cautelado: ${quantityTEC.text}',
                       controller: quantityTEC,
                       validator: Validatorless.multiple([
                         Validatorless.number('Apenas números.'),
@@ -112,14 +107,26 @@ class _CautionDeliverySearchPageState extends State<CautionDeliverySearchPage> {
   Future<bool> saveItem() async {
     final formValid = _formKey.currentState?.validate() ?? false;
     if (formValid) {
-      await widget._cautionDeliveryController.add(
+      bool resultConsult = await widget._cautionDeliveryController.consult(
           serie: serieTEC.text,
           lote: loteTEC.text,
           register: registerTEC.text,
           quantity: int.tryParse(quantityTEC.text) == null
               ? 1
               : int.parse(quantityTEC.text));
-      return true;
+      if (resultConsult) {
+        bool result = await Get.toNamed(Routes.cautionDeliveryConfirm);
+        if (result) {
+          setState(() {
+            serieTEC.text = "";
+            loteTEC.text = "";
+            quantityTEC.text = '1';
+          });
+        } else {
+          Get.back();
+        }
+      }
+      return resultConsult;
     }
     return false;
   }

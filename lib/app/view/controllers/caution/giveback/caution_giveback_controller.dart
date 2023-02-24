@@ -109,7 +109,7 @@ class CautionGivebackController extends GetxController
   //   // _loading(false);
   // }
 
-  Future<void> updategivebackIsAnalyzingItemWithRefused(
+  Future<void> updateGivebackIsAnalyzingItemWithRefused(
       CautionModel cautionModel, String description) async {
     try {
       // _loading(true);
@@ -146,7 +146,7 @@ class CautionGivebackController extends GetxController
     }
   }
 
-  Future<void> updategivebackIsAnalyzingItemWithAccepted(
+  Future<void> updateGivebackIsAnalyzingItemWithAccepted(
       CautionModel cautionModel) async {
     try {
       // _loading(true);
@@ -165,8 +165,8 @@ class CautionGivebackController extends GetxController
         givebackDescription: '',
       );
       ItemModel itemModelSend = cautionModel.item!;
-      await _itemRepository
-          .update(itemModelSend.copyWith(isBlockedOperator: false));
+      await _itemRepository.update(
+          itemModelSend.copyWith(isBlockedDoc: true, isBlockedOperator: false));
 
       await _cautionRepository.update(cautionModelTemp);
       getCurrentCautions();

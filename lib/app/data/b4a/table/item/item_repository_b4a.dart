@@ -73,15 +73,17 @@ class ItemRepositoryB4a implements ItemRepository {
   }
 
   @override
-  Future<String> update(ItemModel profileModel) async {
+  Future<ItemModel> update(ItemModel profileModel) async {
     final userProfileParse = await ItemEntity().toParse(profileModel);
     ParseResponse? response;
     try {
       response = await userProfileParse.save();
 
       if (response.success && response.results != null) {
-        ParseObject userProfile = response.results!.first as ParseObject;
-        return userProfile.objectId!;
+        // ParseObject userProfile = response.results!.first as ParseObject;
+
+        // return userProfile.objectId!;
+        return ItemEntity().fromParse(response.results!.first);
       } else {
         throw Exception();
       }
