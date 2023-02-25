@@ -3,6 +3,7 @@ import 'package:cimabe/app/view/controllers/caution/giveback/caution_giveback_de
 import 'package:cimabe/app/view/controllers/caution/receiver/caution_receiver_dependencies.dart';
 import 'package:cimabe/app/view/controllers/caution/search/caution_search_dependencies.dart';
 import 'package:cimabe/app/view/controllers/home/home_dependencies.dart';
+import 'package:cimabe/app/view/controllers/image/image_search_addedit_dependencies.dart';
 import 'package:cimabe/app/view/controllers/item/addedit/item_addedit_dependencies.dart';
 import 'package:cimabe/app/view/controllers/item/search/item_search_dependencies.dart';
 import 'package:cimabe/app/view/controllers/splash/splash_dependencies.dart';
@@ -19,6 +20,8 @@ import 'package:cimabe/app/view/pages/caution/receiver/caution_receiver_permanen
 import 'package:cimabe/app/view/pages/caution/search/caution_search_list_page.dart';
 import 'package:cimabe/app/view/pages/caution/search/caution_search_page.dart';
 import 'package:cimabe/app/view/pages/home/home_page.dart';
+import 'package:cimabe/app/view/pages/image/image_addedit_page.dart';
+import 'package:cimabe/app/view/pages/image/image_search_page.dart';
 import 'package:cimabe/app/view/pages/item/addedit/item_addedit_page.dart';
 import 'package:cimabe/app/view/pages/item/search/item_search_list_page.dart';
 import 'package:cimabe/app/view/pages/item/search/item_search_page.dart';
@@ -28,7 +31,6 @@ import 'package:cimabe/app/view/pages/user/login/auth_login_page.dart';
 import 'package:cimabe/app/view/pages/user/register/email/user_register_email.page.dart';
 import 'package:cimabe/app/view/pages/user_profile/access/user_profile_access_page.dart';
 import 'package:cimabe/app/view/pages/user_profile/edit/user_profile_edit_page.dart';
-import 'package:cimabe/app/view/pages/user_profile/print/user_profile_print_page.dart';
 import 'package:cimabe/app/view/pages/user_profile/search/user_profile_search_list_page.dart';
 import 'package:cimabe/app/view/pages/user_profile/search/user_profile_search_page.dart';
 import 'package:cimabe/app/view/pages/user_profile/view/user_profile_view_page.dart';
@@ -62,7 +64,8 @@ class Routes {
   static const cautionSearch = '/caution/search';
   static const cautionSearchList = '/caution/search/List';
 
-  static const pdf = '/pdf';
+  static const imageSearch = '/image/search';
+  static const imageAddEdit = '/image/addedit';
 
   static final pageList = [
     GetPage(
@@ -161,8 +164,13 @@ class Routes {
       page: () => CautionSearchListPage(),
     ),
     GetPage(
-      name: Routes.pdf,
-      page: () => UserProfilePrintPage(),
+      name: Routes.imageSearch,
+      binding: ImageSearchAddEditDependencies(),
+      page: () => ImageSearchPage(),
+    ),
+    GetPage(
+      name: Routes.imageSearch,
+      page: () => ImageAddEditPage(),
     ),
   ];
 }

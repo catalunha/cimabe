@@ -150,7 +150,7 @@ class _ItemAddEditPageState extends State<ItemAddEditPage> {
                       ),
                       AppImportImage(
                         label: 'Click aqui para buscar uma foto.',
-                        photoUrl: widget._itemAddEditController.item?.photo,
+                        imageUrl: widget._itemAddEditController.item?.photo,
                         setXFile: (value) =>
                             widget._itemAddEditController.xfile = value,
                         maxHeightImage: 150,

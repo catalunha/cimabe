@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 class AppImportImage extends StatefulWidget {
   // final UserProfileController _profileController = Get.find();
   final String label;
-  final String? photoUrl;
+  final String? imageUrl;
   final Function(XFile?) setXFile;
   final double? maxHeightImage;
   final double? maxWidthImage;
@@ -15,7 +15,7 @@ class AppImportImage extends StatefulWidget {
   const AppImportImage({
     Key? key,
     this.label = '',
-    this.photoUrl,
+    this.imageUrl,
     required this.setXFile,
     this.maxHeightImage,
     this.maxWidthImage,
@@ -58,7 +58,7 @@ class _AppImportImageState extends State<AppImportImage> {
                       },
                     ),
             )
-          : widget.photoUrl == null
+          : widget.imageUrl == null
               ? Container(
                   width: 100,
                   height: 100,
@@ -77,7 +77,7 @@ class _AppImportImageState extends State<AppImportImage> {
               : ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
                   child: Image.network(
-                    widget.photoUrl!,
+                    widget.imageUrl!,
                     // loadingBuilder: (_, __, ___) {
                     //   return const Center(
                     //       child: CircularProgressIndicator());

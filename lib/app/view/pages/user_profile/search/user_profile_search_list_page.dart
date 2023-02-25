@@ -1,8 +1,9 @@
-import 'package:cimabe/app/routes.dart';
 import 'package:cimabe/app/view/controllers/user_profile/search/user_profile_search_controller.dart';
 import 'package:cimabe/app/view/pages/user_profile/search/part/user_profile_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../print/user_profile_print_page.dart';
 
 class UserProfileSearchListPage extends StatelessWidget {
   final _userProfileSearchController = Get.find<UserProfileSearchController>();
@@ -20,8 +21,7 @@ class UserProfileSearchListPage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              // _userProfileSearchController.print();
-              Get.toNamed(Routes.pdf);
+              Get.to(() => UserProfilePrintPage());
             },
             icon: const Icon(Icons.print),
           )
