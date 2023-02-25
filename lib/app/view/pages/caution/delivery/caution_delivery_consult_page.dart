@@ -115,8 +115,8 @@ class _CautionDeliveryConsultPageState
               ? 1
               : int.parse(quantityTEC.text));
       if (resultConsult) {
-        bool result = await Get.toNamed(Routes.cautionDeliveryConfirm);
-        if (result) {
+        var result = await Get.toNamed(Routes.cautionDeliveryConfirm);
+        if (result != null && result == true) {
           setState(() {
             serieTEC.text = "";
             loteTEC.text = "";

@@ -21,7 +21,7 @@ class CautionDeliveryConfirmPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AppTextTitleValue(
-                    title: 'Quantidade de itens: ',
+                    title: 'Quantidade deste item: ',
                     value: _cautionDeliveryController.quantityEnd.toString(),
                   ),
                   const SizedBox(height: 15),
@@ -31,19 +31,22 @@ class CautionDeliveryConfirmPage extends StatelessWidget {
                     width: 300,
                     height: 100,
                   ),
-                  const SizedBox(height: 15),
-                  AppTextTitleValue(
-                    title: 'Item: ',
-                    value: _cautionDeliveryController
-                        .cautionModel!.item!.description,
+                  Text(
+                    '${_cautionDeliveryController.cautionModel!.item!.description}',
+                    style: const TextStyle(fontSize: 18),
                   ),
-                  AppTextTitleValue(
-                    title: 'Grupos: ',
-                    value: _cautionDeliveryController
-                        .cautionModel!.item!.groups!
-                        .join('\n'),
-                    inColumn: true,
+                  Text(
+                    '${_cautionDeliveryController.cautionModel!.item!.serie == null || _cautionDeliveryController.cautionModel!.item!.serie!.isEmpty ? '...' : _cautionDeliveryController.cautionModel!.item!.serie} | ${_cautionDeliveryController.cautionModel!.item!.lote == null || _cautionDeliveryController.cautionModel!.item!.lote!.isEmpty ? '...' : _cautionDeliveryController.cautionModel!.item!.lote}',
+                    style: const TextStyle(fontSize: 22),
                   ),
+                  // AppTextTitleValue(
+                  //   title: 'Grupos: ',
+                  //   value: _cautionDeliveryController
+                  //       .cautionModel!.item!.groups!
+                  //       .join('\n'),
+                  //   inColumn: true,
+                  // ),
+
                   const Divider(height: 5),
                   const SizedBox(height: 15),
                   AppPhotoShow(
@@ -52,20 +55,28 @@ class CautionDeliveryConfirmPage extends StatelessWidget {
                     height: 100,
                     width: 100,
                   ),
-                  const SizedBox(height: 15),
-                  AppTextTitleValue(
-                    title: 'Nome em tropa: ',
-                    value: _cautionDeliveryController
-                        .cautionModel!.receiverUserProfile!.nickname,
-                    inColumn: true,
+                  Text(
+                      '${_cautionDeliveryController.cautionModel!.receiverUserProfile!.nickname}'),
+                  Text(
+                    '${_cautionDeliveryController.cautionModel!.receiverUserProfile!.register}',
+                    style: const TextStyle(fontSize: 22),
                   ),
-                  AppTextTitleValue(
-                    title: 'Restrições: ',
-                    value: _cautionDeliveryController
-                        .cautionModel!.receiverUserProfile!.restrictions!
-                        .join('\n'),
-                    inColumn: true,
-                  ),
+
+                  _cautionDeliveryController
+                              .operatorContainRestrictionsWithItem ==
+                          true
+                      ? const Text(
+                          'Este operador possui restrições a este item',
+                          style: TextStyle(color: Colors.red),
+                        )
+                      : const SizedBox.shrink(),
+                  // AppTextTitleValue(
+                  //   title: 'Restrições: ',
+                  //   value: _cautionDeliveryController
+                  //       .cautionModel!.receiverUserProfile!.restrictions!
+                  //       .join('\n'),
+                  //   inColumn: true,
+                  // ),
                   const SizedBox(height: 15),
                   const Divider(height: 5),
                   IconButton(

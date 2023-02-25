@@ -52,7 +52,7 @@ class _SearchPageState extends State<UserProfileSearchPage> {
                   Card(
                     child: Column(
                       children: [
-                        const Text('por Nome de tropa'),
+                        const Text('por Nome em tropa'),
                         Row(
                           children: [
                             Checkbox(

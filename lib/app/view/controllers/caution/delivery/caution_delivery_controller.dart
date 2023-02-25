@@ -34,6 +34,7 @@ class CautionDeliveryController extends GetxController
   int quantityEnd = 1;
   // String registerEnd = '';
   List<ItemModel> itemModelSelected = [];
+  bool operatorContainRestrictionsWithItem = false;
   @override
   void onInit() async {
     // if (Get.arguments == null) {
@@ -100,6 +101,10 @@ class CautionDeliveryController extends GetxController
               isError: true,
             );
           } else {
+            operatorContainRestrictionsWithItem = deliveryUserProfile
+                .restrictions!
+                .any((g) => itemModelList[0].groups!.contains(g));
+
             cautionModel = CautionModel(
               deliveryUserProfile: deliveryUserProfile,
               deliveryDt: deliveryDt,

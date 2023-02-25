@@ -153,11 +153,11 @@ class _ItemAddEditPageState extends State<ItemAddEditPage> {
                         photoUrl: widget._itemAddEditController.item?.photo,
                         setXFile: (value) =>
                             widget._itemAddEditController.xfile = value,
-                        maxHeightImage: 200,
-                        maxWidthImage: 200,
+                        maxHeightImage: 150,
+                        maxWidthImage: 150,
                       ),
                       const SizedBox(height: 5),
-                      const Text('Validade'),
+                      const Text('Manutenção/Validade'),
                       SizedBox(
                         width: 300,
                         height: 100,

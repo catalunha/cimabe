@@ -28,98 +28,116 @@ class _CautionReceiverCardState extends State<CautionReceiverCard> {
             title: 'Id: ',
             value: widget.cautionModel.id,
           ),
-          AppPhotoShow(
-            photoUrl: widget.cautionModel.item!.photo,
-            width: 300,
-            height: 100,
+          Wrap(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AppPhotoShow(
+                photoUrl: widget.cautionModel.deliveryUserProfile!.photo,
+                height: 125,
+                // width: 150,
+              ),
+              AppPhotoShow(
+                photoUrl: widget.cautionModel.item!.photo,
+                height: 125,
+                width: 300,
+              ),
+            ],
           ),
-          AppTextTitleValue(
-            title: 'Item: ',
-            value: widget.cautionModel.item!.description,
+          Text(
+            '${widget.cautionModel.item!.description}',
+            style: const TextStyle(fontSize: 18),
           ),
-          AppTextTitleValue(
-            title: 'Entregue por: ',
-            value: widget.cautionModel.deliveryUserProfile!.nickname!,
+          Text(
+            '${widget.cautionModel.item!.serie == null || widget.cautionModel.item!.serie!.isEmpty ? '...' : widget.cautionModel.item!.serie} | ${widget.cautionModel.item!.lote == null || widget.cautionModel.item!.lote!.isEmpty ? '...' : widget.cautionModel.item!.lote}',
+            style: const TextStyle(fontSize: 22),
           ),
-          AppTextTitleValue(
-            title: 'Entregue em: ',
-            value: dateFormat.format(widget.cautionModel.deliveryDt!),
-          ),
-          AppTextTitleValue(
-            title: 'Observações para cautela: ',
-            value: widget.cautionModel.item!.obsCaution,
-            inColumn: true,
-          ),
-          AppTextTitleValue(
-            title: 'Cautelado a: ',
-            value: widget.cautionModel.receiverUserProfile!.nickname!,
-          ),
-          AppTextTitleValue(
-            title: 'Situação da análise ? ',
-            value: widget.cautionModel.receiverIsAnalyzingItem == null
-                ? 'Analisando'
-                : widget.cautionModel.receiverIsAnalyzingItem == true
-                    ? 'Aceito'
-                    : 'Recusado',
-          ),
-          AppTextTitleValue(
-            title: 'Analisado em: ',
-            value: widget.cautionModel.receiverAnalyzedItemDt == null
-                ? '...'
-                : dateFormat
-                    .format(widget.cautionModel.receiverAnalyzedItemDt!),
-          ),
-          AppTextTitleValue(
-            title: 'Em item permanente ? ',
-            value: widget.cautionModel.receiverIsPermanentItem == false
-                ? 'Não'
-                : 'Sim',
-          ),
-          AppTextTitleValue(
-            title: 'Situação da devolução ? ',
-            value: widget.cautionModel.receiverIsStartGiveback == null
-                ? 'Analisando'
-                : widget.cautionModel.receiverIsStartGiveback == false
-                    ? 'Nao devolver. Em uso.'
-                    : 'Devolução iniciada',
-          ),
-          AppTextTitleValue(
-            title: 'Devolvido em: ',
-            value: widget.cautionModel.receiverGivebackItemDt == null
-                ? '...'
-                : dateFormat
-                    .format(widget.cautionModel.receiverGivebackItemDt!),
-          ),
-          AppTextTitleValue(
-            title: 'Descrição da devolução: ',
-            value: widget.cautionModel.receiverGivebackDescription,
-            inColumn: true,
-          ),
-          AppTextTitleValue(
-            title: 'Recebido por: ',
-            value: widget.cautionModel.givebackUserProfile?.nickname,
-          ),
-          AppTextTitleValue(
-            title: 'Situação da recebimento ? ',
-            value: widget.cautionModel.receiverIsStartGiveback != true
-                ? '...'
-                : widget.cautionModel.givebackIsAnalyzingItem == null
-                    ? 'Analisando'
-                    : widget.cautionModel.givebackIsAnalyzingItem == false
-                        ? 'Com observações.'
-                        : 'Normal',
-          ),
-          AppTextTitleValue(
-            title: 'Recebido em: ',
-            value: widget.cautionModel.givebackAnalyzedItemDt == null
-                ? '...'
-                : dateFormat
-                    .format(widget.cautionModel.givebackAnalyzedItemDt!),
-          ),
-          AppTextTitleValue(
-            title: 'Descrição do recebimento: ',
-            value: widget.cautionModel.givebackDescription,
-          ),
+          // AppTextTitleValue(
+          //   title: 'Item: ',
+          //   value: widget.cautionModel.item!.description,
+          // ),
+          // AppTextTitleValue(
+          //   title: 'Entregue por: ',
+          //   value: widget.cautionModel.deliveryUserProfile!.nickname!,
+          // ),
+          // AppTextTitleValue(
+          //   title: 'Entregue em: ',
+          //   value: dateFormat.format(widget.cautionModel.deliveryDt!),
+          // ),
+          // AppTextTitleValue(
+          //   title: 'Observações para cautela: ',
+          //   value: widget.cautionModel.item!.obsCaution,
+          //   inColumn: true,
+          // ),
+          // AppTextTitleValue(
+          //   title: 'Cautelado a: ',
+          //   value: widget.cautionModel.receiverUserProfile!.nickname!,
+          // ),
+          // AppTextTitleValue(
+          //   title: 'Situação da análise ? ',
+          //   value: widget.cautionModel.receiverIsAnalyzingItem == null
+          //       ? 'Analisando'
+          //       : widget.cautionModel.receiverIsAnalyzingItem == true
+          //           ? 'Aceito'
+          //           : 'Recusado',
+          // ),
+          // AppTextTitleValue(
+          //   title: 'Analisado em: ',
+          //   value: widget.cautionModel.receiverAnalyzedItemDt == null
+          //       ? '...'
+          //       : dateFormat
+          //           .format(widget.cautionModel.receiverAnalyzedItemDt!),
+          // ),
+          // AppTextTitleValue(
+          //   title: 'Em item permanente ? ',
+          //   value: widget.cautionModel.receiverIsPermanentItem == false
+          //       ? 'Não'
+          //       : 'Sim',
+          // ),
+          // AppTextTitleValue(
+          //   title: 'Situação da devolução ? ',
+          //   value: widget.cautionModel.receiverIsStartGiveback == null
+          //       ? 'Analisando'
+          //       : widget.cautionModel.receiverIsStartGiveback == false
+          //           ? 'Nao devolver. Em uso.'
+          //           : 'Devolução iniciada',
+          // ),
+          // AppTextTitleValue(
+          //   title: 'Devolvido em: ',
+          //   value: widget.cautionModel.receiverGivebackItemDt == null
+          //       ? '...'
+          //       : dateFormat
+          //           .format(widget.cautionModel.receiverGivebackItemDt!),
+          // ),
+          // AppTextTitleValue(
+          //   title: 'Descrição da devolução: ',
+          //   value: widget.cautionModel.receiverGivebackDescription,
+          //   inColumn: true,
+          // ),
+          // AppTextTitleValue(
+          //   title: 'Recebido por: ',
+          //   value: widget.cautionModel.givebackUserProfile?.nickname,
+          // ),
+          // AppTextTitleValue(
+          //   title: 'Situação da recebimento ? ',
+          //   value: widget.cautionModel.receiverIsStartGiveback != true
+          //       ? '...'
+          //       : widget.cautionModel.givebackIsAnalyzingItem == null
+          //           ? 'Analisando'
+          //           : widget.cautionModel.givebackIsAnalyzingItem == false
+          //               ? 'Com observações.'
+          //               : 'Normal',
+          // ),
+          // AppTextTitleValue(
+          //   title: 'Recebido em: ',
+          //   value: widget.cautionModel.givebackAnalyzedItemDt == null
+          //       ? '...'
+          //       : dateFormat
+          //           .format(widget.cautionModel.givebackAnalyzedItemDt!),
+          // ),
+          // AppTextTitleValue(
+          //   title: 'Descrição do recebimento: ',
+          //   value: widget.cautionModel.givebackDescription,
+          // ),
           Wrap(
             children: [
               if (widget.cautionModel.receiverIsAnalyzingItem == null)

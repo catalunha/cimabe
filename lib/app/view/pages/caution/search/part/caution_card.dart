@@ -12,7 +12,7 @@ class CautionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dateFormat = DateFormat('dd/MM/y hh:mm');
+    final dateFormat = DateFormat('dd/MM/y HH:mm');
 
     return Card(
       child: Column(
@@ -21,8 +21,8 @@ class CautionCard extends StatelessWidget {
             title: 'Id: ',
             value: cautionModel.id,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Wrap(
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Column(
                 children: [
@@ -65,6 +65,14 @@ class CautionCard extends StatelessWidget {
           AppTextTitleValue(
             title: 'Item: ',
             value: cautionModel.item!.description,
+          ),
+          AppTextTitleValue(
+            title: 'Serie: ',
+            value: cautionModel.item!.serie,
+          ),
+          AppTextTitleValue(
+            title: 'Lote: ',
+            value: cautionModel.item!.lote,
           ),
           AppTextTitleValue(
             title: 'Entregue por: ',

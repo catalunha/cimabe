@@ -10,19 +10,19 @@ class SplashPage extends StatelessWidget {
         body: Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            AppAssets.splash,
-            // height: 200,
-          ),
-          const SizedBox(
+        children: const [
+          // Image.asset(
+          //   AppAssets.splash,
+          //   // height: 200,
+          // ),
+          SizedBox(
             height: 20,
           ),
-          const Text('Analisando seus dados...'),
-          const SizedBox(
+          Text('Analisando seus dados...'),
+          SizedBox(
             height: 20,
           ),
-          const CircularProgressIndicator(),
+          CircularProgressIndicator(),
         ],
       ),
     ));

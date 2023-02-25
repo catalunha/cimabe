@@ -71,10 +71,10 @@ class _UserProfileEditPageState extends State<UserProfileEditPage> {
                     // ),
                     const SizedBox(height: 5),
                     AppTextFormField(
-                      label: '* Seu nome de tropa.',
+                      label: '* Seu nome em tropa.',
                       controller: _nicknameTec,
                       validator:
-                          Validatorless.required('Nome de tropa é obrigatório'),
+                          Validatorless.required('Nome em tropa é obrigatório'),
                     ),
                     AppTextFormField(
                       label: '* Seu nome completo.',
@@ -82,29 +82,29 @@ class _UserProfileEditPageState extends State<UserProfileEditPage> {
                       validator: Validatorless.required('Nome é obrigatório'),
                     ),
                     AppTextFormField(
+                      label: 'O número de registro na corporação. Padrão 123/4',
+                      controller: _registerTec,
+                      validator: Validatorless.multiple([
+                        Validatorless.required('Número é obrigatório'),
+                      ]),
+                    ),
+                    AppTextFormField(
                         label: 'Seu telefone. Formato: DDDNÚMERO',
                         controller: _phoneTec,
                         validator: Validatorless.multiple([
                           Validatorless.number(
                               'Apenas números. Formato: DDDNÚMERO'),
-                          Validatorless.required('Nome é obrigatório'),
+                          Validatorless.required('Telefone é obrigatório'),
                         ])),
-                    AppTextFormField(
-                        label: 'Seu CPF. Apenas números.',
-                        controller: _cpfTec,
-                        validator: Validatorless.multiple([
-                          Validatorless.cpf('Este número não é CPF válido'),
-                          Validatorless.number('Apenas números. Não use . - /'),
-                          Validatorless.required('Nome é obrigatório'),
-                        ])),
-                    AppTextFormField(
-                      label: 'O número de registro na corporação.',
-                      controller: _registerTec,
-                      validator: Validatorless.multiple([
-                        Validatorless.number('Apenas números.'),
-                        Validatorless.required('Nome é obrigatório'),
-                      ]),
-                    ),
+                    // AppTextFormField(
+                    //     label: 'Seu CPF. Apenas números.',
+                    //     controller: _cpfTec,
+                    //     validator: Validatorless.multiple([
+                    //       Validatorless.cpf('Este número não é CPF válido'),
+                    //       Validatorless.number('Apenas números. Não use . - /'),
+                    //       Validatorless.required('Nome é obrigatório'),
+                    //     ])),
+
                     const SizedBox(height: 5),
                     AppImportImage(
                       label:
