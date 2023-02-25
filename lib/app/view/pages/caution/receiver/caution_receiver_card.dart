@@ -63,11 +63,11 @@ class _CautionReceiverCardState extends State<CautionReceiverCard> {
           //   title: 'Entregue em: ',
           //   value: dateFormat.format(widget.cautionModel.deliveryDt!),
           // ),
-          // AppTextTitleValue(
-          //   title: 'Observações para cautela: ',
-          //   value: widget.cautionModel.item!.obsCaution,
-          //   inColumn: true,
-          // ),
+          AppTextTitleValue(
+            title: 'Observações para cautela: ',
+            value: widget.cautionModel.item!.obsCaution,
+            inColumn: true,
+          ),
           // AppTextTitleValue(
           //   title: 'Cautelado a: ',
           //   value: widget.cautionModel.receiverUserProfile!.nickname!,
