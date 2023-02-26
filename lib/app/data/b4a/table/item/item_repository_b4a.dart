@@ -13,7 +13,9 @@ class ItemRepositoryB4a implements ItemRepository {
       QueryBuilder<ParseObject> query, Pagination pagination) async {
     query.setAmountToSkip((pagination.page - 1) * pagination.limit);
     query.setLimit(pagination.limit);
-
+    query.includeObject([
+      'image',
+    ]);
     return query;
   }
 
@@ -52,7 +54,7 @@ class ItemRepositoryB4a implements ItemRepository {
     QueryBuilder<ParseObject> query =
         QueryBuilder<ParseObject>(ParseObject(ItemEntity.className));
     query.whereEqualTo('objectId', id);
-
+    query.includeObject(['image']);
     query.first();
     ParseResponse? response;
     try {
@@ -80,9 +82,6 @@ class ItemRepositoryB4a implements ItemRepository {
       response = await userProfileParse.save();
 
       if (response.success && response.results != null) {
-        // ParseObject userProfile = response.results!.first as ParseObject;
-
-        // return userProfile.objectId!;
         return ItemEntity().fromParse(response.results!.first);
       } else {
         throw Exception();
@@ -103,6 +102,7 @@ class ItemRepositoryB4a implements ItemRepository {
     query.whereEqualTo('serie', value);
     query.whereEqualTo('isBlockedOperator', false);
     query.whereEqualTo('isBlockedDoc', false);
+    query.includeObject(['image']);
 
     query.first();
     ParseResponse? response;
@@ -131,6 +131,7 @@ class ItemRepositoryB4a implements ItemRepository {
     query.whereEqualTo('lote', value);
     query.whereEqualTo('isBlockedOperator', false);
     query.whereEqualTo('isBlockedDoc', false);
+    query.includeObject(['image']);
 
     ParseResponse? response;
     try {

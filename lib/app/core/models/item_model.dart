@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:cimabe/app/core/models/image_model.dart';
+
 class ItemModel {
   final String? id;
   final String? photo;
@@ -18,7 +20,7 @@ class ItemModel {
   final bool? isBlockedOperator;
   final bool? isBlockedDoc;
   final List<String>? groups;
-  // final List<UserProfileModel>? operatorsExclusive;
+  final ImageModel? image;
   ItemModel({
     this.id,
     this.photo,
@@ -35,6 +37,7 @@ class ItemModel {
     this.isBlockedOperator,
     this.isBlockedDoc,
     this.groups,
+    this.image,
   });
 
   ItemModel copyWith({
@@ -53,6 +56,7 @@ class ItemModel {
     bool? isBlockedOperator,
     bool? isBlockedDoc,
     List<String>? groups,
+    ImageModel? image,
   }) {
     return ItemModel(
       id: id ?? this.id,
@@ -70,6 +74,7 @@ class ItemModel {
       isBlockedOperator: isBlockedOperator ?? this.isBlockedOperator,
       isBlockedDoc: isBlockedDoc ?? this.isBlockedDoc,
       groups: groups ?? this.groups,
+      image: image ?? this.image,
     );
   }
 
@@ -121,6 +126,9 @@ class ItemModel {
     if (groups != null) {
       result.addAll({'groups': groups});
     }
+    if (image != null) {
+      result.addAll({'image': image!.toMap()});
+    }
 
     return result;
   }
@@ -144,6 +152,7 @@ class ItemModel {
       isBlockedOperator: map['isBlockedOperator'],
       isBlockedDoc: map['isBlockedDoc'],
       groups: List<String>.from(map['groups']),
+      image: map['image'] != null ? ImageModel.fromMap(map['image']) : null,
     );
   }
 
@@ -154,7 +163,7 @@ class ItemModel {
 
   @override
   String toString() {
-    return 'ItemModel(id: $id, photo: $photo, description: $description, serie: $serie, lote: $lote, brand: $brand, model: $model, calibre: $calibre, doc: $doc, obsCaution: $obsCaution, validate: $validate, isMunition: $isMunition, isBlockedOperator: $isBlockedOperator, isBlockedDoc: $isBlockedDoc, groups: $groups)';
+    return 'ItemModel(id: $id, photo: $photo, description: $description, serie: $serie, lote: $lote, brand: $brand, model: $model, calibre: $calibre, doc: $doc, obsCaution: $obsCaution, validate: $validate, isMunition: $isMunition, isBlockedOperator: $isBlockedOperator, isBlockedDoc: $isBlockedDoc, groups: $groups, image: $image)';
   }
 
   @override
@@ -176,7 +185,8 @@ class ItemModel {
         other.isMunition == isMunition &&
         other.isBlockedOperator == isBlockedOperator &&
         other.isBlockedDoc == isBlockedDoc &&
-        listEquals(other.groups, groups);
+        listEquals(other.groups, groups) &&
+        other.image == image;
   }
 
   @override
@@ -195,6 +205,7 @@ class ItemModel {
         isMunition.hashCode ^
         isBlockedOperator.hashCode ^
         isBlockedDoc.hashCode ^
-        groups.hashCode;
+        groups.hashCode ^
+        image.hashCode;
   }
 }

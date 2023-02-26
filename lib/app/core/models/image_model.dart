@@ -20,7 +20,7 @@ class ImageModel {
     return ImageModel(
       id: id ?? this.id,
       keywords: keywords ?? this.keywords,
-      url: url ?? url,
+      url: url ?? this.url,
     );
   }
 
@@ -34,7 +34,7 @@ class ImageModel {
       result.addAll({'keywords': keywords});
     }
     if (url != null) {
-      result.addAll({'image': url});
+      result.addAll({'url': url});
     }
 
     return result;
@@ -44,7 +44,7 @@ class ImageModel {
     return ImageModel(
       id: map['id'],
       keywords: List<String>.from(map['keywords']),
-      url: map['image'],
+      url: map['url'],
     );
   }
 
@@ -54,7 +54,7 @@ class ImageModel {
       ImageModel.fromMap(json.decode(source));
 
   @override
-  String toString() => 'ImageModel(id: $id, keywords: $keywords, image: $url)';
+  String toString() => 'ImageModel(id: $id, keywords: $keywords, url: $url)';
 
   @override
   bool operator ==(Object other) {

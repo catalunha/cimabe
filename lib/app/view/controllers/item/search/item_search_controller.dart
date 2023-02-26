@@ -76,7 +76,7 @@ class ItemSearchController extends GetxController
     required bool isBlockedDocEqualsToValue,
   }) async {
     _loading(true);
-    // query = QueryBuilder<ParseObject>(ParseObject(ItemEntity.className));
+    query = QueryBuilder<ParseObject>(ParseObject(ItemEntity.className));
 
     if (descriptionContainsBool) {
       query.whereContains('description', descriptionContainsString);

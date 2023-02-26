@@ -27,7 +27,8 @@ class ImageSearchAddEditController extends GetxController
 
   final _image = Rxn<ImageModel>();
   ImageModel? get image => _image.value;
-  set image(ImageModel? imageNew) => _image(imageNew);
+  set image(ImageModel? imageNew) => _image.value = imageNew;
+  // set image(ImageModel? imageNew) => _image(imageNew);
 
   final _pagination = Pagination().obs;
   final _lastPage = false.obs;
@@ -36,16 +37,19 @@ class ImageSearchAddEditController extends GetxController
   QueryBuilder<ParseObject> query =
       QueryBuilder<ParseObject>(ParseObject(ImageEntity.className));
 
-  XFile? _xfile;
-  set xfile(XFile? xfile) {
-    _xfile = xfile;
+  XFile? xfile;
+
+  @override
+  void onReady() {
+    getInitialImages();
+    super.onReady();
   }
 
   @override
   void onInit() {
     imageList.clear();
     _changePagination(1, 2);
-    ever(_pagination, (_) async => await getMoreImage());
+    ever(_pagination, (_) async => await getMoreImages());
     loaderListener(_loading);
     messageListener(_message);
     super.onInit();
@@ -62,7 +66,24 @@ class ImageSearchAddEditController extends GetxController
     _changePagination(_pagination.value.page + 1, _pagination.value.limit);
   }
 
-  Future<void> getMoreImage() async {
+  Future<void> getInitialImages() async {
+    query.orderByDescending('updatedAt');
+    await getMoreImages();
+    // if (!lastPage) {
+    //   _loading(true);
+    //   List<ImageModel> temp = await _imageRepository.list(
+    //     query,
+    //     _pagination.value,
+    //   );
+    //   if (temp.isEmpty) {
+    //     _lastPage(true);
+    //   }
+    //   imageList.addAll(temp);
+    //   _loading(false);
+    // }
+  }
+
+  Future<void> getMoreImages() async {
     if (!lastPage) {
       _loading(true);
       List<ImageModel> temp = await _imageRepository.list(
@@ -81,7 +102,9 @@ class ImageSearchAddEditController extends GetxController
     required String keywords,
   }) async {
     _loading(true);
-    var keywordsList = keywords.split(' ');
+    query = QueryBuilder<ParseObject>(ParseObject(ImageEntity.className));
+
+    var keywordsList = keywords.isEmpty ? [] : keywords.split(' ');
     if (keywordsList.isNotEmpty) {
       query.whereContainedIn('keywords', keywordsList);
     }
@@ -121,19 +144,24 @@ class ImageSearchAddEditController extends GetxController
         );
       }
 
-      image = await _imageRepository.update(image!);
-      if (_xfile != null) {
+      ImageModel imageModel = await _imageRepository.update(image!);
+
+      if (xfile != null) {
         String? imageUrl = await XFileToParseFile.xFileToParseFile(
-          xfile: _xfile!,
+          xfile: xfile!,
           className: ImageEntity.className,
-          objectId: image!.id!,
-          objectAttribute: 'url',
+          objectId: imageModel.id!,
+          objectAttribute: 'file',
         );
         image = image!.copyWith(url: imageUrl);
+        imageModel = imageModel.copyWith(url: imageUrl);
       }
-      int index = imageList.indexWhere((model) => model.id == image!.id!);
+
+      int index = imageList.indexWhere((model) => model.id == image?.id);
       if (index > -1) {
         imageList.replaceRange(index, index + 1, [image!]);
+      } else {
+        imageList.insert(0, imageModel);
       }
     } on ImageRepositoryException {
       _message.value = MessageModel(

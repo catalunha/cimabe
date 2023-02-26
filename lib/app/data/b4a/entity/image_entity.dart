@@ -7,10 +7,10 @@ class ImageEntity {
   ImageModel fromParse(ParseObject parseObject) {
     ImageModel itemModel = ImageModel(
       id: parseObject.objectId!,
-      url: parseObject.get('image')?.get('url'),
-      keywords: parseObject.get<List<dynamic>>('groups') != null
+      url: parseObject.get('file')?.get('url'),
+      keywords: parseObject.get<List<dynamic>>('keywords') != null
           ? parseObject
-              .get<List<dynamic>>('groups')!
+              .get<List<dynamic>>('keywords')!
               .map((e) => e.toString())
               .toList()
           : [],

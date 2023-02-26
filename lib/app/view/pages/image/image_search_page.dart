@@ -1,5 +1,6 @@
 import 'package:cimabe/app/core/models/image_model.dart';
 import 'package:cimabe/app/view/controllers/image/image_search_addedit_controller.dart';
+import 'package:cimabe/app/view/pages/utils/app_textformfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,18 +37,30 @@ class _ImageSearchPageState extends State<ImageSearchPage> {
             onPressed: () {
               // Get.to(() => ImagePrintPage());
             },
-            icon: const Icon(Icons.search),
-          ),
-          IconButton(
-            onPressed: () {
-              // Get.to(() => ImagePrintPage());
-            },
             icon: const Icon(Icons.print),
           )
         ],
       ),
       body: Column(
         children: [
+          Card(
+            child: Row(
+              children: [
+                Expanded(
+                  child: AppTextFormField(
+                    label: 'Informe palavra(s) chave',
+                    controller: _keywordsTEC,
+                  ),
+                ),
+                IconButton(
+                    onPressed: () async {
+                      await widget._imageSearchAddEditController
+                          .search(keywords: _keywordsTEC.text);
+                    },
+                    icon: const Icon(Icons.search))
+              ],
+            ),
+          ),
           InkWell(
             onTap: () {
               widget._imageSearchAddEditController.nextPage();
@@ -112,10 +125,7 @@ class ImageCard extends StatelessWidget {
             title: 'Id: ',
             value: imageModel.id,
           ),
-          AppTextTitleValue(
-            title: 'Descrição: ',
-            value: imageModel.keywords?.join(','),
-          ),
+          Text('${imageModel.keywords?.join(' ')}'),
           Wrap(
             children: [
               IconButton(

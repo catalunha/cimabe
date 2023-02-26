@@ -19,9 +19,11 @@ class _ImageAddEditPageState extends State<ImageAddEditPage> {
   final keywordsTEC = TextEditingController();
   @override
   void initState() {
+    print('=>>>>${DateTime.now()}');
+    print(widget._imageSearchAddEditController.image);
     super.initState();
     keywordsTEC.text =
-        widget._imageSearchAddEditController.image?.keywords?.join(',') ?? "";
+        widget._imageSearchAddEditController.image?.keywords?.join(' ') ?? "";
   }
 
   @override
@@ -35,7 +37,7 @@ class _ImageAddEditPageState extends State<ImageAddEditPage> {
         onPressed: () async {
           var result = await saveImage();
           if (result) {
-            Get.back();
+            Get.back(closeOverlays: true);
           } else {
             Get.snackbar(
               'Atenção',
@@ -57,13 +59,14 @@ class _ImageAddEditPageState extends State<ImageAddEditPage> {
                     children: [
                       const SizedBox(height: 5),
                       AppTextFormField(
-                        label: 'Palavra(s) chave',
+                        label: 'Palavra(s) chave. Separados por espaço.',
                         controller: keywordsTEC,
                         validator: Validatorless.required(
                             'Palavra(s) chave é obrigatório'),
                       ),
+                      const SizedBox(height: 50),
                       AppImportImage(
-                        label: 'Click aqui para buscar uma foto.',
+                        label: 'Click aqui para buscar uma imagem.',
                         imageUrl:
                             widget._imageSearchAddEditController.image?.url,
                         setXFile: (value) =>
@@ -84,7 +87,11 @@ class _ImageAddEditPageState extends State<ImageAddEditPage> {
   }
 
   Future<bool> saveImage() async {
-    final formValid = _formKey.currentState?.validate() ?? false;
+    var formValid = _formKey.currentState?.validate() ?? false;
+    if (widget._imageSearchAddEditController.xfile == null &&
+        widget._imageSearchAddEditController.image?.url == null) {
+      formValid = false;
+    }
     if (formValid) {
       await widget._imageSearchAddEditController.addedit(
         keywords: keywordsTEC.text,

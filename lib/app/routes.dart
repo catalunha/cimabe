@@ -169,7 +169,7 @@ class Routes {
       page: () => ImageSearchPage(),
     ),
     GetPage(
-      name: Routes.imageSearch,
+      name: Routes.imageAddEdit,
       page: () => ImageAddEditPage(),
     ),
   ];
