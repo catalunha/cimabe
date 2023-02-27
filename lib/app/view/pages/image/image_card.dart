@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import '../../../core/models/image_model.dart';
 import '../../controllers/image/image_search_addedit_controller.dart';
 import '../utils/app_photo_show.dart';
-import '../utils/app_text_title_value.dart';
 
 class ImageCard extends StatelessWidget {
   final _imageSearchAddEditController =
@@ -22,11 +21,14 @@ class ImageCard extends StatelessWidget {
             width: 300,
             height: 100,
           ),
-          AppTextTitleValue(
-            title: 'Id: ',
-            value: imageModel.id,
+          // AppTextTitleValue(
+          //   title: 'Id: ',
+          //   value: imageModel.id,
+          // ),
+          Text(
+            '${imageModel.keywords?.join(' ')}',
+            style: const TextStyle(fontSize: 22),
           ),
-          Text('${imageModel.keywords?.join(' ')}'),
           Wrap(
             children: [
               IconButton(

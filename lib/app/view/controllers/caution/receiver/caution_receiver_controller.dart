@@ -47,12 +47,7 @@ class CautionReceiverController extends GetxController
         splashController.userModel!.userProfile!;
     QueryBuilder<ParseObject> query =
         QueryBuilder<ParseObject>(ParseObject(CautionEntity.className));
-    query.includeObject([
-      'deliveryUserProfile',
-      'receiverUserProfile',
-      'givebackUserProfile',
-      'item'
-    ]);
+
     query.whereEqualTo(
         'receiverUserProfile',
         (ParseObject(UserProfileEntity.className)

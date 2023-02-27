@@ -15,7 +15,13 @@ class CautionRepositoryB4a implements CautionRepository {
       query.setAmountToSkip((pagination.page - 1) * pagination.limit);
       query.setLimit(pagination.limit);
     }
-
+    query.includeObject([
+      'deliveryUserProfile',
+      'receiverUserProfile',
+      'givebackUserProfile',
+      'item',
+      'item.image'
+    ]);
     return query;
   }
 
@@ -54,7 +60,13 @@ class CautionRepositoryB4a implements CautionRepository {
     QueryBuilder<ParseObject> query =
         QueryBuilder<ParseObject>(ParseObject(CautionEntity.className));
     query.whereEqualTo('objectId', id);
-
+    query.includeObject([
+      'deliveryUserProfile',
+      'receiverUserProfile',
+      'givebackUserProfile',
+      'item',
+      'item.image'
+    ]);
     query.first();
     ParseResponse? response;
     try {

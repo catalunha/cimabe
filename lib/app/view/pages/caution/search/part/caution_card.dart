@@ -17,10 +17,10 @@ class CautionCard extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-          AppTextTitleValue(
-            title: 'Id: ',
-            value: cautionModel.id,
-          ),
+          // AppTextTitleValue(
+          //   title: 'Id: ',
+          //   value: cautionModel.id,
+          // ),
           Wrap(
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [

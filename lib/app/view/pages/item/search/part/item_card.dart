@@ -1,7 +1,6 @@
 import 'package:cimabe/app/core/models/item_model.dart';
 import 'package:cimabe/app/routes.dart';
 import 'package:cimabe/app/view/pages/utils/app_photo_show.dart';
-import 'package:cimabe/app/view/pages/utils/app_text_title_value.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -20,14 +19,22 @@ class ItemCard extends StatelessWidget {
             width: 300,
             height: 100,
           ),
-          AppTextTitleValue(
-            title: 'Id: ',
-            value: itemModel.id,
+          // AppTextTitleValue(
+          //   title: 'Id: ',
+          //   value: itemModel.id,
+          // ),
+          Text(
+            '${itemModel.description}',
+            style: const TextStyle(fontSize: 22),
           ),
-          AppTextTitleValue(
-            title: 'Descrição: ',
-            value: itemModel.description,
+          Text(
+            '${itemModel.serie} - ${itemModel.lote}',
+            style: const TextStyle(fontSize: 22),
           ),
+          // AppTextTitleValue(
+          //   title: 'Descrição: ',
+          //   value: itemModel.description,
+          // ),
           Wrap(
             children: [
               IconButton(
