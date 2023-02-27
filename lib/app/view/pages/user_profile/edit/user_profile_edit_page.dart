@@ -109,7 +109,7 @@ class _UserProfileEditPageState extends State<UserProfileEditPage> {
                     AppImportImage(
                       label:
                           'Click aqui para buscar sua foto, apenas face. Padrão 3x4.',
-                      photoUrl:
+                      imageUrl:
                           widget._userProfileController.userProfile!.photo,
                       setXFile: (value) =>
                           widget._userProfileController.xfile = value,

@@ -19,6 +19,7 @@ class ItemSearchController extends GetxController
   final _message = Rxn<MessageModel>();
 
   List<ItemModel> itemList = <ItemModel>[].obs;
+
   final _pagination = Pagination().obs;
   final _lastPage = false.obs;
   get lastPage => _lastPage.value;

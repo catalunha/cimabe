@@ -82,8 +82,7 @@ class _CautionDeliveryConsultPageState
                     ),
                     const SizedBox(height: 5),
                     AppTextFormField(
-                      label:
-                          'Quantidade deste item a ser cautelado: ${quantityTEC.text}',
+                      label: 'Quantidade deste item a ser cautelado:',
                       controller: quantityTEC,
                       validator: Validatorless.multiple([
                         Validatorless.number('Apenas números.'),

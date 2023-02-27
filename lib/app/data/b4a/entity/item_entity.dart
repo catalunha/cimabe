@@ -1,4 +1,5 @@
 import 'package:cimabe/app/core/models/item_model.dart';
+import 'package:cimabe/app/data/b4a/entity/image_entity.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class ItemEntity {
@@ -7,7 +8,6 @@ class ItemEntity {
   ItemModel fromParse(ParseObject parseObject) {
     ItemModel itemModel = ItemModel(
       id: parseObject.objectId!,
-      photo: parseObject.get('photo')?.get('url'),
       description: parseObject.get('description'),
       serie: parseObject.get('serie'),
       lote: parseObject.get('lote'),
@@ -26,53 +26,63 @@ class ItemEntity {
       isMunition: parseObject.get('isMunition'),
       isBlockedOperator: parseObject.get('isBlockedOperator'),
       isBlockedDoc: parseObject.get('isBlockedDoc'),
+      image: parseObject.get('image') != null
+          ? ImageEntity().fromParse(parseObject.get('image'))
+          : null,
     );
     return itemModel;
   }
 
   Future<ParseObject> toParse(ItemModel itemModel) async {
-    final profileParseObject = ParseObject(ItemEntity.className);
-    profileParseObject.objectId = itemModel.id;
+    final parseObject = ParseObject(ItemEntity.className);
+    parseObject.objectId = itemModel.id;
     if (itemModel.description != null) {
-      profileParseObject.set('description', itemModel.description);
+      parseObject.set('description', itemModel.description);
     }
     if (itemModel.serie != null) {
-      profileParseObject.set('serie', itemModel.serie);
+      parseObject.set('serie', itemModel.serie);
     }
 
     if (itemModel.lote != null) {
-      profileParseObject.set('lote', itemModel.lote);
+      parseObject.set('lote', itemModel.lote);
     }
     if (itemModel.brand != null) {
-      profileParseObject.set('brand', itemModel.brand);
+      parseObject.set('brand', itemModel.brand);
     }
     if (itemModel.model != null) {
-      profileParseObject.set('model', itemModel.model);
+      parseObject.set('model', itemModel.model);
     }
     if (itemModel.calibre != null) {
-      profileParseObject.set('calibre', itemModel.calibre);
+      parseObject.set('calibre', itemModel.calibre);
     }
     if (itemModel.doc != null) {
-      profileParseObject.set('doc', itemModel.doc);
+      parseObject.set('doc', itemModel.doc);
     }
     if (itemModel.obsCaution != null) {
-      profileParseObject.set('obsCaution', itemModel.obsCaution);
+      parseObject.set('obsCaution', itemModel.obsCaution);
     }
     if (itemModel.validate != null) {
-      profileParseObject.set<DateTime?>('validate', itemModel.validate);
+      parseObject.set<DateTime?>('validate', itemModel.validate);
     }
     if (itemModel.isMunition != null) {
-      profileParseObject.set('isMunition', itemModel.isMunition);
+      parseObject.set('isMunition', itemModel.isMunition);
     }
     if (itemModel.isBlockedOperator != null) {
-      profileParseObject.set('isBlockedOperator', itemModel.isBlockedOperator);
+      parseObject.set('isBlockedOperator', itemModel.isBlockedOperator);
     }
     if (itemModel.isBlockedDoc != null) {
-      profileParseObject.set('isBlockedDoc', itemModel.isBlockedDoc);
+      parseObject.set('isBlockedDoc', itemModel.isBlockedDoc);
     }
     if (itemModel.groups != null) {
-      profileParseObject.set('groups', itemModel.groups);
+      parseObject.set('groups', itemModel.groups);
     }
-    return profileParseObject;
+    if (itemModel.image != null) {
+      parseObject.set(
+          'image',
+          (ParseObject(ImageEntity.className)..objectId = itemModel.image!.id)
+              .toPointer());
+    }
+
+    return parseObject;
   }
 }

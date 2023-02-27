@@ -1,13 +1,12 @@
 import 'package:cimabe/app/core/models/item_model.dart';
-import 'package:cimabe/app/data/b4a/entity/item_entity.dart';
 import 'package:cimabe/app/data/b4a/table/item/item_repository_exception.dart';
-import 'package:cimabe/app/data/b4a/utils/xfile_to_parsefile.dart';
 import 'package:cimabe/app/data/repositories/item_repository.dart';
 import 'package:cimabe/app/view/controllers/item/search/item_search_controller.dart';
 import 'package:cimabe/app/view/controllers/utils/loader_mixin.dart';
 import 'package:cimabe/app/view/controllers/utils/message_mixin.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
+
+import '../../../../core/models/image_model.dart';
 
 class ItemAddEditController extends GetxController
     with LoaderMixin, MessageMixin {
@@ -37,10 +36,10 @@ class ItemAddEditController extends GetxController
 //   bool isBlockedDoc = false;
 //   final groupsTec = TextEditingController();
 // //--- forms
-  XFile? _xfile;
-  set xfile(XFile? xfile) {
-    _xfile = xfile;
-  }
+  // XFile? _xfile;
+  // set xfile(XFile? xfile) {
+  //   _xfile = xfile;
+  // }
 
   final Rxn<DateTime> _validate = Rxn<DateTime>();
   DateTime? get validate => _validate.value;
@@ -50,12 +49,17 @@ class ItemAddEditController extends GetxController
     }
   }
 
+  // final image = Rxn<ImageModel>();
+
   @override
   void onInit() async {
     validate = DateTime.now().add(const Duration(days: 365));
     loaderListener(_loading);
     messageListener(_message);
     item = Get.arguments;
+    // if (item != null) {
+    //   image.value = item?.image;
+    // }
     super.onInit();
   }
 
@@ -73,6 +77,7 @@ class ItemAddEditController extends GetxController
     bool? isBlockedDoc,
     String? groups,
     int quantity = 1,
+    ImageModel? imageModel,
   }) async {
     try {
       _loading(true);
@@ -91,6 +96,7 @@ class ItemAddEditController extends GetxController
           isBlockedOperator: isBlockedOperator,
           isBlockedDoc: isBlockedDoc,
           groups: groups?.split('\n'),
+          image: imageModel,
         );
       } else {
         item = item!.copyWith(
@@ -107,20 +113,21 @@ class ItemAddEditController extends GetxController
           isBlockedOperator: isBlockedOperator,
           isBlockedDoc: isBlockedDoc,
           groups: groups?.split('\n'),
+          image: imageModel,
         );
       }
 
       for (var i = 0; i < quantity; i++) {
         ItemModel itemModel = await _itemRepository.update(item!);
-        if (_xfile != null) {
-          String? photoUrl = await XFileToParseFile.xFileToParseFile(
-            xfile: _xfile!,
-            className: ItemEntity.className,
-            objectId: itemModel.id!,
-            objectAttribute: 'photo',
-          );
-          item = item!.copyWith(photo: photoUrl);
-        }
+        // if (_xfile != null) {
+        //   String? photoUrl = await XFileToParseFile.xFileToParseFile(
+        //     xfile: _xfile!,
+        //     className: ItemEntity.className,
+        //     objectId: itemModel.id!,
+        //     objectAttribute: 'photo',
+        //   );
+        //   item = item!.copyWith(photo: photoUrl);
+        // }
       }
       bool existCautionSearchController =
           Get.isRegistered<ItemSearchController>();

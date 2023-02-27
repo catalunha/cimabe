@@ -20,7 +20,7 @@ class CautionGivebackCard extends StatefulWidget {
 class _CautionGivebackCardState extends State<CautionGivebackCard> {
   @override
   Widget build(BuildContext context) {
-    final dateFormat = DateFormat('dd/MM/y hh:mm');
+    final dateFormat = DateFormat('dd/MM/y HH:mm');
     return Card(
       child: Column(
         children: [
@@ -31,13 +31,13 @@ class _CautionGivebackCardState extends State<CautionGivebackCard> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AppPhotoShow(
+              AppImageShow(
                 photoUrl: widget.cautionModel.receiverUserProfile!.photo,
                 height: 125,
                 // width: 150,
               ),
-              AppPhotoShow(
-                photoUrl: widget.cautionModel.item!.photo,
+              AppImageShow(
+                photoUrl: widget.cautionModel.item!.image?.url,
                 height: 125,
                 width: 300,
               ),

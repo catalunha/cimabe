@@ -59,7 +59,7 @@ class _UserProfileAccessPageState extends State<UserProfileAccessPage> {
                       // ),
                       const SizedBox(height: 5),
 
-                      AppPhotoShow(
+                      AppImageShow(
                         photoUrl: widget
                             ._userProfileAccessController.userProfile?.photo,
                       ),

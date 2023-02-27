@@ -15,8 +15,8 @@ class ItemCard extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-          AppPhotoShow(
-            photoUrl: itemModel.photo,
+          AppImageShow(
+            photoUrl: itemModel.image?.url,
             width: 300,
             height: 100,
           ),

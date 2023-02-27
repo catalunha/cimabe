@@ -5,9 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AppImportImage extends StatefulWidget {
-  // final UserProfileController _profileController = Get.find();
   final String label;
-  final String? photoUrl;
+  final String? imageUrl;
   final Function(XFile?) setXFile;
   final double? maxHeightImage;
   final double? maxWidthImage;
@@ -15,7 +14,7 @@ class AppImportImage extends StatefulWidget {
   const AppImportImage({
     Key? key,
     this.label = '',
-    this.photoUrl,
+    this.imageUrl,
     required this.setXFile,
     this.maxHeightImage,
     this.maxWidthImage,
@@ -34,8 +33,8 @@ class _AppImportImageState extends State<AppImportImage> {
     return GestureDetector(
       child: _xfile != null
           ? Container(
-              width: 100,
-              height: 100,
+              width: 150,
+              height: 150,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.blue),
                 borderRadius: BorderRadius.circular(10.0),
@@ -45,7 +44,6 @@ class _AppImportImageState extends State<AppImportImage> {
                       _xfile!.path,
                       errorBuilder: (BuildContext context, Object exception,
                           StackTrace? stackTrace) {
-                        //print('error 1');
                         return errorBuilderWidget();
                       },
                     )
@@ -53,15 +51,14 @@ class _AppImportImageState extends State<AppImportImage> {
                       File(_xfile!.path),
                       errorBuilder: (BuildContext context, Object exception,
                           StackTrace? stackTrace) {
-                        //print('error 2');
                         return errorBuilderWidget();
                       },
                     ),
             )
-          : widget.photoUrl == null
+          : widget.imageUrl == null
               ? Container(
-                  width: 100,
-                  height: 100,
+                  width: 150,
+                  height: 150,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.green),
                     borderRadius: BorderRadius.circular(10.0),
@@ -69,7 +66,6 @@ class _AppImportImageState extends State<AppImportImage> {
                   child: Center(
                     child: Text(
                       widget.label,
-                      // 'Click aqui para buscar sua foto, apenas face. Padrão 3x4.',
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -77,22 +73,16 @@ class _AppImportImageState extends State<AppImportImage> {
               : ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
                   child: Image.network(
-                    widget.photoUrl!,
-                    // loadingBuilder: (_, __, ___) {
-                    //   return const Center(
-                    //       child: CircularProgressIndicator());
-                    // },
-                    height: 100,
-                    width: 100,
+                    widget.imageUrl!,
+                    height: 150,
+                    width: 150,
                     errorBuilder: (BuildContext context, Object exception,
                         StackTrace? stackTrace) {
-                      //print('error 3');
                       return errorBuilderWidget();
                     },
                   ),
                 ),
       onTap: () async {
-        //print('aqui...');
         final XFile? pickedFile = await _picker.pickImage(
             source: ImageSource.gallery,
             maxHeight: widget.maxHeightImage,
@@ -110,8 +100,8 @@ class _AppImportImageState extends State<AppImportImage> {
 
   Container errorBuilderWidget() {
     return Container(
-      width: 100,
-      height: 100,
+      width: 150,
+      height: 150,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.red),
         borderRadius: BorderRadius.circular(10.0),

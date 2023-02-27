@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class AppPhotoShow extends StatelessWidget {
+class AppImageShow extends StatelessWidget {
   final String? photoUrl;
   final double? height;
   final double? width;
-  const AppPhotoShow({
+  const AppImageShow({
     Key? key,
     required this.photoUrl,
     this.height,

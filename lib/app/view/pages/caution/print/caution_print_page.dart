@@ -80,7 +80,7 @@ class CautionPrintPage extends StatelessWidget {
   // }
 
   userBody(CautionModel caution) {
-    final dateFormat = DateFormat('dd/MM/y hh:mm');
+    final dateFormat = DateFormat('dd/MM/y HH:mm');
 
     return pw.Column(
       crossAxisAlignment: pw.CrossAxisAlignment.start,
@@ -130,7 +130,7 @@ class CautionPrintPage extends StatelessWidget {
   }
 
   footerPage(context) {
-    final dateFormat = DateFormat('dd/MM/y hh:mm');
+    final dateFormat = DateFormat('dd/MM/y HH:mm');
 
     return pw.Container(
       alignment: pw.Alignment.centerRight,

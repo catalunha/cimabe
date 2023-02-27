@@ -26,7 +26,7 @@ class CautionCard extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  AppPhotoShow(
+                  AppImageShow(
                     photoUrl: cautionModel.deliveryUserProfile?.photo,
                     height: 125,
                     // width: 150,
@@ -36,7 +36,7 @@ class CautionCard extends StatelessWidget {
               ),
               Column(
                 children: [
-                  AppPhotoShow(
+                  AppImageShow(
                     photoUrl: cautionModel.receiverUserProfile?.photo,
                     height: 125,
                     // width: 150,
@@ -47,7 +47,7 @@ class CautionCard extends StatelessWidget {
               // if (cautionModel.givebackUserProfile != null)
               Column(
                 children: [
-                  AppPhotoShow(
+                  AppImageShow(
                     photoUrl: cautionModel.givebackUserProfile?.photo,
                     height: 125,
                     // width: 150,
@@ -57,8 +57,8 @@ class CautionCard extends StatelessWidget {
               ),
             ],
           ),
-          AppPhotoShow(
-            photoUrl: cautionModel.item!.photo,
+          AppImageShow(
+            photoUrl: cautionModel.item!.image?.url,
             height: 100,
             width: 300,
           ),

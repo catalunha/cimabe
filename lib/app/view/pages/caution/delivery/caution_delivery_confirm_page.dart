@@ -25,9 +25,9 @@ class CautionDeliveryConfirmPage extends StatelessWidget {
                     value: _cautionDeliveryController.quantityEnd.toString(),
                   ),
                   const SizedBox(height: 15),
-                  AppPhotoShow(
-                    photoUrl:
-                        _cautionDeliveryController.cautionModel!.item!.photo,
+                  AppImageShow(
+                    photoUrl: _cautionDeliveryController
+                        .cautionModel!.item!.image?.url,
                     width: 300,
                     height: 100,
                   ),
@@ -49,7 +49,7 @@ class CautionDeliveryConfirmPage extends StatelessWidget {
 
                   const Divider(height: 5),
                   const SizedBox(height: 15),
-                  AppPhotoShow(
+                  AppImageShow(
                     photoUrl: _cautionDeliveryController
                         .cautionModel!.receiverUserProfile!.photo,
                     height: 100,
