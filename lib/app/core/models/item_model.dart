@@ -6,7 +6,6 @@ import 'package:cimabe/app/core/models/image_model.dart';
 
 class ItemModel {
   final String? id;
-  final String? photo;
   final String? description;
   final String? serie;
   final String? lote;
@@ -23,7 +22,6 @@ class ItemModel {
   final ImageModel? image;
   ItemModel({
     this.id,
-    this.photo,
     this.description,
     this.serie,
     this.lote,
@@ -42,7 +40,6 @@ class ItemModel {
 
   ItemModel copyWith({
     String? id,
-    String? photo,
     String? description,
     String? serie,
     String? lote,
@@ -60,7 +57,6 @@ class ItemModel {
   }) {
     return ItemModel(
       id: id ?? this.id,
-      photo: photo ?? this.photo,
       description: description ?? this.description,
       serie: serie ?? this.serie,
       lote: lote ?? this.lote,
@@ -84,9 +80,7 @@ class ItemModel {
     if (id != null) {
       result.addAll({'id': id});
     }
-    if (photo != null) {
-      result.addAll({'photo': photo});
-    }
+
     if (description != null) {
       result.addAll({'description': description});
     }
@@ -136,7 +130,6 @@ class ItemModel {
   factory ItemModel.fromMap(Map<String, dynamic> map) {
     return ItemModel(
       id: map['id'],
-      photo: map['photo'],
       description: map['description'],
       serie: map['serie'],
       lote: map['lote'],
@@ -163,7 +156,7 @@ class ItemModel {
 
   @override
   String toString() {
-    return 'ItemModel(id: $id, photo: $photo, description: $description, serie: $serie, lote: $lote, brand: $brand, model: $model, calibre: $calibre, doc: $doc, obsCaution: $obsCaution, validate: $validate, isMunition: $isMunition, isBlockedOperator: $isBlockedOperator, isBlockedDoc: $isBlockedDoc, groups: $groups, image: $image)';
+    return 'ItemModel(id: $id,  description: $description, serie: $serie, lote: $lote, brand: $brand, model: $model, calibre: $calibre, doc: $doc, obsCaution: $obsCaution, validate: $validate, isMunition: $isMunition, isBlockedOperator: $isBlockedOperator, isBlockedDoc: $isBlockedDoc, groups: $groups, image: $image)';
   }
 
   @override
@@ -172,7 +165,6 @@ class ItemModel {
 
     return other is ItemModel &&
         other.id == id &&
-        other.photo == photo &&
         other.description == description &&
         other.serie == serie &&
         other.lote == lote &&
@@ -192,7 +184,6 @@ class ItemModel {
   @override
   int get hashCode {
     return id.hashCode ^
-        photo.hashCode ^
         description.hashCode ^
         serie.hashCode ^
         lote.hashCode ^

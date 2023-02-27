@@ -27,7 +27,7 @@ class UserProfileViewPage extends StatelessWidget {
                   title: 'Foto:',
                   value: '',
                 ),
-                AppPhotoShow(
+                AppImageShow(
                   photoUrl: userProfileModel.photo,
                   height: 100,
                   width: 100,

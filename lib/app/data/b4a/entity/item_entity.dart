@@ -8,7 +8,6 @@ class ItemEntity {
   ItemModel fromParse(ParseObject parseObject) {
     ItemModel itemModel = ItemModel(
       id: parseObject.objectId!,
-      photo: parseObject.get('photo')?.get('url'),
       description: parseObject.get('description'),
       serie: parseObject.get('serie'),
       lote: parseObject.get('lote'),
@@ -83,6 +82,7 @@ class ItemEntity {
           (ParseObject(ImageEntity.className)..objectId = itemModel.image!.id)
               .toPointer());
     }
+
     return parseObject;
   }
 }

@@ -1,12 +1,11 @@
-import 'package:cimabe/app/core/models/image_model.dart';
 import 'package:cimabe/app/view/controllers/image/image_search_addedit_controller.dart';
 import 'package:cimabe/app/view/pages/utils/app_textformfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../utils/app_icon.dart';
-import '../utils/app_photo_show.dart';
-import '../utils/app_text_title_value.dart';
+import 'image_card.dart';
+import 'image_print_page.dart';
 
 class ImageSearchPage extends StatefulWidget {
   final _imageSearchAddEditController =
@@ -35,7 +34,7 @@ class _ImageSearchPageState extends State<ImageSearchPage> {
         actions: [
           IconButton(
             onPressed: () {
-              // Get.to(() => ImagePrintPage());
+              Get.to(() => ImagePrintPage());
             },
             icon: const Icon(Icons.print),
           )
@@ -100,44 +99,6 @@ class _ImageSearchPageState extends State<ImageSearchPage> {
         tooltip: 'Inserir nova imagem',
         child: const Icon(AppIconData.addInCloud),
         onPressed: () => widget._imageSearchAddEditController.addImage(),
-      ),
-    );
-  }
-}
-
-class ImageCard extends StatelessWidget {
-  final _imageSearchAddEditController =
-      Get.find<ImageSearchAddEditController>();
-  final ImageModel imageModel;
-  ImageCard({Key? key, required this.imageModel}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: [
-          AppPhotoShow(
-            photoUrl: imageModel.url,
-            width: 300,
-            height: 100,
-          ),
-          AppTextTitleValue(
-            title: 'Id: ',
-            value: imageModel.id,
-          ),
-          Text('${imageModel.keywords?.join(' ')}'),
-          Wrap(
-            children: [
-              IconButton(
-                onPressed: () =>
-                    _imageSearchAddEditController.updateImage(imageModel),
-                icon: const Icon(
-                  Icons.edit,
-                ),
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }

@@ -30,8 +30,8 @@ class ItemViewPage extends StatelessWidget {
                   title: 'Foto: ',
                   value: '',
                 ),
-                AppPhotoShow(
-                  photoUrl: itemModel.photo,
+                AppImageShow(
+                  photoUrl: itemModel.image?.url,
                   width: 300,
                   height: 100,
                 ),

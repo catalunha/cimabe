@@ -1,10 +1,13 @@
 import 'package:cimabe/app/view/controllers/item/addedit/item_addedit_controller.dart';
-import 'package:cimabe/app/view/pages/utils/app_import_image.dart';
+import 'package:cimabe/app/view/pages/utils/app_photo_show.dart';
 import 'package:cimabe/app/view/pages/utils/app_textformfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:validatorless/validatorless.dart';
+
+import '../../../../core/models/image_model.dart';
+import '../../../../routes.dart';
 
 class ItemAddEditPage extends StatefulWidget {
   ItemAddEditPage({Key? key}) : super(key: key);
@@ -29,6 +32,7 @@ class _ItemAddEditPageState extends State<ItemAddEditPage> {
   bool isBlockedDoc = false;
   final groupsTEC = TextEditingController();
   final quantityTEC = TextEditingController();
+  ImageModel? imageModel;
   @override
   void initState() {
     super.initState();
@@ -47,6 +51,7 @@ class _ItemAddEditPageState extends State<ItemAddEditPage> {
     groupsTEC.text =
         widget._itemAddEditController.item?.groups?.join('\n') ?? "";
     quantityTEC.text = '1';
+    imageModel = widget._itemAddEditController.item?.image;
   }
 
   @override
@@ -148,13 +153,35 @@ class _ItemAddEditPageState extends State<ItemAddEditPage> {
                         controller: groupsTEC,
                         maxLines: 5,
                       ),
-                      AppImportImage(
-                        label: 'Click aqui para buscar uma foto.',
-                        imageUrl: widget._itemAddEditController.item?.photo,
-                        setXFile: (value) =>
-                            widget._itemAddEditController.xfile = value,
-                        maxHeightImage: 150,
-                        maxWidthImage: 150,
+                      Row(
+                        children: [
+                          IconButton(
+                              onPressed: () async {
+                                var result =
+                                    await Get.toNamed(Routes.imageSearch);
+                                if (result != null) {
+                                  setState(() {
+                                    imageModel = result;
+                                  });
+                                }
+                              },
+                              icon: const Icon(Icons.search)),
+                          Expanded(
+                            child: Container(
+                              height: 150,
+                              decoration: BoxDecoration(
+                                  border: Border.all(width: 1),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(10))),
+                              child: AppImageShow(
+                                photoUrl: imageModel?.url,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          )
+                        ],
                       ),
                       const SizedBox(height: 5),
                       const Text('Manutenção/Validade'),
@@ -214,6 +241,7 @@ class _ItemAddEditPageState extends State<ItemAddEditPage> {
         quantity: int.tryParse(quantityTEC.text) == null
             ? 1
             : int.parse(quantityTEC.text),
+        imageModel: imageModel,
       );
       return true;
     }

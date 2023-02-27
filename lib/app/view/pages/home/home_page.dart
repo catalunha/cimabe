@@ -35,6 +35,15 @@ class HomePage extends StatelessWidget {
                 color: Colors.black87,
               ),
               CardHome(
+                title: 'Relatórios',
+                access: const ['admin'],
+                onAction: () {
+                  // Get.toNamed(Routes.userProfileSearch);
+                },
+                icon: Icons.print_rounded,
+                color: Colors.black87,
+              ),
+              CardHome(
                 title: 'Imagens de itens',
                 access: const ['patrimonio'],
                 onAction: () {

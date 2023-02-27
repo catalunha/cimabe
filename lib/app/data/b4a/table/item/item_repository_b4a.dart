@@ -13,9 +13,7 @@ class ItemRepositoryB4a implements ItemRepository {
       QueryBuilder<ParseObject> query, Pagination pagination) async {
     query.setAmountToSkip((pagination.page - 1) * pagination.limit);
     query.setLimit(pagination.limit);
-    query.includeObject([
-      'image',
-    ]);
+    query.includeObject(['image']);
     return query;
   }
 
@@ -82,7 +80,15 @@ class ItemRepositoryB4a implements ItemRepository {
       response = await userProfileParse.save();
 
       if (response.success && response.results != null) {
-        return ItemEntity().fromParse(response.results!.first);
+        ParseResponse? responseObject;
+        ParseObject parseObject = response.results!.first;
+        responseObject = await ParseObject(ItemEntity.className)
+            .getObject(parseObject.objectId!, include: ['image']);
+        if (responseObject.success && responseObject.results != null) {
+          return ItemEntity().fromParse(responseObject.results!.first);
+        } else {
+          throw Exception();
+        }
       } else {
         throw Exception();
       }
