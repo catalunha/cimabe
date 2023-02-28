@@ -18,7 +18,7 @@ class ParseErrorCode {
     log('--- --- ---', name: 'ParseErrorCodes');
     if (_appCodes.containsKey(parseError.code)) {
       code = 'Parse Error: ${parseError.code}';
-      message = _appCodes[parseError.code]!;
+      message = '${_appCodes[parseError.code]!} (${parseError.message})';
     } else {
       code = 'Parse Error: ${parseError.code}';
       message = parseError.message;
@@ -28,6 +28,8 @@ class ParseErrorCode {
   final Map<int, String> _appCodes = {
     //1 - Successful request, but no results found - No Results
     //101 - Invalid username/password. - ObjectNotFound
+    //101 - Your account is locked due to multiple failed login attempts. Please try again after 5 minute(s) - ObjectNotFound
+
     101: 'Email ou senha inválidos ou não cadastrados.',
     202: 'Já existe uma conta para este email.',
     205: 'Veja seu email para validar seu cadastro.',
