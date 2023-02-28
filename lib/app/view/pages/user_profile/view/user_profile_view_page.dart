@@ -47,11 +47,11 @@ class UserProfileViewPage extends StatelessWidget {
                   value: userProfileModel.nickname,
                   inColumn: true,
                 ),
-                AppTextTitleValue(
-                  title: 'CPF: ',
-                  value: userProfileModel.cpf,
-                  inColumn: true,
-                ),
+                // AppTextTitleValue(
+                //   title: 'CPF: ',
+                //   value: userProfileModel.cpf,
+                //   inColumn: true,
+                // ),
                 AppTextTitleValue(
                   title: 'Registro: ',
                   value: userProfileModel.register,
@@ -72,7 +72,7 @@ class UserProfileViewPage extends StatelessWidget {
                 ),
                 AppTextTitleValue(
                   title: 'Rotas: ',
-                  value: userProfileModel.routes?.join(','),
+                  value: userProfileModel.routes?.join('\n'),
                   inColumn: true,
                 ),
                 AppTextTitleValue(

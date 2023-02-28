@@ -62,7 +62,7 @@ class UserProfileCard extends StatelessWidget {
                         IconButton(
                           onPressed: () {
                             Get.toNamed(Routes.userProfileAccess,
-                                arguments: profile.id);
+                                arguments: profile);
                           },
                           icon: const Icon(
                             Icons.edit,

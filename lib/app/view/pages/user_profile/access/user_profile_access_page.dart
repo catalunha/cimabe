@@ -4,7 +4,6 @@ import 'package:cimabe/app/view/pages/utils/app_text_title_value.dart';
 import 'package:cimabe/app/view/pages/utils/app_textformfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:validatorless/validatorless.dart';
 
 class UserProfileAccessPage extends StatefulWidget {
   UserProfileAccessPage({Key? key}) : super(key: key);
@@ -86,11 +85,11 @@ class _UserProfileAccessPageState extends State<UserProfileAccessPage> {
                         value:
                             '${widget._userProfileAccessController.userProfile?.phone}',
                       ),
-                      AppTextTitleValue(
-                        title: 'CPF: ',
-                        value:
-                            '${widget._userProfileAccessController.userProfile?.cpf}',
-                      ),
+                      // AppTextTitleValue(
+                      //   title: 'CPF: ',
+                      //   value:
+                      //       '${widget._userProfileAccessController.userProfile?.cpf}',
+                      // ),
                       AppTextTitleValue(
                         title: 'Registro: ',
                         value:
@@ -110,22 +109,107 @@ class _UserProfileAccessPageState extends State<UserProfileAccessPage> {
                         },
                       ),
                       const Text(
-                          'As opções de rotas são: admin,reserva,operador,relatorio'),
-                      const Text(
-                          'Separador virgula. Sem espaços. Sem acentos.'),
-                      AppTextFormField(
-                        label: '* Rotas acessíveis:',
-                        controller:
-                            widget._userProfileAccessController.routesTec,
-                        validator:
-                            Validatorless.required('Rotas é obrigatório'),
+                          'Marque as opções de acesso para este usuário.'),
+                      Wrap(
+                        children: [
+                          SizedBox(
+                            width: 120,
+                            child: Card(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 5, right: 5),
+                                child: Row(
+                                  children: [
+                                    const Text('Admin'),
+                                    Checkbox(
+                                        tristate: true,
+                                        value: widget
+                                            ._userProfileAccessController
+                                            .routesMap['admin'],
+                                        onChanged: (value) => widget
+                                                ._userProfileAccessController
+                                                .routesMap['admin'] =
+                                            value ?? false),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 140,
+                            child: Card(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 5, right: 5),
+                                child: Row(
+                                  children: [
+                                    const Text('Patrimônio'),
+                                    Checkbox(
+                                        value: widget
+                                            ._userProfileAccessController
+                                            .routesMap['patrimonio'],
+                                        onChanged: (value) => widget
+                                                ._userProfileAccessController
+                                                .routesMap['patrimonio'] =
+                                            value ?? false),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 120,
+                            child: Card(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 5, right: 5),
+                                child: Row(
+                                  children: [
+                                    const Text('Reserva'),
+                                    Checkbox(
+                                        value: widget
+                                            ._userProfileAccessController
+                                            .routesMap['reserva'],
+                                        onChanged: (value) => widget
+                                                ._userProfileAccessController
+                                                .routesMap['reserva'] =
+                                            value ?? false),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 130,
+                            child: Card(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 5, right: 5),
+                                child: Row(
+                                  children: [
+                                    const Text('Operador'),
+                                    Checkbox(
+                                        value: widget
+                                            ._userProfileAccessController
+                                            .routesMap['operador'],
+                                        onChanged: (value) => widget
+                                                ._userProfileAccessController
+                                                .routesMap['operador'] =
+                                            value ?? false),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      const Text('Veja opções de grupos.'),
+
+                      const Text('Informe restrições aos grupos:.'),
                       AppTextFormField(
-                        label: '* Restrições aos grupos:',
+                        label: 'separados por espaço',
                         controller:
                             widget._userProfileAccessController.restrictionsTec,
-                        maxLines: 3,
+                        // maxLines: 3,
                       ),
 
                       const SizedBox(height: 70),
@@ -145,7 +229,6 @@ class _UserProfileAccessPageState extends State<UserProfileAccessPage> {
     if (formValid) {
       await widget._userProfileAccessController.updateAccess(
         isActive: widget._userProfileAccessController.isActive,
-        routes: widget._userProfileAccessController.routesTec.text,
         restrictions: widget._userProfileAccessController.restrictionsTec.text,
       );
       return true;
