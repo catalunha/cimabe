@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cimabe/app/core/models/user_profile_model.dart';
 import 'package:cimabe/app/data/b4a/table/user_profile/user_profile_repository_exception.dart';
 import 'package:cimabe/app/data/repositories/user_profile_repository.dart';
@@ -54,15 +52,15 @@ class UserProfileAccessController extends GetxController
     super.onInit();
   }
 
-  Future<void> getProfile() async {
-    _loading(true);
-    log('+++> getProfile $clientId', name: 'getProfile');
-    UserProfileModel? userProfileModelTemp =
-        await _userProfileRepository.readById(clientId!);
-    userProfile = userProfileModelTemp;
-    setFormFieldControllers();
-    _loading(false);
-  }
+  // Future<void> getProfile() async {
+  //   _loading(true);
+  //   log('+++> getProfile $clientId', name: 'getProfile');
+  //   UserProfileModel? userProfileModelTemp =
+  //       await _userProfileRepository.readById(clientId!);
+  //   userProfile = userProfileModelTemp;
+  //   setFormFieldControllers();
+  //   _loading(false);
+  // }
 
   setFormFieldControllers() {
     userProfile?.routes?.forEach((e) {
