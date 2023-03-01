@@ -5,7 +5,7 @@ RUN npm -y -g install serve
 WORKDIR /app/
 
 COPY ./build/ .
-COPY ./Dockerfile .
+COPY Dockerfile .
 
 EXPOSE 3000
 
