@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class ItemViewPage extends StatelessWidget {
-  ItemModel itemModel = Get.arguments;
+  final ItemModel itemModel = Get.arguments;
   ItemViewPage({super.key});
   final dateFormat = DateFormat('MM/y');
 

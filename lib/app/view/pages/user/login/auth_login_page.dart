@@ -58,7 +58,7 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                         children: [
                           Text(
                             'Login',
-                            style: context.textTheme.headline6?.copyWith(
+                            style: context.textTheme.titleLarge?.copyWith(
                               fontWeight: FontWeight.bold,
                               // color: context.theme.primaryColorDark,
                             ),

@@ -28,18 +28,18 @@ class _CautionGivebackCardState extends State<CautionGivebackCard> {
             title: 'Id: ',
             value: widget.cautionModel.id,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Wrap(
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AppImageShow(
                 photoUrl: widget.cautionModel.receiverUserProfile!.photo,
-                height: 125,
-                // width: 150,
+                // height: 150,
+                width: 150,
               ),
               AppImageShow(
                 photoUrl: widget.cautionModel.item!.image?.url,
-                height: 125,
-                width: 300,
+                // height: 150,
+                width: 150,
               ),
             ],
           ),

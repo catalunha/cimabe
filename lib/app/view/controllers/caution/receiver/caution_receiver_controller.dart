@@ -4,7 +4,6 @@ import 'package:cimabe/app/data/b4a/entity/caution_entity.dart';
 import 'package:cimabe/app/data/b4a/entity/user_profile_entity.dart';
 import 'package:cimabe/app/data/b4a/table/caution/caution_repository_exception.dart';
 import 'package:cimabe/app/data/repositories/caution_repository.dart';
-import 'package:cimabe/app/data/repositories/item_repository.dart';
 import 'package:cimabe/app/view/controllers/splash/splash_controller.dart';
 import 'package:cimabe/app/view/controllers/utils/loader_mixin.dart';
 import 'package:cimabe/app/view/controllers/utils/message_mixin.dart';
@@ -13,13 +12,10 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class CautionReceiverController extends GetxController
     with LoaderMixin, MessageMixin {
-  final ItemRepository _itemRepository;
   final CautionRepository _cautionRepository;
   CautionReceiverController({
-    required ItemRepository itemRepository,
     required CautionRepository cautionRepository,
-  })  : _itemRepository = itemRepository,
-        _cautionRepository = cautionRepository;
+  }) : _cautionRepository = cautionRepository;
 
   final _loading = false.obs;
   final _message = Rxn<MessageModel>();

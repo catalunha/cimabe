@@ -118,7 +118,7 @@ class ItemAddEditController extends GetxController
       }
 
       for (var i = 0; i < quantity; i++) {
-        ItemModel itemModel = await _itemRepository.update(item!);
+        await _itemRepository.update(item!);
         // if (_xfile != null) {
         //   String? photoUrl = await XFileToParseFile.xFileToParseFile(
         //     xfile: _xfile!,

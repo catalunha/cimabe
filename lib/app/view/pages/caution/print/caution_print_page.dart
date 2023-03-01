@@ -11,7 +11,7 @@ import 'dart:typed_data';
 
 class CautionPrintPage extends StatelessWidget {
   final _cautionSearchController = Get.find<CautionSearchController>();
-  var images = <String, pw.ImageProvider?>{};
+  // var images = <String, pw.ImageProvider?>{};
   CautionPrintPage({Key? key}) : super(key: key);
 
   @override
@@ -86,10 +86,10 @@ class CautionPrintPage extends StatelessWidget {
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Row(children: [
-          if (images[caution.id] != null)
-            pw.Center(
-              child: pw.Image(height: 200, width: 200, images[caution.id]!),
-            ),
+          // if (images[caution.id] != null)
+          //   pw.Center(
+          //     child: pw.Image(height: 200, width: 200, images[caution.id]!),
+          //   ),
           pw.SizedBox(width: 10),
           pw.Expanded(
               child: pw.Column(

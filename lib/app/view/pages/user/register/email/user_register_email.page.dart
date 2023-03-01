@@ -54,7 +54,7 @@ class _AuthRegisterEmailPageState extends State<AuthRegisterEmailPage> {
                         children: [
                           Text(
                             'Cadastro',
-                            style: context.textTheme.headline6?.copyWith(
+                            style: context.textTheme.titleLarge?.copyWith(
                               fontWeight: FontWeight.bold,
                               // color: context.theme.primaryColorDark,
                             ),

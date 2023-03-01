@@ -19,8 +19,6 @@ class _ImageAddEditPageState extends State<ImageAddEditPage> {
   final keywordsTEC = TextEditingController();
   @override
   void initState() {
-    print('=>>>>${DateTime.now()}');
-    print(widget._imageSearchAddEditController.image);
     super.initState();
     keywordsTEC.text =
         widget._imageSearchAddEditController.image?.keywords?.join(' ') ?? "";

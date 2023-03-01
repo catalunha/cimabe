@@ -1,4 +1,3 @@
-import 'package:cimabe/app/view/pages/utils/app_assets.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatelessWidget {

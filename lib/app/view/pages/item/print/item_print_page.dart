@@ -11,7 +11,7 @@ import 'dart:typed_data';
 
 class ItemPrintPage extends StatelessWidget {
   final _itemModelSearchController = Get.find<ItemSearchController>();
-  var images = <String, pw.ImageProvider?>{};
+  // var images = <String, pw.ImageProvider?>{};
   ItemPrintPage({Key? key}) : super(key: key);
 
   @override
@@ -32,7 +32,7 @@ class ItemPrintPage extends StatelessWidget {
 
   Future<Uint8List> makePdf() async {
     final pdf = pw.Document();
-    await getImages();
+    // await getImages();
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4.copyWith(
@@ -66,16 +66,16 @@ class ItemPrintPage extends StatelessWidget {
     return lineList;
   }
 
-  getImages() async {
-    for (var itemModel in _itemModelSearchController.itemList) {
-      if (itemModel.image?.url != null) {
-        final image = await networkImage(itemModel.image!.url!);
-        images[itemModel.id!] = image;
-      } else {
-        images[itemModel.id!] = null;
-      }
-    }
-  }
+  // getImages() async {
+  //   for (var itemModel in _itemModelSearchController.itemList) {
+  //     if (itemModel.image?.url != null) {
+  //       final image = await networkImage(itemModel.image!.url!);
+  //       images[itemModel.id!] = image;
+  //     } else {
+  //       images[itemModel.id!] = null;
+  //     }
+  //   }
+  // }
 
   userBody(ItemModel itemModel) {
     final dateFormat = DateFormat('MM/y');
@@ -84,10 +84,10 @@ class ItemPrintPage extends StatelessWidget {
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Row(children: [
-          if (images[itemModel.id] != null)
-            pw.Center(
-              child: pw.Image(height: 200, width: 200, images[itemModel.id]!),
-            ),
+          // if (images[itemModel.id] != null)
+          //   pw.Center(
+          //     child: pw.Image(height: 200, width: 200, images[itemModel.id]!),
+          //   ),
           pw.SizedBox(width: 10),
           pw.Expanded(
               child: pw.Column(

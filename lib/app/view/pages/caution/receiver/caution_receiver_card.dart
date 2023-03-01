@@ -6,7 +6,6 @@ import 'package:cimabe/app/view/pages/utils/app_text_title_value.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class CautionReceiverCard extends StatefulWidget {
   final _cautionReceiverController = Get.find<CautionReceiverController>();
@@ -20,7 +19,7 @@ class CautionReceiverCard extends StatefulWidget {
 class _CautionReceiverCardState extends State<CautionReceiverCard> {
   @override
   Widget build(BuildContext context) {
-    final dateFormat = DateFormat('dd/MM/y HH:mm');
+    // final dateFormat = DateFormat('dd/MM/y HH:mm');
     return Card(
       child: Column(
         children: [
@@ -149,7 +148,7 @@ class _CautionReceiverCardState extends State<CautionReceiverCard> {
                     String? res = await showDialog(
                       barrierDismissible: false,
                       context: context,
-                      builder: (BuildContext context) {
+                      builder: (_) {
                         return const DialogDescription(
                           title: 'Descrição',
                           formFieldLabel: '',

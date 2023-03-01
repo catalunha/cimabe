@@ -6,8 +6,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class UserProfileViewPage extends StatelessWidget {
-  // final = Get.find<UserProfileViewController>();
-  UserProfileModel userProfileModel = Get.arguments;
+  final UserProfileModel userProfileModel = Get.arguments;
   UserProfileViewPage({super.key});
   final dateFormat = DateFormat('dd/MM/y');
 

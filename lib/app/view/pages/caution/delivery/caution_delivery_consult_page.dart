@@ -41,7 +41,7 @@ class _CautionDeliveryConsultPageState
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.cloud_upload),
         onPressed: () async {
-          var result = await saveItem();
+          await saveItem();
         },
       ),
       body: Center(

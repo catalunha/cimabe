@@ -9,62 +9,6 @@ import 'package:cimabe/app/view/controllers/user_profile/search/user_profile_sea
 import 'package:pdf/pdf.dart';
 import 'package:get/get.dart';
 
-// class UserProfilePrintPage extends StatelessWidget {
-//   const UserProfilePrintPage({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Relatório'),
-//       ),
-//       body: PdfPreview(
-//         canChangeOrientation: false,
-//         canDebug: false,
-//         pdfFileName: 'relatorio',
-//         build: (format) => makePdf2(),
-//       ),
-//     );
-//   }
-
-//   Future<Uint8List> makePdf1() async {
-//     final pdf = pw.Document();
-//     final netImage = await networkImage('https://www.nfet.net/nfet.jpg');
-
-//     pdf.addPage(
-//       pw.Page(
-//         build: (pw.Context context) {
-//           return pw.Center(
-//             child: pw.Image(netImage),
-//           );
-//         },
-//       ),
-//     );
-//     return await pdf.save();
-//   }
-
-//   Future<Uint8List> makePdf2() async {
-//     final pdf = pw.Document();
-
-//     pdf.addPage(
-//       pw.Page(
-//         build: (pw.Context context) {
-//           return body2();
-//         },
-//       ),
-//     );
-//     return await pdf.save();
-//   }
-
-//   body2() async {
-//     final netImage =
-//         await Future.value(networkImage('https://www.nfet.net/nfet.jpg'));
-//     return pw.Center(
-//       child: pw.Image(netImage),
-//     );
-//   }
-// }
-
 class UserProfilePrintPage extends StatelessWidget {
   final _userProfileSearchController = Get.find<UserProfileSearchController>();
   var images = <String, pw.ImageProvider?>{};
