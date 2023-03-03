@@ -35,3 +35,11 @@ Se for utilizar o plano de Shared-A mensal da CaaS por US$ 5 usaria apenas para 
 Mas ja tenho o hosting na BaaS. Então não compensa.
 Agora se eu considerar escalabilidade do container ai é outra questão. 
 Então gostaria de entender melhor estas relações entre BaaS e CaaS. 
+
+
+
+Funciona conforme video: https://youtu.be/H5_-1BoMrUs?list=PL_lJrbgUtzddPWx-gqxh2H6Bex3NkzGA8
+
+
+
+
